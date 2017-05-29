@@ -12,56 +12,81 @@
     <div class="panel-body collapse" id="body-dados-basicos">
     				<div class='row' style="margin-bottom:30px">
 	    				<div class='col-md-4'></div>
-	    				<div class='col-md-4'><input type="checkbox" name="ass_tipo" checked></div>
+	    				<div class='col-md-4'>
+	    				<input type="checkbox" name="tipo" 
+	    				@if(isset($assinante))
+	    					{{'readonly '.($assinante->tipo ? 'checked': '')}}
+	    				@endif
+	    				/>
+	    				</div>
 	    				<div class='col-md-4'></div>
     				</div>
 
-                    <div class="form-group row" data-type="jur">
-						<label for="ass_nome_fantasia" class="col-md-4 col-form-label">Nome Fantasia</label>
+                    <div class="form-group row" data-type="jur" style="display:none">
+						<label for="nome_fantasia" class="col-md-4 col-form-label">Nome Fantasia</label>
 						<div class="col-md-8">
-						    <input class="form-control" type="text" value="" name="ass_nome_fantasia" id="ass_nome_fantasia">
+						    {{Form::text('nome_fantasia', null, ['class'=>'form-control']) }}
+						    
 						</div>
 					</div>
 
-					<div class="form-group row" data-type="jur">
-						<label for="ass_razao_social" class="col-md-4 col-form-label"> Razão Social </label>
+					<div class="form-group row" data-type="jur" style="display:none">
+						<label for="razao_social" class="col-md-4 col-form-label"> Razão Social </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_razao_social" id="ass_razao_social">
+							{{Form::text('razao_social', null, ['class'=>'form-control']) }}
+
 						</div>
 					</div>
 
-					<div class="form-group row" data-type="jur">
-						<label for="ass_cnpj" class="col-md-4 col-form-label"> CNPJ  </label>
+					<div class="form-group row" data-type="jur" style="display:none">
+						<label for="cnpj" class="col-md-4 col-form-label"> CNPJ  </label>
 						<div class="col-md-8">
-						    <input class="form-control" type="text" value="" name="ass_cnpj" id="ass_cnpj">
+							{{Form::text('cnpj', null, ['class'=>'form-control']) }}
 						</div>
 					</div>
 
-					<div class="form-group row" data-type="fis">
-						<label for="ass_cpf" class="col-md-4 col-form-label"> CPF  </label>
+					<div class="form-group row" data-type="fis" >
+						<label for="nome" class="col-md-4 col-form-label"> Nome  </label>
 						<div class="col-md-8">
-						    <input class="form-control" type="text" value="" name="ass_cpf" id="ass_cpf">
+							{{Form::text('nome', null, ['class'=>'form-control']) }}
+						</div>
+					</div>
+					
+					<div class="form-group row" data-type="fis" >
+						<label for="sobrenome" class="col-md-4 col-form-label"> Sobrenome  </label>
+						<div class="col-md-8">
+							{{Form::text('sobrenome', null, ['class'=>'form-control']) }}
 						</div>
 					</div>
 
-                    <div class="form-group row" data-type="jur">
-						<label for="ass_inscricao_estadual" class="col-md-4 col-form-label"> Inscrição E. </label>
+					<div class="form-group row" data-type="fis" >
+						<label for="cpf" class="col-md-4 col-form-label"> CPF  </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_inscricao_estadual" id="ass_inscricao_estadual">
+							{{Form::text('cpf', null, ['class'=>'form-control']) }}
 						</div>
 					</div>
 
-					<div class="form-group row" data-type="fis">
-						<label for="ass_rg" class="col-md-4 col-form-label"> RG </label>
+                    <div class="form-group row" data-type="jur" style="display:none">
+						<label for="inscricao_estadual" class="col-md-4 col-form-label"> Inscrição E. </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_rg" id="ass_rg">
+							{{Form::text('inscricao_estadual', null, ['class'=>'form-control']) }}
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="ass_cliente_desde" class="col-md-4 col-form-label"> Cliente desde </label>
+						<label for="plano" class="col-md-4 col-form-label"> Plano </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_cliente_desde" id="ass_cliente_desde">
+						{{Form::select('plano', $planos, null, ['class'=>'form-control '.(!count($planos) ? "hidden": "")]) }}
+						
+						@if(!count($planos))
+							<div class="alert alert-warning" role="alert">
+						    	<span>Nenhum <u>plano</u> cadastrado ! Clique
+						    		<b><a class="alert-link" href="{{route('rv.planos.create')}}">Aqui</a></b>
+						    			para cadastrar um.
+						    	</span>
+						    </div>
+						@endif
+
 						</div>
 					</div>
 	</div>

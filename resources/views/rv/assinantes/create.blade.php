@@ -2,7 +2,10 @@
 
 @section("content")
 
-@include("rv.assinantes.formfields_complete")
+<form method="POST" id="form-assinantes" action="{{route('rv.assinantes.store')}}">	
+	@include("rv.assinantes.formfields_complete")
+</form>
+
 
 @endsection
 

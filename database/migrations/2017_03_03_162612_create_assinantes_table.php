@@ -16,21 +16,22 @@ class CreateAssinantesTable extends Migration
         Schema::create('assinantes', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            
-            $table->integer('plano')->unsigned();
+
+            $table->integer('plano')->unsigned()->nullable();
             $table->foreign('plano')
                       ->references('id')
                       ->on('planos')
-                      ->onDelete('cascade');
+                      ->onDelete('set null');
 
             $table->string('nome_fantasia')->nullable();
             $table->string('razao_social')->nullable();
             $table->string('cnpj')->nullable();
             $table->string('cpf')->nullable();
+            $table->string('nome')->nullable();
+            $table->string('sobrenome')->nullable();
             $table->string('inscricao_estadual')->nullable();
             $table->string('rg')->nullable();
-            $table->string('tipo', 2); //pf ou pj
-            $table->timestamp('cliente_desde')->nullable();
+            $table->string('tipo')->boolean(); //1 = pessoa física; 0 = pessoa jurídica
         });
     }
 

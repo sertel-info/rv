@@ -23,12 +23,14 @@ class CreateDadosConfiguracoesLinhasTable extends Migration
                       ->on('linhas')
                       ->onDelete('cascade');
 
-            $table->string('callerid_externo');
-            $table->string('callerid_interno');
-            $table->boolean('envio_dtmf');
+            $table->string('callerid', 20)->nullable();
+            $table->string('envio_dtmf', 20);
             $table->boolean('ring_falso');
             $table->boolean('nat');
-            $table->boolean('audio_p2p');
+
+            $table->string('call_group', 20)->nullable();
+            $table->string('pickup_group', 20)->nullable();
+            $table->text('rotas_saida')->nullable(); //sera populado com json
         });
     }
 

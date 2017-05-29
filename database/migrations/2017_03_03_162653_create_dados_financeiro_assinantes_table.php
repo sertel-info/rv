@@ -23,12 +23,12 @@ class CreateDadosFinanceiroAssinantesTable extends Migration
                       ->on('assinantes')
                       ->onDelete('cascade');
 
-
             $table->integer('dias_bloqueio');
             $table->integer('dia_vencimento');
-            $table->integer('espaco_disco');
+            $table->integer('espaco_disco')->nullable();
             $table->decimal('limite_credito', 10, 2);
-            $table->decimal('alerta_saldo', 10, 2);
+            $table->decimal('alerta_saldo', 10, 2)->nullable();
+            $table->decimal('creditos', 10, 2)->default(0.00);
         });
     }
 

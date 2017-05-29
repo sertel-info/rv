@@ -23,13 +23,12 @@ class CreateDadosAutenticacaoLinhasTable extends Migration
                       ->on('linhas')
                       ->onDelete('cascade');
 
-            $table->string('login_ata');
-            $table->string('usuario');
-            $table->string('senha');
-            $table->string('num_linha');
-            $table->string('ip');
-            $table->string('porta');
-            $table->string('tech_fix');
+            $table->string('login_ata', 25);
+            $table->string('usuario', 25);
+            $table->string('senha', 25);
+            $table->string('numero')->nullable();
+            $table->string('ip', 21)->nullable(); //255.255.255.255:99999
+            $table->string('porta', 6)->nullable();
         });
     }
 

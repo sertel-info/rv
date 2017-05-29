@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Planos;
+use App\Models\Planos\Planos;
 use DB;
 
 class PlanosController extends Controller
@@ -43,18 +43,18 @@ class PlanosController extends Controller
     {
 
         try{
-            $this->pla_model->create(["nome"=>$request->pla_nome,
-                                      "tipo"=>$request->pla_tipo,
-                                      "valor_sms"=>$request->pla_val_sms,
-                                      "valor_fixo_local"=>$request->pla_val_fx_lc,
-                                      "valor_fixo_ddd"=>$request->pla_val_fixo_ddd,
-                                      "valor_movel_local"=>$request->pla_val_mv_lc,
-                                      "valor_movel_ddd"=>$request->pla_val_mv_ddd,
-                                      "valor_ddi"=>$request->pla_val_ddi,
-                                      "valor_ip"=>$request->pla_val_ip,
-                                      "simultaneas"=>$request->pla_simultaneas,
-                                      "descricao"=>$request->pla_descricao
-                                ]);
+            $this->pla_model->create(["nome"=>$request->nome,
+                                      "tipo"=>$request->tipo,
+                                      "valor_sms"=>$request->valor_sms,
+                                      "valor_fixo_local"=>$request->valor_fixo_local,
+                                      "valor_fixo_ddd"=>$request->valor_fixo_ddd,
+                                      "valor_movel_local"=>$request->valor_movel_local,
+                                      "valor_movel_ddd"=>$request->valor_movel_ddd,
+                                      "valor_ddi"=>$request->valor_ddi,
+                                      "valor_ip"=>$request->valor_ip,
+                                      "simultaneas"=>$request->simultaneas,
+                                      "descricao"=>$request->descricao
+                                    ]);
 
             SessionController::flashMessage("success", "Sucesso ", "Plano cadastrado com sucesso");
 
@@ -75,9 +75,10 @@ class PlanosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function manage()
     {
-        //
+        return view("rv.planos.manage", ['active'=>'pla_gerenciar',
+                                         'panel_title'=>'Gerenciar planos']);
     }
 
     /**
@@ -86,18 +87,23 @@ class PlanosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id = "c4ca4238a0b923820dcc509a6f75849b")
+    public function edit($id)
     {   
         $plano = '';
+
         try{
             $plano = $this->pla_model->where(DB::raw('MD5(id)'), $id)->first();
+
+            return view("rv.planos.edit", ["panel_title"=>"Editar Plano",
+                                            "active"=>"pla_gerenciar",
+                                            "plano"=>$plano]);
+       
         } catch(\Exception $ex){
             SessionController::flashMessage("danger", "Ops ", "Um erro inesperado ocorreu, tente novamente.");
+            return redirect()->route('rv.planos.manage');
         }
 
-        return view("rv.planos.edit", ["panel_title"=>"Atualizar Plano",
-                                        "active"=>"pla_gerenciar",
-                                        "plano"=>$plano]);
+      
     }
 
     /**
@@ -109,7 +115,32 @@ class PlanosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $plano = $this->pla_model->find($id);
+
+        try{
+            $plano->update(["nome"=>$request->nome,
+                            "tipo"=>$request->tipo,
+                            "valor_sms"=>$request->valor_sms,
+                            "valor_fixo_local"=>$request->valor_fixo_local,
+                            "valor_fixo_ddd"=>$request->valor_fixo_ddd,
+                            "valor_movel_local"=>$request->valor_movel_local,
+                            "valor_movel_ddd"=>$request->valor_movel_ddd,
+                            "valor_ddi"=>$request->valor_ddi,
+                            "valor_ip"=>$request->valor_ip,
+                            "simultaneas"=>$request->simultaneas,
+                            "descricao"=>$request->descricao
+                            ]);
+
+            SessionController::flashMessage("success", "Sucesso ", "Plano atualizado com sucesso");
+
+            return redirect()->route('rv.planos.manage');
+
+        } catch (\Exception $ex){
+
+           SessionController::flashMessage("danger", "Ops ", "Um erro inesperado ocorreu, tente novamente.");
+
+           return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -118,8 +149,40 @@ class PlanosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $plano = $this->pla_model->where(DB::raw('MD5(id)'), $request->id)
+                                ->first();
+        $status = $plano->delete();
+        return json_encode(['status'=>$status]);
+    }
+
+    public function datatables(){
+        $planos = $this->pla_model->select(DB::raw('*, MD5(id) as id_md5, 
+                                                    CASE tipo WHEN "pre" THEN "PRÉ-PAGO" ELSE "PÓS-PAGO" END as tipo'))->get();
+        return json_encode(["data"=>$planos]);
+    }
+
+    public function get(Request $request){
+        if($request->ajax()){
+            $plano = $this->pla_model->select(DB::raw('nome as Nome,
+                                                       concat(valor_sms, " R$") as "Valor do SMS",
+                                                       concat(valor_fixo_local, " R$") as "Valor para fixo local",
+                                                       concat(valor_fixo_ddd, " R$") as "Valor para fixo DDD",
+                                                       concat(valor_movel_local, " R$") as "Valor para móvel local",
+                                                       concat(valor_movel_ddd, " R$") as "Valor para móvel DDD",
+                                                       concat(valor_ddi, " R$") as "Valor do DDI",
+                                                       concat(valor_ip, " R$") as "Valor para IP",
+                                                       simultaneas as "Ligações Simultâneas",
+                                                       descricao as Descrição,
+                                                       CASE tipo WHEN "pre"
+                                                                 THEN "PRÉ-PAGO" 
+                                                                 ELSE "PÓS-PAGO" 
+                                                                 END as Tipo'))
+                                     ->where(DB::raw('MD5(id)'), $request->id)
+                                     ->first();
+
+            return json_encode($plano);
+        }
     }
 }

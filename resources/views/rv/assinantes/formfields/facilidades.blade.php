@@ -13,22 +13,22 @@
 						
 						<div class='col-md-4'>
 							<center>
-								<label for="ass_acesso_ramais" class=""> Acesso a Ramais </label><br>
-								<input type="checkbox" name="ass_acesso_ramais" data-size="mini">
+								<label for="acesso_ramais" class=""> Acesso a Ramais </label><br>
+								{{Form::checkbox('acesso_ramais', 1, isset($assinante->acesso_ramais) ? $assinante->acesso_ramais : null, ['data-size'=>'mini'])}}
 							</center>
 						</div>
 
 						<div class='col-md-4'>
 							<center>
-								<label for="ass_acesso_dids" class=""> Acesso a DIDs  </label><br>
-								<input type="checkbox" name="ass_acesso_dids" data-size="mini">
+								<label for="portal_voz" class=""> Portal de Voz </label><br>
+								{{Form::checkbox('portal_voz', 1, isset($assinante->portal_voz) ? $assinante->portal_voz : null, ['data-size'=>'mini'])}}
 							</center>
 						</div>
 
 						<div class='col-md-4'>
 							<center>
-								<label for="ass_portal_voz" class=""> Portal de Voz  </label><br>
-								<input type="checkbox" name="ass_portal_voz" data-size="mini">
+								<label for="envio_sms" class=""> Envio de SMS </label><br>
+								{{Form::checkbox('envio_sms', 1, isset($assinante->envio_sms) ? $assinante->envio_sms : null, ['data-size'=>'mini'])}}
 							</center>
 						</div>
 
@@ -36,47 +36,28 @@
 
 					<div class="form-group row">
 						
-
 						<div class='col-md-4'>
 							<center>
-								<label for="ass_salas_conferencia" class=""> Salas de Conferência </label> <br>
-								<input type="checkbox" name="ass_salas_conferencia" data-size="mini">
+								<label for="salas_conferencia" class=""> Salas de Conferência </label><br>
+								{{Form::checkbox('salas_conferencia', 1, isset($assinante->salas_conferencia) ? $assinante->salas_conferencia : null, ['data-size'=>'mini'])}}
 							</center>
 						</div>
 
 						<div class='col-md-4'>
 							<center>
-								<label for="ass_filas_atendimento" class=""> Filas de Atendimento  </label><br>
-								<input type="checkbox" name="ass_filas_atendimento" data-size="mini">
+								<label for="filas_atendimento" class=""> Filas de Atendimento  </label><br>
+								{{Form::checkbox('filas_atendimento', 1, isset($assinante->filas_atendimento) ? $assinante->filas_atendimento : null, ['data-size'=>'mini'])}}
 							</center>
 						</div>
 
 						<div class='col-md-4'>
 							<center>
-								<label for="ass_ura_atendimento" class=""> URA de Atendimento </label><br>
-								<input type="checkbox" name="ass_ura_atendimento" data-size="mini">
+								<label for="ura_atendimento" class=""> URA de Atendimento </label><br>
+								{{Form::checkbox('ura_atendimento', 1, isset($assinante->ura_atendimento) ? $assinante->ura_atendimento : null, ['data-size'=>'mini'])}}
 							</center>
 						</div>
+					
 					</div>
-
-					<div class='form-group row'>
-
-						<div class='col-md-4'>
-							<center>
-								<label for="ass_envio_sms" class=""> Envio de SMS  </label><br>
-								<input type="checkbox" name="ass_envio_sms" data-size="mini">
-							</center>
-						</div>
-
-						<div class='col-md-4'>
-							<center>
-								<label for="ass_acesso_callshop" class=""> Acesso a CallShop  </label><br>
-								<input type="checkbox" name="ass_acesso_callshop" data-size="mini">
-							</center>
-						</div>
-						
-					</div>
-
 	</div>
 
 </div>

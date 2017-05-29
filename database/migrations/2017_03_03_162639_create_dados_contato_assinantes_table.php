@@ -23,18 +23,18 @@ class CreateDadosContatoAssinantesTable extends Migration
                       ->on('assinantes')
                       ->onDelete('cascade');
                       
-            $table->string('cep', 10);
-            $table->string('endereco');
-            $table->string('complemento');
-            $table->string('bairro');
-            $table->string('cidade');
-            $table->string('estado', 2);
-            $table->string('pais');
-            $table->string('email');
-            $table->string('site');
-            $table->string('telefone', 20);
-            $table->string('fax');
-            $table->string('celular', 20);
+            $table->string('cep', 10)->nullable();
+            $table->string('endereco')->nullable();
+            $table->string('complemento')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('pais')->nullable();
+            $table->string('email')->nullable();
+            $table->string('site')->nullable();
+            $table->string('telefone', 20)->nullable();
+            $table->string('fax')->nullable();
+            $table->string('celular', 20)->nullable();
 
         });
     }

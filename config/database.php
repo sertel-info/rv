@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mysql-default'),
 
     /*
     |--------------------------------------------------------------------------
@@ -30,44 +30,34 @@ return [
     | choice installed on your machine before you begin development.
     |
     */
-
     'connections' => [
-
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
-        ],
-
-        'mysql' => [
+        'mysql-default' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'ramal_virtual'),
+            'username' => env('DB_USERNAME', 'ipbxsertel'),
+            'password' => env('DB_PASSWORD', '@ipbxsertel'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'strict' => true,
             'engine' => null,
         ],
-
-        'pgsql' => [
-            'driver' => 'pgsql',
+	'mysql-asterisk-logs' => [
+            'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'rv_logs'),
+            'username' => env('DB_USERNAME', 'ipbxsertel'),
+            'password' => env('DB_PASSWORD', '@ipbxsertel'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'prefer',
+            'strict' => true,
+            'engine' => null,
         ],
-
-    ],
-
+   ],
     /*
     |--------------------------------------------------------------------------
     | Migration Repository Table

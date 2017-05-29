@@ -11,49 +11,48 @@
     <div class="panel-body collapse" id="body-configuracoes-gerais">
 	 
 		<div class="form-group row">
-			<label for="lin_callerid_externo" class="col-md-4 col-form-label"> CallerID Externo </label>
+			<label for="callerid" class="col-md-4 col-form-label"> CallerID </label>
 			<div class="col-md-8">
-				<input class="form-control" type="text" value="" name="lin_callerid_externo" id="lin_callerid_externo">
+				{{Form::text("callerid", null, ['class'=>'form-control'])}}						
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="lin_callerid_interno" class="col-md-4 col-form-label"> CallerID Interno </label>
+			<label for="call_group" class="col-md-4 col-form-label"> Call Group </label>
 			<div class="col-md-8">
-				<input class="form-control" type="text" value="" name="lin_callerid_interno" id="lin_callerid_interno">
+				{{Form::text("call_group", null, ['class'=>'form-control'])}}						
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="lin_envio_dtmf" class="col-md-4 col-form-label"> Envio de DTMF </label>
+			<label for="pickup_group" class="col-md-4 col-form-label"> Pickup Group </label>
 			<div class="col-md-8">
-				<select class="form-control" value="" name="lin_envio_dtmf" id="lin_envio_dtmf">
-                    <option value="auto">AUTO (Automático)</option>
-                    <option value="rfc2833">RFC2833 (padrão)</option>
-                    <option value="inband">INBAND (Apenas G711)</option>
-                    <option value="info">INFO</option>
-				</select>
+				{{Form::text("pickup_group", null, ['class'=>'form-control'])}}						
+			</div>
+		</div>
+
+
+		<div class="form-group row">
+			<label for="envio_dtmf" class="col-md-4 col-form-label"> Envio de DTMF </label>
+			<div class="col-md-8">
+				{{Form::select("envio_dtmf", ['auto'=>'AUTO (Automático)',
+												   'rfc2833'=>'RFC2833 (padrão)',
+												   'inband'=>'INBAND (Apenas G711)',
+												   'info'=>'INFO' ], null, ['class'=>'form-control'])}}
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="lin_rig_falso" class="col-md-4 col-form-label"> Ring Falso </label>
+			<label for="ring_falso" class="col-md-4 col-form-label"> Ring Falso </label>
 			<div class="col-md-8">
-				<input type="checkbox" name="lin_rig_falso" id="lin_rig_falso" >
+				{{Form::checkbox('ring_falso', 1, null, ['class'=>'form-control'])}}
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="lin_nat" class="col-md-4 col-form-label"> NAT </label>
+			<label for="nat" class="col-md-4 col-form-label"> NAT </label>
 			<div class="col-md-8">
-				<input type="checkbox" name="lin_nat" id="lin_nat">
-			</div>
-		</div>
-
-		<div class="form-group row">
-			<label for="lin_audio_p2p" class="col-md-4 col-form-label"> Audio peer-to-peer </label>
-			<div class="col-md-8">
-				<input type="checkbox" name="lin_audio_p2p"  id="lin_audio_p2p">
+				{{Form::checkbox('nat', 1, null, ['class'=>'form-control'])}}
 			</div>
 		</div>
 

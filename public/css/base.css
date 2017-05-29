@@ -6,7 +6,29 @@
 
 
 .col-form-label{
+	 line-height: 30px;
+	 text-align: right;
+}
 
- line-height: 30px;
- text-align: right;
+
+/* tamanho dos glyphicons */
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+
+
+/*tabela com textos centralizados*/
+
+.table-centered{
+	text-align:center;
+}
+
+.table-centered th {
+	text-align: center;
+}
+
+.table-centered caption{
+	font-size:2em;
+	text-align: center;
 }

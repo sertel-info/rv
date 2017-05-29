@@ -13,15 +13,15 @@
 						
 						<div class='col-md-6'>
 							<center>
-								<label for="lin_perm_lgc_fixo" id="transferencia" class=""> Ligação para FIXO </label><br>
-								<input type="checkbox" name="lin_perm_ligacao_fixo" id="lin_perm_ligacao_fixo" >
+								<label for="ligacao_fixo" id="transferencia" class=""> Ligação para FIXO </label><br>
+								{{Form::checkbox('ligacao_fixo', 1, null, ['class'=>'form-control'])}}
 							</center>
 						</div>
 
 						<div class='col-md-6'>
 							<center>
-								<label for="lin_perm_lgc_movel" class=""> Ligação para MÓVEL  </label><br>
-								<input type="checkbox" name="lin_perm_lgc_movel" id="lin_perm_lgc_movel">
+								<label for="ligacao_movel" class=""> Ligação para MÓVEL  </label><br>
+								{{Form::checkbox('ligacao_movel', 1, null, ['class'=>'form-control'])}}
 							</center>
 						</div>
 
@@ -31,15 +31,15 @@
 					<div class="form-group row">
 						<div class='col-md-6'>
 								<center>
-									<label for="lin_perm_lgc_internacional" class=""> Ligação Internacional  </label><br>
-									<input type="checkbox" name="lin_perm_lgc_internacional" id="lin_perm_lgc_internacional">
+									<label for="ligacao_internacional" class=""> Ligação Internacional  </label><br>
+									{{Form::checkbox('ligacao_internacional', 1, null, ['class'=>'form-control'])}}
 								</center>
 						</div>
 						
 						<div class='col-md-6'>
 							<center>
-								<label for="lin_perm_lgc_ip" class=""> Ligação IP x IP </label><br>
-								<input type="checkbox" name="lin_perm_lgc_ip" id="lin_perm_lgc_ip">
+								<label for="ligacao_ip" class=""> Ligação IP x IP </label><br>
+								{{Form::checkbox('ligacao_ip', 1, null, ['class'=>'form-control'])}}
 							</center>
 						</div>
 
@@ -48,8 +48,8 @@
 					<div class="form-group row">
 						<div class='col-md-6'>
 								<center>
-									<label for="lin_status" class=""> Status  </label><br>
-									<input type="checkbox" name="lin_status" id="lin_status">
+									<label for="status" class=""> Status  </label><br>
+								    {{Form::checkbox('status', 1, null, ['class'=>'form-control'])}}
 								</center>
 						</div>
 

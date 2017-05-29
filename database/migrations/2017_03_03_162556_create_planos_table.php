@@ -27,7 +27,6 @@ class CreatePlanosTable extends Migration
             $table->decimal('valor_movel_ddd', 10, 2)->default(0.00);
             $table->decimal('valor_ddi', 10, 2)->default(0.00);
             $table->decimal('valor_ip', 10, 2)->default(0.00);
-            $table->integer('simultaneas');
         });
     }
 

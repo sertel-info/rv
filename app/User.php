@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Hash;
 
 class User extends Authenticatable
 {
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'assinante_id', 'role'
     ];
 
     /**
@@ -24,6 +25,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
+
+    public function assinante(){
+        return $this->belongsTo('App\Models\Assinantes\Assinantes', 'assinante_id', 'id');
+    }
+
+    public function setPasswordAttribute($value){
+        return $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function getRoleAttribute($value){
+        return intval($value);
+    }
 }

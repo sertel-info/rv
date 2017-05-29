@@ -9,86 +9,86 @@
     <div class="panel-body collapse"  id="body-contato">
                     
                     <div class="form-group row">
-						<label for="ass_cep" class="col-md-4 col-form-label">Cep</label>
+						<label for="cep" class="col-md-4 col-form-label">Cep</label>
 						<div class="col-md-8">
-						    <input class="form-control" type="text" value="" name="ass_cep" id="ass_cep">
+							{{Form::text('cep', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="ass_endereco" class="col-md-4 col-form-label"> Endereço </label>
+						<label for="endereco" class="col-md-4 col-form-label"> Endereço </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_endereco" id="ass_endereco">
+							{{Form::text('endereco', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="ass_complemento" class="col-md-4 col-form-label"> Complemento </label>
+						<label for="complemento" class="col-md-4 col-form-label"> Complemento </label>
 						<div class="col-md-8">
-						    <input class="form-control" type="text" value="" name="ass_complemento" id="ass_complemento">
+							{{Form::text('complemento', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="ass_bairro" class="col-md-4 col-form-label"> Bairro </label>
+						<label for="bairro" class="col-md-4 col-form-label"> Bairro </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_bairro" id="ass_bairro">
+							{{Form::text('bairro', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 
                     <div class="form-group row">
-						<label for="ass_cidade" class="col-md-4 col-form-label"> Cidade </label>
+						<label for="cidade" class="col-md-4 col-form-label"> Cidade </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_cidade" id="ass_cidade">
+							{{Form::text('cidade', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 
                     <div class="form-group row">
-						<label for="ass_estado" class="col-md-4 col-form-label"> Estado/UF </label>
+						<label for="estado" class="col-md-4 col-form-label"> Estado/UF </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_estado" id="ass_estado">
+							{{Form::text('estado', null, ['class'=>'form-control'])}}
 						</div>
 						</div>
 
                     <div class="form-group row">
-						<label for="ass_pais" class="col-md-4 col-form-label"> País </label>
+						<label for="pais" class="col-md-4 col-form-label"> País </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_pais" id="ass_pais">
+							{{Form::text('pais', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="ass_email" class="col-md-4 col-form-label"> E-Mail </label>
+						<label for="email" class="col-md-4 col-form-label"> E-Mail </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value=""  name="ass_email" id="ass_email">
+							{{Form::text('email', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="ass_site" class="col-md-4 col-form-label"> Site/Homepage </label>
+						<label for="site" class="col-md-4 col-form-label"> Site/Homepage </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_site" id="ass_site">
+							{{Form::text('site', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="ass_telefone" class="col-md-4 col-form-label"> Telefone </label>
+						<label for="telefone" class="col-md-4 col-form-label"> Telefone </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_telefone" id="ass_telefone">
+							{{Form::text('telefone', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="ass_fax" class="col-md-4 col-form-label"> Num. Fax </label>
+						<label for="fax" class="col-md-4 col-form-label"> Num. Fax </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_fax" id="ass_fax">
+							{{Form::text('fax', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="ass_celular" class="col-md-4 col-form-label"> Celular </label>
+						<label for="celular" class="col-md-4 col-form-label"> Celular </label>
 						<div class="col-md-8">
-						   <input class="form-control" type="text" value="" name="ass_celular" id="ass_celular">
+							{{Form::text('celular', null, ['class'=>'form-control'])}}
 						</div>
 					</div>
 	</div>

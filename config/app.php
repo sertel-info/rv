@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'Sertel - Ramal Virtual',
 
     /*
     |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'dev'),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-br',
 
     /*
     |--------------------------------------------------------------------------
@@ -103,9 +103,9 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'base64:kVRDEsWj4aszgs2qdzCq4CSL+jXx04n3x6gsF6erFfs='),
 
-    'cipher' => 'AES-256-CBC',
+    'cipher'=>'AES-256-CBC',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +162,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Yajra\Datatables\DatatablesServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -175,6 +175,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\AsteriskConfigFileParserProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class
 
@@ -228,6 +229,12 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class
     ],
+
+    'asterisk_files'=>['extension'=>'/etc/asterisk/ramal_virtual/rv_extensions.conf',
+                          'registry'=>'/etc/asterisk/ramal_virtual/rv_troncos_registry.conf',
+                          'sip_ramais'=>'/etc/asterisk/ramal_virtual/rv_sip_ramais.conf',
+                          'voice_mail'=>'/etc/asterisk/ramal_virtual/rv_voice_mail.conf']
 
 ];

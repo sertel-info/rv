@@ -17,6 +17,12 @@ class CreateDadosPermissoesLinhasTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
+            $table->integer('linha_id')->unsigned();
+            $table->foreign('linha_id')
+                      ->references('id')
+                      ->on('linhas')
+                      ->onDelete('cascade');
+                                       
             $table->boolean("ligacao_fixo");
             $table->boolean("ligacao_internacional");
             $table->boolean("ligacao_movel");

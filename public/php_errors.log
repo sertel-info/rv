@@ -1,0 +1,15 @@
+[19-Apr-2017 17:27:58 America/Sao_Paulo] PHP Fatal error:  Class 'App\Http\Controllers\Auth' not found in /home/ramal_virtual/app/Http/Controllers/BillingController.php on line 13
+[19-Apr-2017 17:31:12 America/Sao_Paulo] PHP Fatal error:  Class 'App\Http\Controllers\Ddr' not found in /home/ramal_virtual/app/Http/Controllers/BillingController.php on line 22
+[19-Apr-2017 17:34:37 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/ramal_virtual/app/Http/Controllers/BillingController.php on line 22
+[19-Apr-2017 17:50:52 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/ramal_virtual/app/Http/Controllers/BillingController.php on line 19
+[19-Apr-2017 17:51:22 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '/' in /home/ramal_virtual/app/Http/Controllers/BillingController.php on line 25
+[19-Apr-2017 17:55:46 America/Sao_Paulo] PHP Fatal error:  Class 'App\Http\Controllers\User' not found in /home/ramal_virtual/app/Http/Controllers/BillingController.php on line 24
+[19-Apr-2017 17:56:00 America/Sao_Paulo] PHP Fatal error:  Class 'App\Http\Controllers\User' not found in /home/ramal_virtual/app/Http/Controllers/BillingController.php on line 26
+[19-Apr-2017 18:02:11 America/Sao_Paulo] PHP Fatal error:  Call to a member function with() on null in /home/ramal_virtual/app/User.php on line 40
+[20-Apr-2017 09:52:38 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/ramal_virtual/routes/web.php on line 15
+[20-Apr-2017 09:52:45 America/Sao_Paulo] PHP Fatal error:  Class 'ItensModificados' not found in /home/ramal_virtual/routes/web.php on line 15
+[25-Apr-2017 09:47:54 America/Sao_Paulo] PHP Fatal error:  Call to a member function increase() on string in /home/ramal_virtual/app/Http/Controllers/AssinantesController.php on line 227
+[25-Apr-2017 09:49:13 America/Sao_Paulo] PHP Fatal error:  Call to a member function increase() on string in /home/ramal_virtual/app/Http/Controllers/AssinantesController.php on line 227
+[25-Apr-2017 09:51:43 America/Sao_Paulo] PHP Fatal error:  Call to a member function increase() on string in /home/ramal_virtual/app/Http/Controllers/AssinantesController.php on line 227
+[25-Apr-2017 09:58:00 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ']' in /home/ramal_virtual/app/Http/Controllers/AssinantesController.php on line 229
+[25-Apr-2017 10:02:30 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/ramal_virtual/app/Http/Controllers/AssinantesController.php on line 230

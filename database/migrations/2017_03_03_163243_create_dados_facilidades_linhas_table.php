@@ -23,16 +23,14 @@ class CreateDadosFacilidadesLinhasTable extends Migration
                       ->on('linhas')
                       ->onDelete('cascade');
 
-            $table->boolean("transferencia");
-            $table->boolean("gravacao");
-            $table->boolean("cadeado_pessoal");
-            $table->boolean("siga_me");
-            $table->boolean("reproduzir_erros");
-            $table->boolean("qualidade_video");
-            $table->boolean("caixa_postal");
-            $table->string("pin")->nullable();
-            $table->string("num_siga_me")->nullable();
-            $table->string("funcionalidade");
+            $table->boolean("gravacao")->default(0);
+            $table->boolean("cadeado_pessoal")->default(0);
+            $table->boolean("siga_me")->default(0);
+            $table->boolean("caixa_postal")->default(0);
+            $table->string("cadeado_pin", 20)->nullable();
+            $table->string("num_siga_me", 20)->nullable();
+            $table->string("cx_postal_pw", 20)->nullable();
+            $table->string("cx_postal_email", 100)->nullable();
         });
     }
 

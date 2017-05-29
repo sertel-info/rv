@@ -17,14 +17,23 @@ class CreateLinhasTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->integer('assinante_id')->unsigned();
+            $table->integer('assinante_id')->unsigned()
+                                           ->nullable();
+
             $table->foreign('assinante_id')
                       ->references('id')
                       ->on('assinantes')
-                      ->onDelete('cascade');
+                      ->onDelete('set null');
 
-            $table->string("tecnologia");
-            $table->integer("ddd_local");
+            $table->string("tecnologia", 10);
+            $table->string("nome", 25);
+            $table->integer("ddd_local")->nullable();
+            $table->integer('simultaneas')->nullable();
+            $table->string("funcionalidade", 15);
+            $table->boolean("status_did")->default(0);
+            $table->boolean("cli")->default(0);
+            //seria json, mas deu erro no mysql, e deixei varchar pra depois mudar
+            $table->string("codecs");
         });
     }
 
