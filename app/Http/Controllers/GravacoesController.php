@@ -119,4 +119,14 @@ class GravacoesController extends Controller
         $file = pathinfo($gravacao->arquivo);
     	return response()->file($file['dirname'] .'/'. $file['filename'] . '.wav', $headers);
     }
+
+    public function corrigir(){
+        $gravacoes = \App\Models\Gravacoes::leftjoin('cdr', 'cdr.uniqueid', '=', 'gravacoes.unique_id')
+                                            ->where('data', '0000-00-00 00:00:00')->get();
+
+        foreach($gravacoes as $g){
+            $g->update(['data'=>$g->calldate]);
+        }
+    }
+
 }

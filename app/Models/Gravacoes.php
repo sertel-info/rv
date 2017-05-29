@@ -8,4 +8,6 @@ class Gravacoes extends Model
 {
 	protected $connection = 'mysql-asterisk-logs';
     protected $table = "gravacoes";
+    public $timestamps = false;
+    protected $fillable = ['data'];
 }

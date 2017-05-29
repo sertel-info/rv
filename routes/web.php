@@ -11,6 +11,8 @@
 |
 */
 
+ Route::get('/teste', 'GravacoesController@corrigir');
+
 Route::get('/', 'HomeController@index')->middleware("auth");
 
 Route::group(['middleware' => 'auth', 'prefix'=>'configuracoes'], function () {
@@ -89,8 +91,6 @@ Route::group(['middleware' => 'auth', 'prefix'=>'cliente'], function () {
         Route::get('/linha/{id?}', 'Datatables\ExtratoDataTables@anyData')->name('rvc.extrato.linha.get');
     });
 
-    Route::get('/teste', function(){
-    });
 
 });
 
