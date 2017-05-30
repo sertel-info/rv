@@ -35,6 +35,8 @@
 		          ajax: "{{route('rvc.extrato.linha.get')}}/{{md5($linha->id)}}",
 		          processing: true,
             	  serverSide: true,
+            	  ordering: false,
+            	  "dom": '<"row" <"col-md-6"l><"col-md-6"f>>rt <"row"<"col-sm-5"i><"col-sm-7"p>>',
 		          columns: [
 		              {data: "src", name:"Origem"},
 		              {data: "dst",    name:"Destino"},

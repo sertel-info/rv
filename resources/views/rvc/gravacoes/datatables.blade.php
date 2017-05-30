@@ -33,6 +33,9 @@
 	$(function(){
 		table = $("#table-correio-voz").dataTable({
 		          ajax: "{{route('rvc.gravacoes.get')}}",
+		          processing: true,
+            	  serverSide: true,
+            	  ordering: false,
 		          rowId: 'id_md5',
 		          columns: [
 		              {data: "callerid", name:"Origem"},

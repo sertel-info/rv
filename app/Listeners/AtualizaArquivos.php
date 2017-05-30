@@ -83,6 +83,7 @@ class AtualizaArquivos
                                     "type"=>"friend",
                                     "context"=>"sertel",
                                     "call-limit"=>$linha->simultaneas,
+                                    "accountcode"=>$autenticacao->usuario,
                                     "port"=>$autenticacao->porta,
                                     "host"=>"dynamic",
                                     "disallow"=>"all",

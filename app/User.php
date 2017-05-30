@@ -39,4 +39,11 @@ class User extends Authenticatable
     public function getRoleAttribute($value){
         return intval($value);
     }
+ 
+    public function scopeComplete($query)
+    {
+        return $query->with('assinante.linhas.facilidades',
+                            'assinante.linhas.configuracoes',
+                            'assinante.linhas.autenticacao');
+    }
 }

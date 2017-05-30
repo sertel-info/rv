@@ -10,16 +10,13 @@
 	 text-align: right;
 }
 
-
 /* tamanho dos glyphicons */
 .gi-2x{font-size: 2em;}
 .gi-3x{font-size: 3em;}
 .gi-4x{font-size: 4em;}
 .gi-5x{font-size: 5em;}
 
-
 /*tabela com textos centralizados*/
-
 .table-centered{
 	text-align:center;
 }
@@ -31,4 +28,16 @@
 .table-centered caption{
 	font-size:2em;
 	text-align: center;
+}
+
+.dataTables_paginate .pagination{
+	margin: 0px !important;
+}
+
+.dataTables_filter {
+	float:right !important;
+}
+
+.dataTables_paginate{
+	float:right !important;
 }

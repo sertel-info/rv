@@ -12,36 +12,34 @@ class ExtratoDataTables extends Controller
     public function anyData($id)
 	{
 	    $linha = \App\Models\Linhas\Linhas::where(DB::raw('md5(linhas.id)'), $id)
-	                                    ->with('autenticacao')
-	                                    ->with('configuracoes')
-	                                    ->with('did')
-	                                    ->first();
+		                                    ->with('autenticacao')
+		                                    ->with('configuracoes')
+		                                    ->with('did')
+		                                    ->first();
 
 
 	    $identificadores_linhas = $this->getIdentificadoresLinha($linha);
 
-	    $gravacoes = \App\Models\Cdr::where(function ($query) use ($identificadores_linhas){
-	                                            $query->whereIn('dst', $identificadores_linhas)
-	                                                   ->orWhere(function($query) use ($identificadores_linhas){
-	                                                        $query->whereIn('src', $identificadores_linhas);
-	                                                   });
-	                                   
-	                          })->orderBy('uniqueid', 'desc')
-	    						->get();
+	    $ligacoes = \App\Models\Cdr::where(function ($query) use ($identificadores_linhas, $linha){
+		                              $query->whereIn('dst', $identificadores_linhas)
+		                                        ->orWhere('src', $linha->autenticacao->login_ata);
+		                                   
+		                          	  })->orderBy('id', 'desc')
+		    						  ->get();
 
-	    return Datatables::of($gravacoes)->make(true);
+	    return Datatables::of($ligacoes)->make(true);
 	}
 
-	public function getIdentificadoresLinha($linha){
+	public function getIdentificadoresLinha($linha, $identificadores = array('d', 'l', 'c')){
         $array_ids = array();
 
-        if(isset($linha->did))
+        if(isset($linha->did) && in_array('d', $identificadores))
             array_push($array_ids, $linha->did->extensao_did);
 
-        if(isset($linha->autenticacao))
+        if(isset($linha->autenticacao) && in_array('l', $identificadores))
             array_push($array_ids, $linha->autenticacao->login_ata);
 
-        if(isset($linha->configuracoes))
+        if(isset($linha->configuracoes) && in_array('c', $identificadores))
             array_push($array_ids, $linha->configuracoes->callerid);
 
         $identificadores_linhas = array_unique($array_ids);

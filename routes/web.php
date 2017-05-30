@@ -72,9 +72,9 @@ Route::group(['middleware' => 'auth', 'prefix'=>'cliente'], function () {
 
     Route::group(['prefix'=>'gravacoes'], function(){
         Route::get('/', 'GravacoesController@index')->name('rvc.gravacoes.index');
-        Route::get('/get', 'GravacoesController@dataTables')->name('rvc.gravacoes.get');
         Route::get('/download', 'GravacoesController@downloadGravacao')->name('rvc.gravacoes.download');
         Route::get('/blob/{id?}', 'GravacoesController@getBlob' )->name('rvc.gravacoes.get_blob');
+        Route::get('/get/data', 'Datatables\GravacoesDataTables@anyData')->name('rvc.gravacoes.get');
     });
 
     Route::group(['prefix'=>'caixa'], function(){
@@ -86,9 +86,9 @@ Route::group(['middleware' => 'auth', 'prefix'=>'cliente'], function () {
 
     Route::group(['prefix'=>'extrato'], function(){
         Route::get('/', 'ExtratoController@index')->name('rvc.extrato.index');
-        Route::get('/get', 'ExtratoController@dataTables')->name('rvc.extrato.get');
+        //Route::get('/get', 'ExtratoController@dataTables')->name('rvc.extrato.get');
         Route::get('/exibir/{id?}', 'ExtratoController@show')->name('rvc.extrato.show');
-        Route::get('/linha/{id?}', 'Datatables\ExtratoDataTables@anyData')->name('rvc.extrato.linha.get');
+        Route::get('/linha/{id?}/{identificadores?}', 'Datatables\ExtratoDataTables@anyData')->name('rvc.extrato.linha.get');
     });
 
 
