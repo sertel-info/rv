@@ -20,12 +20,11 @@ class ExtratoDataTables extends Controller
 
 	    $identificadores_linhas = $this->getIdentificadoresLinha($linha);
 
-	    $ligacoes = \App\Models\Cdr::where(function ($query) use ($identificadores_linhas, $linha){
-		                              $query->whereIn('dst', $identificadores_linhas)
-		                                        ->orWhere('src', $linha->autenticacao->login_ata);
-		                                   
-		                          	  })->orderBy('id', 'desc')
-		    						  ->get();
+	    $ligacoes = \App\Models\Cdr::whereIn('dst', $identificadores_linhas)
+                                    ->orWhere('accountcode', '=', $linha->autenticacao->login_ata)
+                                    ->where('disposition', 'ANSWERED')
+                                    ->orderBy('id', 'desc')
+                                    ->get();
 
 	    return Datatables::of($ligacoes)->make(true);
 	}

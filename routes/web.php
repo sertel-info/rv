@@ -88,7 +88,7 @@ Route::group(['middleware' => 'auth', 'prefix'=>'cliente'], function () {
         Route::get('/', 'ExtratoController@index')->name('rvc.extrato.index');
         //Route::get('/get', 'ExtratoController@dataTables')->name('rvc.extrato.get');
         Route::get('/exibir/{id?}', 'ExtratoController@show')->name('rvc.extrato.show');
-        Route::get('/linha/{id?}/{identificadores?}', 'Datatables\ExtratoDataTables@anyData')->name('rvc.extrato.linha.get');
+        Route::get('/linhas/{id?}', 'Datatables\ExtratoDataTables@anyData')->name('rvc.extrato.linhas.get');
     });
 
 

@@ -32,7 +32,7 @@
 <script type="text/javascript">
 	$(function(){
 		$("#table-extrato").dataTable({
-		          ajax: "{{route('rvc.extrato.linha.get')}}/{{md5($linha->id)}}",
+		          ajax: "{{route('rvc.extrato.linhas.get')}}/{{md5($linha->id)}}",
 		          processing: true,
             	  serverSide: true,
             	  ordering: false,
