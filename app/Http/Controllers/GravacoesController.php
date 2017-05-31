@@ -121,7 +121,7 @@ class GravacoesController extends Controller
     }
 
     public function corrigir(){
-        /*$gravacoes = \App\Models\Gravacoes::leftjoin('cdr', 'cdr.uniqueid', '=', 'gravacoes.unique_id')
+        $gravacoes = \App\Models\Gravacoes::leftjoin('cdr', 'cdr.uniqueid', '=', 'gravacoes.unique_id')
                                             ->where('data', '0000-00-00 00:00:00')->get();
 
 
@@ -129,8 +129,8 @@ class GravacoesController extends Controller
             $g->update(['data'=>$g->calldate]);
         }
 
-        */
         $cdrs = \App\Models\Cdr::where("accountcode", '=', '')->get();
+
         foreach($cdrs as $cdr){
             //SIP/5020-000003bc
             $channel = explode('-', explode('/', $cdr->channel)[1])[0];

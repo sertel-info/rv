@@ -1,47 +1,47 @@
 $(function(){
-var pickThis = $("#codecs-picklist");
+var codecsPicklist = $("#codecs-picklist");
 
-pickThis.find(".pAdd").on('click', function(ev) {
+codecsPicklist.find(".pAdd").on('click', function(ev) {
   ev.preventDefault();
-  var p = pickThis.find(".pickData option:selected");
-  p.clone().appendTo(pickThis.find(".pickListResult"));
+  var p = codecsPicklist.find(".pickData option:selected");
+  p.clone().appendTo(codecsPicklist.find(".pickListResult"));
   p.remove();
 });
 
-pickThis.find(".pRemove").on('click', function(ev) {
+codecsPicklist.find(".pRemove").on('click', function(ev) {
   ev.preventDefault();
-  var p = pickThis.find(".pickListResult option:selected");
-  p.clone().appendTo(pickThis.find(".pickData"));
+  var p = codecsPicklist.find(".pickListResult option:selected");
+  p.clone().appendTo(codecsPicklist.find(".pickData"));
   p.remove();
 });
 
-pickThis.find(".pRemoveAll").on('click', function(ev) {
+codecsPicklist.find(".pRemoveAll").on('click', function(ev) {
   ev.preventDefault();
-  var p = pickThis.find(".pickListResult option");
-  p.clone().appendTo(pickThis.find(".pickData"));
+  var p = codecsPicklist.find(".pickListResult option");
+  p.clone().appendTo(codecsPicklist.find(".pickData"));
   p.remove();
 });
 
-var pickThis = $("#rotas-picklist");
+var rotasPicklist = $("#rotas-picklist");
 
-pickThis.find(".pAdd").on('click', function(ev) {
+rotasPicklist.find(".pAdd").on('click', function(ev) {
   ev.preventDefault();
-  var p = pickThis.find(".pickData option:selected");
-  p.clone().appendTo(pickThis.find(".pickListResult"));
+  var p = rotasPicklist.find(".pickData option:selected");
+  p.clone().appendTo(rotasPicklist.find(".pickListResult"));
   p.remove();
 });
 
-pickThis.find(".pRemove").on('click', function(ev) {
+rotasPicklist.find(".pRemove").on('click', function(ev) {
   ev.preventDefault();
-  var p = pickThis.find(".pickListResult option:selected");
-  p.clone().appendTo(pickThis.find(".pickData"));
+  var p = rotasPicklist.find(".pickListResult option:selected");
+  p.clone().appendTo(rotasPicklist.find(".pickData"));
   p.remove();
 });
 
-pickThis.find(".pRemoveAll").on('click', function(ev) {
+rotasPicklist.find(".pRemoveAll").on('click', function(ev) {
   ev.preventDefault();
-  var p = pickThis.find(".pickListResult option");
-  p.clone().appendTo(pickThis.find(".pickData"));
+  var p = rotasPicklist.find(".pickListResult option");
+  p.clone().appendTo(rotasPicklist.find(".pickData"));
   p.remove();
 });
 });
