@@ -46,4 +46,5 @@ class User extends Authenticatable
                             'assinante.linhas.configuracoes',
                             'assinante.linhas.autenticacao');
     }
+
 }

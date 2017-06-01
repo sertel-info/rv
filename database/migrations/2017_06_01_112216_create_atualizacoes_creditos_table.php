@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePermissoesLinhasTable extends Migration
+class CreateAtualizacoesCreditosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreatePermissoesLinhasTable extends Migration
      */
     public function up()
     {
-        Schema::create('permissoes_linhas', function (Blueprint $table) {
+        Schema::create('atualizacoes_creditos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
 
-            $table->boolean("ligacao_fixo");
-            $table->boolean("ligacao_internacional");
-            $table->boolean("ligacao_movel");
-            $table->boolean("ligacao_ip");
-            $table->boolean("status");
+            $table->integer('assinante_id');
+            $table->decimal('value', 10, 2);
+
         });
     }
 
@@ -32,6 +30,6 @@ class CreatePermissoesLinhasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissoes_linhas');
+        Schema::dropIfExists('atualizacoes_creditos');
     }
 }

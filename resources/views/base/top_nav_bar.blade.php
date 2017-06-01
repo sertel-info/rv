@@ -25,7 +25,7 @@
                         @else
 
                             @if(Auth::User()->role == 1)
-                                <li><a>Créditos : {{Auth::User()->assinante()->first()->financeiro->creditos}} R$</a></li>
+                                <li><a>Créditos : R$ {{Auth::User()->assinante()->first()->financeiro->creditos}}</a></li>
                                 
                             @endif
                             <li class="dropdown">
@@ -34,6 +34,14 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    @if(Auth::User()->role == 1)
+                                        <li> 
+                                         <a href="{{ route('rvc.conta.edit') }}">
+                                            Conta
+                                         </a>
+                                        </li>
+                                    @endif
+
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
@@ -45,8 +53,11 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                   
                                 </ul>
                             </li>
+
+
                         @endif
                     </ul>
     </div><!-- /.navbar-collapse -->

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\Assinantes\Assinantes;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Models\AtualizacoesCreditos;
 
 class AssinantesController extends Controller
 {   
@@ -238,8 +239,18 @@ class AssinantesController extends Controller
             
             if($operacao == md5('mais')){
               $qtd_creditos_nova = floatval($qtd_creditos_atual)+floatval($valor_mais);
+
+              $assinante->atualizacoesCreditos()->create([
+                    'value'=>$valor_mais
+                ]);
+
             } else if($operacao == md5('menos')){
               $qtd_creditos_nova = floatval($qtd_creditos_atual)-floatval($valor_menos);
+
+              $assinante->atualizacoesCreditos()->create([
+                    'value'=>(floatval($valor_menos) * (-1))
+                ]);
+
               if($qtd_creditos_nova < 0){
                  return json_encode(["status"=>-1, 
                                       "novo_valor"=>$qtd_creditos_nova]);
@@ -252,6 +263,7 @@ class AssinantesController extends Controller
                                   "novo_valor"=>$qtd_creditos_nova]);
 
         } catch (\Exception $e){
+            return $e->getMessage();
             return json_encode(["status"=>0, 
                                   "novo_valor"=>$qtd_creditos_nova]);            
         }

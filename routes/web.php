@@ -13,7 +13,7 @@
 
  Route::get('/teste', 'GravacoesController@corrigir');
 
-Route::get('/', 'HomeController@index')->middleware("auth");
+Route::get('/', 'HomeController@index')->name('index')->middleware("auth");
 
 Route::group(['middleware' => 'auth', 'prefix'=>'configuracoes'], function () {
     Route::get('/', 'ConfiguracoesController@index')->name("rv.configuracoes.index");    
@@ -61,13 +61,13 @@ Route::group(['middleware' => 'auth', 'prefix'=>'planos'], function () {
 
 
 Route::group(['middleware' => 'auth', 'prefix'=>'cliente'], function () {
-    Route::group(['prefix'=>'contas'], function(){
+    /*Route::group(['prefix'=>'contas'], function(){
         Route::get('/', 'BillingController@getContas')->name("rv.cliente.contas");
-    });
+    });*/
 
     Route::group(['prefix'=>'configuracoes'], function(){
-        Route::get('/', 'ConfiguracoesClienteController@index')->name('rvc.config.index');
-        Route::put('/linha/atualizar', 'ConfiguracoesClienteController@updateLinha')->name('rvc.config.update.linha');
+        Route::get('/', 'ClientesController@config')->name('rvc.config.index');
+        Route::put('/linha/atualizar', 'ClientesController@updateLinha')->name('rvc.config.update.linha');
     });
 
     Route::group(['prefix'=>'gravacoes'], function(){
@@ -91,6 +91,10 @@ Route::group(['middleware' => 'auth', 'prefix'=>'cliente'], function () {
         Route::get('/linhas/{id?}', 'Datatables\ExtratoDataTables@anyData')->name('rvc.extrato.linhas.get');
     });
 
+    Route::group(['prefix'=>'conta'], function(){
+        Route::get('/editar', 'ClientesController@edit')->name('rvc.conta.edit');
+        Route::post('/atualizar', 'ClientesController@update')->name('rvc.conta.update');
+    });
 
 });
 

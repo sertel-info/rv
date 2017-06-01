@@ -31,7 +31,7 @@ public function anyData()
     		return $el !== null && !empty($el);
     	});
 
-    	$gravacoes = Gravacoes::select("*",DB::raw("MD5(gravacoes.id) as id_md5"))
+    	$gravacoes = Gravacoes::select("*", DB::raw("MD5(gravacoes.id) as id_md5"), DB::raw("SEC_TO_TIME(billsec) as billsec"))
     				 ->leftjoin('cdr', 'cdr.uniqueid', '=', 'gravacoes.unique_id')
     				 ->where(function ($query) use ($identificadores_linhas){
 			                $query->where('cdr.disposition', '=', 'ANSWERED')

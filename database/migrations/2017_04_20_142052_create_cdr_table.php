@@ -41,7 +41,8 @@ class CreateCdrTable extends Migration
             $table->decimal( 'cost', 10, 2 );
             $table->index('calldate');
             $table->index('dst');
-            $table->index('accountcode');     
+            $table->index('accountcode'); 
+            $table->index('uniqueid');    
             /*
 CREATE TABLE cdr (
     accountcode VARCHAR(20), 

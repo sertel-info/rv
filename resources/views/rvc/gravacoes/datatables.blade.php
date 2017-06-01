@@ -41,11 +41,10 @@
 		              {data: "callerid", name:"Origem"},
 		              {data: "exten",    name:"Destino"},
 		              {data: "data", name:"Data"},
-		              {data: "duration", name:"Duration"},
+		              {data: "billsec", name:"Billsec"},
 		              {data: "id", name:"acoes"}
 		          ],
 		          columnDefs: [
-		          
 		          {
 		            targets:4,
 		            "createdCell": function (td, cellData, rowData, row, col) {

@@ -57,5 +57,9 @@ class Assinantes extends Model
     public function setCreditosAttribute($value){
         $this->attributes['creditos'] = floatval($value);
     }
+
+    public function atualizacoesCreditos(){
+        return $this->hasMany("App\Models\AtualizacoesCreditos", "assinante_id", 'id');
+    }
     
 }

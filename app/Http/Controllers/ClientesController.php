@@ -10,21 +10,26 @@ use App\Models\Linhas\Linhas;
 use App\Http\Controllers\SessionController;
 use App\Events\ItensModificados;
 use App\Http\Requests\Validators\LinhasValidatorCliente;
+use App\Http\Controllers\Auth\UpdateController;
+use Session;
 
-class ConfiguracoesClienteController extends Controller
-{
+class ClientesController extends Controller
+{   
+    public function show(Request $request){
+        return view("rvc.conta.show");
+    }
 
-    public function index(){
+    public function config(){
 
-    	$user = $this->getUsuario();
+        $user = $this->getUsuario();
 
-    	if($user->role !== 1){
-    		return abort(404);
-    	}
+        if($user->role !== 1){
+            return abort(404);
+        }
 
         return view('rvc.config.index', ['panel_title'=>'Configurações',
-    								     'active'=>'config',
-    								     'usuario'=>$user]);
+                                         'active'=>'config',
+                                         'usuario'=>$user]);
     }
 
     public function updateLinha(LinhasValidatorCliente $request){
@@ -51,7 +56,7 @@ class ConfiguracoesClienteController extends Controller
             return redirect()->back()->withInput();
         }
 
-    	return redirect()->route('rvc.config.index');
+        return redirect()->route('rvc.config.index');
     }
 
     public function getData($request){
@@ -73,10 +78,33 @@ class ConfiguracoesClienteController extends Controller
          return $request;
     }
 
-
     public function getUsuario(){
        return User::where('id', Auth::id())->with('assinante.linhas.facilidades',
-       											  'assinante.linhas.configuracoes')
+                                                  'assinante.linhas.configuracoes')
                                             ->first();
+    }
+
+    public function edit(Request $request){
+        return view("rvc.conta.edit", ['user'=>Auth::User()
+                                        ,'active'=>'']);
+    }
+
+    public function update(Request $request){
+        $updt_ctrl = new UpdateController();
+        $dados = $request->only('password', 'email', 'password_confirmation');
+        
+        $validator = $updt_ctrl->validator($dados, Auth::id());
+        
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $updt_ctrl->update(Auth::user(), $dados);
+        
+        Session::flash("msg_type", "success");
+        Session::flash("msg_title", "Sucesso !");
+        Session::flash("msg_txt", "Usuário atualizado com sucesso");
+
+        return redirect()->route("index");
     }
 }

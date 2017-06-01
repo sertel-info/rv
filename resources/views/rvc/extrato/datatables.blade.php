@@ -32,7 +32,20 @@
 <script type="text/javascript">
 	$(function(){
 		$("#table-extrato").dataTable({
-		          ajax: "{{route('rvc.extrato.linhas.get')}}/{{md5($linha->id)}}",
+		          ajax: {url:"{{route('rvc.extrato.linhas.get')}}/{{md5($linha->id)}}",
+		      			 data: function(data){
+		      			 	data.filters = {
+		      			 		origem: $("input[name=origem]").val(),
+			      			 	destino :$("input[name=destino]").val(),
+			      			 	data_min : $("input[name=data_min]").val(),
+			      			 	data_max :$("input[name=data_max]").val(),
+			      			 	duracao_min: $("input[name=duracao_min]").val(),
+			      			 	duracao_max: $("input[name=duracao_max]").val(),
+			      			 	valor_min: $("input[name=valor_min]").val(),
+			      			 	valor_max: $("input[name=valor_max]").val()
+		      			 	};
+		      			 	
+		      			 }},
 		          processing: true,
             	  serverSide: true,
             	  ordering: false,
@@ -41,22 +54,14 @@
 		              {data: "src", name:"Origem"},
 		              {data: "dst",    name:"Destino"},
 		              {data: "start", name:"Start"},
-		              {data: "billsec", name:"Billsec"},
+		              {data: "billsec_time", name:"Billsec"},
 		              {data: "cost", name:"Valor"},
 		          ],
 		          columnDefs : [
-		          {
-		          	targets: 4, 
-		          	render: function(data){
-		          		return data.toString().concat(' R$');
-		          	}
-		          },
-		          {
-		          	targets: 3, 
-		          	render: function(data){
-		          		return data.toString().concat(' Seg.');
-		          	}
-		          }
+		          	{targets:4,
+		          	 render: function(data, meta, full){
+		          	 	return 'R$ '.concat(data);
+		          	 }}
 		          ]
 		      });
 	});
