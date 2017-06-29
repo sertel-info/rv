@@ -367,6 +367,8 @@ class LinhasController extends Controller
                                       "cadeado_pessoal",
                                       "siga_me",
                                       "caixa_postal",
+                                      "pode_monitorar",
+                                      "monitoravel",
                                       "cadeado_pin",
                                       "cx_postal_email",
                                       "cx_postal_pw",

@@ -18,6 +18,25 @@
 								</center>
 						</div>
 					</div>
+
+					<div class="form-group row">
+						<div class='col-md-4'>
+								<center>
+									<label for="gravacao" class=""> Pode Monitorar  </label><br>
+									{{Form::checkbox('pode_monitorar', 1, null, ['class'=>'form-control'])}}
+								</center>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class='col-md-4'>
+							<center>
+								<label for="gravacao" class=""> Pode Ser Monitorado  </label><br>
+								{{Form::checkbox('monitoravel', 1, null, ['class'=>'form-control'])}}
+							</center>
+						</div>
+					</div>
+
 					<div class="form-group row">
 						<div class='col-md-4 '>
 							<center>

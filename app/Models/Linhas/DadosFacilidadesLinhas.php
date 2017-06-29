@@ -11,7 +11,9 @@ class DadosFacilidadesLinhas extends Model
     protected $fillable = [
 							"gravacao",
 							"cadeado_pessoal",
-							"siga_me",
+                            "siga_me",
+                            "monitoravel",
+							"pode_monitorar",
 							"caixa_postal",
                             "cadeado_pin",
                             "num_siga_me",
@@ -43,4 +45,11 @@ class DadosFacilidadesLinhas extends Model
     	return $this->attributes['cadeado_pin'] = (Boolean)$value;
     }
 
+    public function setMonitoravelAttribute($value){
+        return $this->attributes['monitoravel'] = (Boolean)$value;
+    }
+    
+    public function setPodeMonitorarAttribute($value){
+        return $this->attributes['pode_monitorar'] = (Boolean)$value;
+    }
 }

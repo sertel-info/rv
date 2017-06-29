@@ -73,13 +73,13 @@ class AtualizaArquivos
             }
 
             
-            $callerid = $linha->configuracoes->callerid ? $linha->configuracoes->callerid : $autenticacao->login_ata;
+            //$callerid = $linha->configuracoes->callerid ? $linha->configuracoes->callerid : $autenticacao->login_ata;
 
             $sip_ramais_arr = array("username"=>$autenticacao->usuario,
                                     "secret"=>$autenticacao->senha,
                                     "nat"=>'force_rport,comedia',
                                     "callerid"=>"\"".$linha->assinante->nome."\"".
-                                    "<".$callerid.">",
+                                    "<".$autenticacao->login_ata.">",
                                     "type"=>"friend",
                                     "context"=>"sertel",
                                     "call-limit"=>$linha->simultaneas,

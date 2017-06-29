@@ -30,6 +30,13 @@
 				</div>
 			</div>
 
+			<div class="form-group row">
+				<label for="pla_nome" class="col-md-4 col-form-label">Atalho Para Monitoramento</label>
+				<div class="col-md-8">
+					{!!Form::text('atalho_monitoramento', null, ['class'=>'form-control'])!!}
+				</div>
+			</div>
+
 
 	</div>	
 
