@@ -97,8 +97,15 @@ return [
 
     'custom' => [
         'atend_automatico_destino' => [
-            'required_if' => 'O campo :attribute é obrigatório quando Atendimento Automático estiver ativo',
+            'required_if' => 'O campo :attribute é obrigatório quando Atendimento Automático estiver ativo'
         ],
+        'cx_postal_pw' => [
+            'required_with' => 'O campo :attribute é obrigatório quando Caixa Postal estiver ativa'
+        ],
+        'cx_postal_email' => [
+            'required_with' => 'O campo :attribute é obrigatório quando Caixa Postal estiver ativa'
+        ]
+
     ],
 
     /*
@@ -117,7 +124,11 @@ return [
         "atend_automatico" => "Atendimento Automático",
         "atend_automatico_tipo" => "Tipo do Atendimento Automático",
         "atend_automatico_destino" => "Destino do Atendimento Automático",
-
+        "cx_postal_pw" => "Senha da caixa postal",
+        "cx_postal_email" => "Email da caixa postal",
+        "saudacoes_destino" => "Saudacoes Destino",
+        "num_siga_me" => "Número do Siga-me",
+        "cadeado pin" => "Pin do cadeado"
     ],
 
 ];

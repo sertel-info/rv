@@ -11,7 +11,7 @@ use App\Http\Controllers\SessionController;
 use App\Events\ItensModificados;
 use App\Http\Requests\Validators\LinhasValidatorCliente;
 
-class ConfiguracoesClienteController extends Controller
+class ClientesController extends Controller
 {
 
     public function index(Request $request){

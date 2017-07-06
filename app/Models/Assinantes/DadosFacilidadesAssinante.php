@@ -46,4 +46,8 @@ class DadosFacilidadesAssinante extends Model
 	public function setAcessoExtratoAttribute($value){
 		$this->attributes['acesso_extrato'] = (Boolean)$value;
 	}
+
+	public function setSaudacoesAttribute($value){
+		$this->attributes['saudacoes'] = (Boolean)$value;
+	}
 }
