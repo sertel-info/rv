@@ -2,6 +2,7 @@
 /public/storage
 /public/hot
 /storage/*.key
+/storage/audios_*
 /vendor
 /.idea
 Homestead.json
