@@ -21,6 +21,7 @@ class CreateConfiguracoesTable extends Migration
             $table->string('prefx_aplicacoes', 20)->nullable();
             $table->string('atalho_siga_me', 20)->nullable();
             $table->string('atalho_cadeado', 20)->nullable();
+            $table->string('atalho_monitoramento', 20)->nullable();
 
             /** voice mail **/
             $table->string('voice_mail_assunto_padrao')->nullable();

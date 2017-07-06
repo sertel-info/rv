@@ -27,7 +27,7 @@
 	<script type="text/javascript">
 		$(function(){
 			
-			$("input[name=cadeado_pessoal], input[name=caixa_postal], input[name=siga_me]")
+			$("input[name=cadeado_pessoal], input[name=caixa_postal], input[name=siga_me], input[name=atend_automatico]")
 						.on("init.bootstrapSwitch switchChange.bootstrapSwitch", function(ev, state){
 							$(this).parents('.form-group:first')
 								   .find("div.collapse")
@@ -36,9 +36,9 @@
 
 
 			$("input[name=status_did]").on('init.bootstrapSwitch switchChange.bootstrapSwitch', function(ev, state){
-				console.log('init', state);
 				$('#form-did').collapse(state ? 'show' : 'hide');
 			});
+
 						
 			$("input[type=checkbox]").not("[name=status]").bootstrapSwitch();
 
@@ -48,33 +48,14 @@
 				$(".pickListResult option").prop("selected", true);
 			});
 
+			$("select[name=atend_automatico_tipo]").trigger('change');
 			
+			@if(isset($linha->facilidades))
+				$("select[name=atend_automatico_destino]").on("rv_finished_changing", function(){
+      				$(this).val("{{ $linha->facilidades->atend_automatico_destino }}").trigger("change");
+				});
+			@endif
 		})
 	</script>
 
-	<script type="text/javascript">
-		function randomString()
-		{
-		    var text = "";
-		    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-		    for( var i=0; i < 8; i++ )
-		        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-		    return text;
-		}
-
-		function seedForm(){
-			$("input[type=text]").each(function(){
-					$(this).val(randomString());
-			});
-
-			$("input[name=ddd_local]").val(21);
-			$("input[name=ip]").val("192.156.123.22");
-			$("input[name=ip_did]").val("192.156.123.22");
-			$("input[name=porta]").val("1921");
-			$("input[name=simultaneas]").val("2");
-			$("input[type=checkbox]").bootstrapSwitch('state', true);
-		}
-	</script>
 @endpush

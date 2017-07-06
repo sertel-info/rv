@@ -96,8 +96,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'atend_automatico_destino' => [
+            'required_if' => 'O campo :attribute é obrigatório quando Atendimento Automático estiver ativo',
         ],
     ],
 
@@ -112,6 +112,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        "arquivo_audio" => "Arquivo de Áudio",
+        "atend_automatico" => "Atendimento Automático",
+        "atend_automatico_tipo" => "Tipo do Atendimento Automático",
+        "atend_automatico_destino" => "Destino do Atendimento Automático",
+
+    ],
 
 ];

@@ -11,7 +11,11 @@
 |
 */
 
- Route::get('/teste', 'GravacoesController@corrigir');
+Route::get('/teste', function(){
+    $fixer = new App\Helpers\BillFixer\BillFixer;
+    dd($fixer->verificarDebitos());
+    return view('errors.error_layout');
+});
 
 Route::get('/', 'HomeController@index')->middleware("auth");
 
@@ -65,9 +69,16 @@ Route::group(['middleware' => 'auth', 'prefix'=>'cliente'], function () {
         Route::get('/', 'BillingController@getContas')->name("rv.cliente.contas");
     });
 
+    Route::get('/linhas/get', 'ClientesController@getLinhas')->name('rvc.get.linhas');
+    Route::get('/grupos/get', 'ClientesController@getGrupos')->name('rvc.get.grupos');
+   
+
     Route::group(['prefix'=>'configuracoes'], function(){
-        Route::get('/', 'ConfiguracoesClienteController@index')->name('rvc.config.index');
-        Route::put('/linha/atualizar', 'ConfiguracoesClienteController@updateLinha')->name('rvc.config.update.linha');
+
+        Route::get('/', 'ClientesController@index')->name('rvc.config.index');
+        Route::get('/edit/{id?}', 'ClientesController@config')->name('rvc.config.edit');
+        Route::put('/linha/atualizar', 'ClientesController@updateLinha')->name('rvc.config.update.linha');
+
     });
 
     Route::group(['prefix'=>'gravacoes'], function(){
@@ -92,24 +103,73 @@ Route::group(['middleware' => 'auth', 'prefix'=>'cliente'], function () {
     });
 
 
-});
+    Route::group(['prefix'=>'grupos'], function(){
+        Route::get('/', 'GruposAtendimentoController@index')->name('rvc.grupos_atendimento.index');
+        Route::get('/criar', 'GruposAtendimentoController@create')->name('rvc.grupos_atendimento.create');
+        Route::post('/guardar', 'GruposAtendimentoController@store')->name('rvc.grupos_atendimento.store');
+        Route::get('/editar/{id?}', 'GruposAtendimentoController@edit')->name('rvc.grupos_atendimento.edit');
+        Route::put('/atualizar/{id?}', 'GruposAtendimentoController@update')->name('rvc.grupos_atendimento.update');
+        Route::delete('/excluir', 'GruposAtendimentoController@destroy')->name('rvc.grupos_atendimento.destroy');
+        Route::get('/data', 'Datatables\GruposAtendimentoDatatables@anyData')->name('rvc.grupos_atendimento.get');
+        Route::get('/mine/data', 'GruposAtendimentoController@getMine')->name('rvc.grupos_atendimento.get_mine');
+        Route::get('/data/of/{id?}', 'GruposAtendimentoController@getGruposOf')->name('rvc.grupos_atendimento.get_of');
+        //Route::post('/atualizar', 'GruposAtendimentoController@update')->name('rvc.grupos_atendimento.update');
+    });
 
-/*
-Route::group(['middleware'=>'auth'], function(){
-    Route::get('/', 'HomeController@index');
+    Route::group(['prefix'=>'ura'], function(){
+        Route::get('/', 'UraController@index')->name('rvc.ura.index');
+        Route::get('/criar', 'UraController@create')->name('rvc.ura.create');
+        Route::post('/guardar', 'UraController@store')->name('rvc.ura.store');
+        Route::get('/editar/{id?}', 'UraController@edit')->name('rvc.ura.edit');
+        Route::post('/atualizar', 'UraController@update')->name('rvc.ura.update');
+        Route::delete('/excluir', 'UraController@destroy')->name('rvc.ura.destroy');
+        Route::get('/mine/data/{id?}', 'UraController@getMine')->name('rvc.uras.get_mine');
+        Route::get('/data/of/{id?}', 'UraController@getUrasOf')->name('rvc.uras.get_of');
+        Route::get('/get/audio/blob/{ura_id?}/{audio_id?}', 'UraController@getAudioBlob')->name('rvc.uras.audio_blob.get');
 
+        //Route::get('/data', 'Datatables\GruposAtendimentoDatatables@anyData')->name('rvc.grupos_atendimento.get');
+        //Route::post('/atualizar', 'GruposAtendimentoController@update')->name('rvc.grupos_atendimento.update');
+    });
 
+    Route::group(['prefix'=>'filas'], function(){
+        Route::get('/', 'FilasController@index')->name('rvc.filas.index');
+        Route::get('/criar', 'FilasController@create')->name('rvc.filas.create');
+        Route::post('/guardar', 'FilasController@store')->name('rvc.filas.store');
+        Route::get('/editar/{id?}', 'FilasController@edit')->name('rvc.filas.edit');
+        Route::put('/atualizar', 'FilasController@update')->name('rvc.filas.update');
+        Route::delete('/excluir', 'FilasController@destroy')->name('rvc.filas.destroy');
+        Route::get('/data', 'Datatables\FilasDataTables@anyData')->name('rvc.filas.get');
+        Route::get('/mine/data', 'FilasController@getMine')->name('rvc.filas.get_mine');
+        Route::get('/data/of/{id?}', 'FilasController@getFilasOf')->name('rvc.filas.get_of');
+    });
 
-    Route::group(['prefix'=>'gravacoes'], function(){
-        Route::get('/', 'GravacoesController@index')->name('rvc.gravacoes.index');
-        Route::get('/get', 'GravacoesController@getGravacoesList')->name('rvc.gravacoes.get');
-        Route::get('/download', 'GravacoesController@downloadGravacao')->name('rvc.gravacoes.download');
-        Route::get('/blob/{ramal?}/{id?}', 'GravacoesController@getBlob' )->name('rvc.gravacoes.get_blob');
+    Route::group(['prefix'=>'atendimento'], function(){
+        Route::get('/', 'AtendimentoAutomaticoController@index')->name('rvc.atendimento_automatico.index');
+        Route::get('/criar', 'AtendimentoAutomaticoController@create')->name('rvc.atendimento_automatico.create');
+        Route::post('/guardar', 'AtendimentoAutomaticoController@store')->name('rvc.atendimento_automatico.store');
+        Route::get('/editar/{id?}', 'AtendimentoAutomaticoController@edit')->name('rvc.atendimento_automatico.edit');
+        Route::post('/atualizar', 'AtendimentoAutomaticoController@update')->name('rvc.atendimento_automatico.update');
+        Route::delete('/excluir', 'AtendimentoAutomaticoController@destroy')->name('rvc.atendimento_automatico.destroy');
+    });
+
+    Route::group(['prefix'=>'saudacoes'], function(){
+        Route::get('/', 'SaudacoesController@index')->name('rvc.saudacoes.index');
+        Route::get('/criar', 'SaudacoesController@create')->name('rvc.saudacoes.create');
+        Route::post('/guardar', 'SaudacoesController@store')->name('rvc.saudacoes.store');
+        Route::get('/editar/{id?}', 'SaudacoesController@edit')->name('rvc.saudacoes.edit');
+        Route::put('/atualizar', 'SaudacoesController@update')->name('rvc.saudacoes.update');
+        Route::delete('/excluir', 'SaudacoesController@destroy')->name('rvc.saudacoes.destroy');
+        Route::get('/data', 'Datatables\SaudacoesDatatables@anyData')->name('rvc.saudacoes.get');
+        Route::get('/mine/data', 'SaudacoesController@getMine')->name('rvc.saudacoes.get_mine');
     });
 
 
+    Route::group(['prefix'=>'audios'], function(){
+        Route::get('/get/saudacao/{f?}', 'SaudacoesController@getAudioBlob')->name('rvc.saudacoes.audios.get_blob');
+        Route::get('/get/uras/{f?}', 'UraController@getAudioBlob')->name('rvc.uras.audios.get_blob');
+    });
 });
-*/
+
 
 Auth::routes();
 

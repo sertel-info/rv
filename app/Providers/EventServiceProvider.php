@@ -13,9 +13,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\ItensModificados' => [
-            'App\Listeners\AtualizaArquivos',
+        'App\Events\UraAtualizada' => [
+            'App\Listeners\AtualizarUra',
         ],
+        'App\Events\ItensModificados' => [
+            'App\Listeners\AtualizaArquivos'
+        ]
     ];
 
     /**

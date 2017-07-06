@@ -31,7 +31,7 @@
 
 <script type="text/javascript">
 	$(function(){
-		table = $("#table-correio-voz").dataTable({
+		var table = $("#table-correio-voz").dataTable({
 		          ajax: "{{route('rvc.gravacoes.get')}}",
 		          rowId: 'id_md5',
 		          columns: [

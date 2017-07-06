@@ -1,18 +1,4 @@
-@foreach($usuario->assinante->linhas as $linha)
 
-
-<div class="panel panel-default panel-toggle">
-    <div class="panel-heading" data-toggle="collapse" data-target="#body-facilidades-{{$linha->id}}">
-        <h3 class="panel-title"> Linha <u>{{$linha->nome}}</u>
-          	<div class="collapse-icon pull-right">
-        		<span class="glyphicon glyphicon-circle-arrow-down"> </span>
-       		</div>
-        </h3>
-    </div>
-
-    <div class="panel-body collapse" id="body-facilidades-{{$linha->id}}">
-			{!! Form::open(['route' => ['rvc.config.update.linha', 'l='.md5($linha->id)], 'method'=>'PUT', 'id'=>'form-planos']) !!}
-					{{csrf_field()}}
 
 					<div class="form-group row">
 						<div class='col-md-4'>
@@ -78,14 +64,3 @@
 								</div>						
 						</div>
 					</div>
-
-			<button class='btn-block btn btn-success'> Salvar </button>
-			{!! Form::close() !!}
-
-	</div>
-
-</div>
-
-@endforeach
-
-

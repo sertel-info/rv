@@ -10,3 +10,13 @@
 {!! Form::close() !!}
 
 @endsection
+
+@push("scripts")
+	<script type="text/javascript">
+		$(function(){
+			$("select[name=atend_automatico_destino]").on("rv_finished_changing", function(){
+		    	$(this).val("{{ $linha->facilidades->atend_automatico_destino }}").trigger("change");
+			});
+		})
+	</script>
+@endpush

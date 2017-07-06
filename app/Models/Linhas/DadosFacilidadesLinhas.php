@@ -14,10 +14,16 @@ class DadosFacilidadesLinhas extends Model
 							"siga_me",
 							"caixa_postal",
                             "cadeado_pin",
+                            "pode_monitorar",
+                            "monitoravel",
                             "num_siga_me",
                             "cx_postal_pw",
-                            "cx_postal_email"
-							];
+                            "cx_postal_email",
+                            "saudacoes",
+                            "saudacoes_destino",
+                            "atend_automatico",
+                            "atend_automatico_tipo",
+                            "atend_automatico_destino"];
 
     public function linha(){
         return $this->belongsTo('App\Models\Linhas\Linhas', 'linha_id');
@@ -43,4 +49,19 @@ class DadosFacilidadesLinhas extends Model
     	return $this->attributes['cadeado_pin'] = (Boolean)$value;
     }
 
+    public function setMonitoravelAttribute($value){
+        return $this->attributes['monitoravel'] = (Boolean)$value;
+    }
+
+    public function setPodeMonitorarAttribute($value){
+        return $this->attributes['pode_monitorar'] = (Boolean)$value;
+    }
+
+    public function setAtendAutomaticoAttribute($value){
+        return $this->attributes['atend_automatico'] = (Boolean)$value;
+    }
+
+    public function setSaudacoesAttribute($value){
+        return $this->attributes['saudacoes'] = (Boolean)$value;
+    }
 }

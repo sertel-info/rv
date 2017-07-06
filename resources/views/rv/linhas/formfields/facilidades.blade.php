@@ -9,7 +9,6 @@
 
     <div class="panel-body collapse" id="body-facilidades">
 
-					
 					<div class="form-group row">
 						<div class='col-md-4'>
 								<center>
@@ -18,6 +17,25 @@
 								</center>
 						</div>
 					</div>
+
+					<div class="form-group row">
+						<div class='col-md-4'>
+								<center>
+									<label for="monitoravel" class=""> Pode ser monitorado  </label><br>
+									{{Form::checkbox('monitoravel', 1, null, ['class'=>'form-control'])}}
+								</center>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class='col-md-4'>
+								<center>
+									<label for="pode_monitorar" class=""> Pode monitorar  </label><br>
+									{{Form::checkbox('pode_monitorar', 1, null, ['class'=>'form-control'])}}
+								</center>
+						</div>
+					</div>
+
 					<div class="form-group row">
 						<div class='col-md-4 '>
 							<center>
@@ -53,7 +71,7 @@
 								</div>											
 						</div>
 					</div>
-
+					
 					<div class="form-group row">
 						<div class='col-md-4 '>
 							<center>
@@ -63,14 +81,16 @@
 						</div>
 	
 						<div class='col-md-8 collapse'>
-								<div class='col-md-6'>
-									<label for="num_siga_me"> Número </label><br>
-									{{Form::text("num_siga_me", null, ['class'=>'form-control'])}}
-								</div>						
+							<div class='col-md-6'>
+								<label for="num_siga_me"> Número </label><br>
+								{{Form::text("num_siga_me", null, ['class'=>'form-control'])}}
+							</div>						
 						</div>
 					</div>
 
-
+					@if(isset($linha))
+						@include("rv.linhas.formfields.atend_automatico")
+					@endif
 	</div>
 
 </div>

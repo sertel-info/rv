@@ -400,18 +400,18 @@ class AssinantesController extends Controller
                                             "espaco_disco",
                                             "dia_vencimento");
 
-        $facilidades = $request->only("acesso_ramais",
-                                        "portal_voz",
-                                        "sala_conferencia",
-                                        "fila_atendimento",
-                                        "ura_atendimento",
-                                        "envio_sms");
+        $facilidades = $request->only("correio_voz",
+                                        "grupos_atendimento",
+                                        "fila",
+                                        "ura",
+                                        "gravacoes",
+                                        "saudacoes",
+                                        "acesso_extrato");
 
         $dados_acesso = array("name"=>$request->nome_acesso,
                                 "email"=>$request->email_acesso,
                                 "password"=>$request->senha_acesso,
                                 "role"=>1);
-
 
         return ["acesso"=>$dados_acesso,
                 "financeiro"=>$dados_financeiros,

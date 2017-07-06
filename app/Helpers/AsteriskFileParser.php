@@ -14,9 +14,9 @@ class AsteriskFileParser implements AsteriskConfigFileParserContract{
                         "registry"=>array(),
                         "extension"=>array(),
                         "sip_ramal"=>array(),
-                        "voice_mail"=>array()
+                        "voice_mail"=>array(),
+                        "app_ura"=>array()
                        );
-
 
 	public function setFile($file){
 		$this->file = $file;
@@ -98,7 +98,17 @@ class AsteriskFileParser implements AsteriskConfigFileParserContract{
         }
     }
 
-
+    public function addExtensionUra($exten, $prioridade, $app, $contexto){
+        if(!$this->sessionExists($contexto, 'app_ura')){
+            $this->addSession($contexto, 'app_ura');
+            array_push($this->buffers['app_ura'], 'exten=>'.$exten.','.$prioridade.','.$app);
+        } else {
+            $session = $this->getSession($this->buffers['app_ura'], $contexto);
+            array_push($session['conteudo'], 'exten=>'.$exten.','.$prioridade.','.$app);
+            array_splice($this->buffers['app_ura'], $session['inicio'], $session['tamanho'], $session['conteudo']);
+        }
+    }
+    
     public function addSession($session_name, $buffer){
         array_push($this->buffers[$buffer], "\n[".$session_name.']');
     }
@@ -121,7 +131,6 @@ class AsteriskFileParser implements AsteriskConfigFileParserContract{
         }
 
     }
-
 
     public function sessionExists($session, $buffer){
         $text = $this->buffers[$buffer];

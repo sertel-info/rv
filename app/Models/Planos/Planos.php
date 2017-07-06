@@ -24,4 +24,11 @@ class Planos extends Model
 	function assinantes(){
 		return $this->hasMany("App\Models\Assinantes", "plano");
 	} 
+
+	public function scopeWithIdMd5($query){
+    	if($query->getQuery()->columns == null){ 
+    		$query->addSelect('*');
+    	}
+        $query->addSelect(\DB::Raw('MD5(planos.id) as id_md5'));
+    }
 }

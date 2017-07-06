@@ -10,7 +10,7 @@
         <div id="player-container">
             <center>
                 <audio controls='controls'>
-                    <source src="http://rv.sertel-info.com.br/cliente/gravacoes/blob/1494964424.483" type='audio/wav'>
+                    <source src="" type='audio/wav'>
                 </audio>
             </center>
         </div>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Linhas extends Model
 {
+
     protected $table = "linhas";
 
     protected $fillable = ["assinante_id",
@@ -26,6 +27,10 @@ class Linhas extends Model
 	public function setCodecsAttribute($value){
 		$this->attributes['codecs'] = in_array(gettype($value), ['array', 'object']) ?
 																	 json_encode($value) : "[]";
+	}
+
+	public function ura(){
+		return $this->hasOne("App\Models\Uras", "linha_id", "id");
 	}
 
 	public function getCodecsAttribute($value){
@@ -64,4 +69,19 @@ class Linhas extends Model
  		return $this->hasOne('App\Models\Linhas\Dids', 'linha_id', 'id');
  	}  	
 
+ 	public function grupo(){
+    	return $this->belongsToMany('App\Models\GruposAtendimento', 'grupos_linhas', 'linha_id', 'grupo_id');
+    }
+
+    public function scopeWithIdMd5($query){
+    	if($query->getQuery()->columns == null){ 
+    		$query->addSelect('*');
+    	}
+        $query->addSelect(\DB::Raw('MD5(linhas.id) as id_md5'));
+    }
+
+    public function filas(){
+    	return $this->belongsToMany("App\Models\Filas", 'linhas_filas', 'linha_id', 'fila_id');
+    }
+    
 }

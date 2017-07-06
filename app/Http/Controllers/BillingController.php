@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cdr;
 use App\Models\Cel;
 use App\User;
-
+use App\Http\Controllers\Controller;
 use Auth;
 
 class BillingController extends Controller

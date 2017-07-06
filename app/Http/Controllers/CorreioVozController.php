@@ -15,7 +15,7 @@ class CorreioVozController extends Controller
 
     public function index(){
     	return view('rvc.correio_voz.index', ['active'=>'correio_voz',
-    										'panel_title'=>'Gravações']);
+    										'panel_title'=>'Caixa de Entrada']);
     }
 
     public function getGravacoesList(){

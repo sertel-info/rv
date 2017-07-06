@@ -61,7 +61,10 @@ class LinhasValidator extends FormRequest
                                 "caixa_postal"=>"sometimes|boolean",
                                 "cadeado_pin"=>"required_with:cadeado_pessoal",
                                 "num_siga_me"=>"required_with:siga_me",
-                                "cx_postal_pw"=>"required_with:caixa_postal");
+                                "cx_postal_pw"=>"required_with:caixa_postal",
+                                "atend_automatico"=>"boolean",
+                                "atend_automatico_tipo"=>"required_if:atend_automatico,1",
+                                "atend_automatico_destino"=>"required_if:atend_automatico,1");
 
         $permissoes = array("ligacao_fixo"=>"sometimes|boolean",
                                     "ligacao_internacional"=>"sometimes|boolean",

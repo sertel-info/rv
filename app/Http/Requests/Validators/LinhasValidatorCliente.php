@@ -33,7 +33,8 @@ class LinhasValidatorCliente extends FormRequest
                                "cadeado_pin"=>"required_with:cadeado_pessoal",
                                "num_siga_me"=>"required_with:siga_me",
                                "cx_postal_pw"=>"required_with:caixa_postal",
-                               "cx_postal_email"=>"required_with:caixa_postal");
+                               "saudacoes_destino"=>"required_with:saudacoes",
+                               "cx_postal_email"=>"required_with:caixa_postal" );
 
         return $facilidades;
     }

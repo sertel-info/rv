@@ -5,7 +5,8 @@ namespace App\Models\Assinantes;
 use Illuminate\Database\Eloquent\Model;
 
 class Assinantes extends Model
-{
+{   
+
     protected $table = "assinantes";
 
     protected $fillable = ["plano",
@@ -47,6 +48,14 @@ class Assinantes extends Model
         return $this->hasOne('App\User', 'assinante_id', 'id');
     }
 
+    public function saudacoes(){
+        return $this->hasMany('App\Models\Saudacoes', 'assinante_id', 'id');
+    }
+
+    public function audios(){
+        return $this->hasMany('App\Models\Audios', 'assinante_id', 'id');
+    }
+
     /*
     * Mutators
     */
@@ -58,4 +67,22 @@ class Assinantes extends Model
         $this->attributes['creditos'] = floatval($value);
     }
     
+    public function grupos(){
+        return $this->hasMany("App\Models\GruposAtendimento", "assinante_id", "id");
+    }
+
+    public function scopeWithIdMd5($query){
+        if($query->getQuery()->columns == null){ 
+            $query->addSelect('*');
+        }
+        $query->addSelect(\DB::Raw('MD5(assinantes.id) as id_md5'));
+    }
+
+    public function ura(){
+        return $this->hasOne("App\Models\Uras", "assinante_id", "id");
+    }
+
+    public function filas(){
+        return $this->hasMany("App\Models\Filas", "assinante_id", "id");
+    }
 }

@@ -9,13 +9,13 @@ class DadosFacilidadesAssinante extends Model
     protected $table = "dados_facilidades_assinantes";
 
     protected $fillable = [
-    					"assinante_id",
-						"acesso_ramais",
-						"portal_voz",
-						"sala_conferencia",
-						"fila_atendimento",
-						"ura_atendimento",
-						"envio_sms",
+    					"correio_voz",
+						"grupos_atendimento",
+						"fila",
+						"ura",
+						"gravacoes",
+						"acesso_extrato",
+						"saudacoes"
     					];
 
 
@@ -23,27 +23,27 @@ class DadosFacilidadesAssinante extends Model
 		return $this->belongsTo('App\Models\Assinantes\Assinantes', 'assinante_id');
 	}
 
-	public function setAcessoRamaisAttribute($value){
-		$this->attributes['acesso_ramais'] = (Boolean)$value;
+	public function setCorreioVozAttribute($value){
+		$this->attributes['correio_voz'] = (Boolean)$value;
 	}
 
-	public function setPortalVozAttribute($value){
-		$this->attributes['portal_voz'] = (Boolean)$value;
+	public function setGruposAtendimentoAttribute($value){
+		$this->attributes['grupos_atendimento'] = (Boolean)$value;
 	}
 
-	public function setSalaConferenciaAttribute($value){
-		$this->attributes['sala_conferencia'] = (Boolean)$value;
+	public function setFilaAttribute($value){
+		$this->attributes['fila'] = (Boolean)$value;
 	}
 
-	public function setFilaAtendimentoAttribute($value){
-		$this->attributes['fila_atendimento'] = (Boolean)$value;
+	public function setUraAttribute($value){
+		$this->attributes['ura'] = (Boolean)$value;
 	}
 
-	public function setUraAtendimentoAttribute($value){
-		$this->attributes['ura_atendimento'] = (Boolean)$value;
+	public function setGravacoesAttribute($value){
+		$this->attributes['gravacoes'] = (Boolean)$value;
 	}
 
-	public function setEnvioSmsAttribute($value){
-		$this->attributes['envio_sms'] = (Boolean)$value;
+	public function setAcessoExtratoAttribute($value){
+		$this->attributes['acesso_extrato'] = (Boolean)$value;
 	}
 }

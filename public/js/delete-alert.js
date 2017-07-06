@@ -2,7 +2,12 @@ $(function(){
 	$('table').on('click','[data-action=delete]', function(ev){
 		ev.preventDefault();
 		var btn = $(this);
-		swal({title: "Tem Certeza que deseja excluir este "+btn.attr('data-title')+"?",
+		var title = "Tem Certeza que deseja excluir este(a) "+btn.attr('data-title')+"?";
+
+		if(btn.attr("data-text")){
+			title = btn.attr("data-text");
+		}
+		swal({title: title,
 			  type: "warning",   
 			  showCancelButton: true,
 			  confirmButtonColor: "#DD6B55",

@@ -7,6 +7,8 @@ use DB;
 use App\Models\Linhas\Linhas;
 use App\Http\Requests\Validators\LinhasValidator;
 use App\Events\ItensModificados;
+use App\Events\LinhaAtualizada;
+
 
 class LinhasController extends Controller
 {   
@@ -58,7 +60,8 @@ class LinhasController extends Controller
 
         $dados = $this->getDataObject($request);
 
-        $assinante = \App\Models\Assinantes\Assinantes::where(DB::raw('MD5(id)', $request->assinante));
+        $assinante = \App\Models\Assinantes\Assinantes::where(DB::raw('MD5(id)', $request->assinante))->first();
+
         $linha = $this->entity->create($dados['basicos'])
                                             ->assinante()
                                             ->associate($assinante);
@@ -101,7 +104,7 @@ class LinhasController extends Controller
 
             return redirect()->route("rv.linhas.manage");
         } else {
-            \App\Http\Controllers\SessionController::flashMessage('error',
+            \App\Http\Controllers\SessionController::flashMessage('danger',
                                                                     'Error',
                                                                     'Um erro inesperado ocorreu por favor tente novamente.');
 
@@ -206,7 +209,6 @@ class LinhasController extends Controller
 
                 return 1;
             }catch(\Exception $e){
-                dd($e->getMessage());
                 return 0;
             }
         });
@@ -368,9 +370,14 @@ class LinhasController extends Controller
                                       "siga_me",
                                       "caixa_postal",
                                       "cadeado_pin",
+                                      "monitoravel",
+                                      "pode_monitorar",
                                       "cx_postal_email",
                                       "cx_postal_pw",
-                                      "num_siga_me");
+                                      "num_siga_me",
+                                      "atend_automatico",
+                                      "atend_automatico_tipo",
+                                      "atend_automatico_destino");
 
         if($facilidades['caixa_postal'] === null){
             $facilidades['cx_postal_email'] = null;
@@ -416,6 +423,5 @@ class LinhasController extends Controller
                 'permissoes'=>$permissoes,
                 'basicos'=>$dados_basicos,
                 'did'=>$did];
-
     }
 }

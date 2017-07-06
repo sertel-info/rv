@@ -27,10 +27,21 @@ class CreateDadosFacilidadesLinhasTable extends Migration
             $table->boolean("cadeado_pessoal")->default(0);
             $table->boolean("siga_me")->default(0);
             $table->boolean("caixa_postal")->default(0);
+            $table->boolean("monitoravel")->default(0);
+            $table->boolean("pode_monitorar")->default(0);
+            $table->boolean("atend_automatico")->default(0);
+
+            $table->boolean("saudacoes")->default(0);
+            $table->string("saudacoes_destino")->nullable();
+
+            $table->string("atend_automatico_tipo")->nullable();
+            $table->string("atend_automatico_destino")->nullable();
+
             $table->string("cadeado_pin", 20)->nullable();
             $table->string("num_siga_me", 20)->nullable();
             $table->string("cx_postal_pw", 20)->nullable();
             $table->string("cx_postal_email", 100)->nullable();
+            
         });
     }
 

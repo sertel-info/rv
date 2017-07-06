@@ -23,12 +23,14 @@ class CreateDadosFacilidadesAssinantesTable extends Migration
                       ->on('assinantes')
                       ->onDelete('cascade');
 
-            $table->boolean("acesso_ramais")->default(false);
-            $table->boolean("portal_voz")->default(false);
-            $table->boolean("sala_conferencia")->default(false);
-            $table->boolean("fila_atendimento")->default(false);
-            $table->boolean("ura_atendimento")->default(false);
-            $table->boolean("envio_sms")->default(false);
+            $table->boolean("correio_voz")->default(false);
+            $table->boolean("grupos_atendimento")->default(false);
+            $table->boolean("fila")->default(false);
+            $table->boolean("ura")->default(false);
+            $table->boolean("gravacoes")->default(false);
+            $table->boolean("acesso_extrato")->default(false);
+            $table->boolean("saudacoes")->default(false);
+            
         });
     }
 

@@ -35,7 +35,6 @@ public function anyData()
     					->with('planobj')
     					->get();
 
-    dd($users);
     return Datatables::of($users)->make(true);
 }
 

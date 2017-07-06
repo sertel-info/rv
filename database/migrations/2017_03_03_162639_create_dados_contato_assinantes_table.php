@@ -17,7 +17,7 @@ class CreateDadosContatoAssinantesTable extends Migration
             $table->increments('id');
             $table->timestamps();
            
-           $table->integer('assinante_id')->unsigned();
+            $table->integer('assinante_id')->unsigned();
             $table->foreign('assinante_id')
                       ->references('id')
                       ->on('assinantes')

@@ -13,51 +13,52 @@
 						
 						<div class='col-md-4'>
 							<center>
-								<label for="acesso_ramais" class=""> Acesso a Ramais </label><br>
-								{{Form::checkbox('acesso_ramais', 1, isset($assinante->acesso_ramais) ? $assinante->acesso_ramais : null, ['data-size'=>'mini'])}}
+								<label for="gravacoes" class=""> Gravações </label><br>
+								{{Form::checkbox('gravacoes', 1, isset($assinante->gravacoes) ? $assinante->gravacoes : null)}}
 							</center>
 						</div>
 
 						<div class='col-md-4'>
 							<center>
-								<label for="portal_voz" class=""> Portal de Voz </label><br>
-								{{Form::checkbox('portal_voz', 1, isset($assinante->portal_voz) ? $assinante->portal_voz : null, ['data-size'=>'mini'])}}
+								<label for="correio_voz" class=""> Correio de Voz </label><br>
+								{{Form::checkbox('correio_voz', 1, isset($assinante->correio_voz) ? $assinante->correio_voz : null)}}
 							</center>
 						</div>
 
 						<div class='col-md-4'>
 							<center>
-								<label for="envio_sms" class=""> Envio de SMS </label><br>
-								{{Form::checkbox('envio_sms', 1, isset($assinante->envio_sms) ? $assinante->envio_sms : null, ['data-size'=>'mini'])}}
+								<label for="grupos_atendimento" class=""> Grupos de Atendimento </label><br>
+								{{Form::checkbox('grupos_atendimento', 1, isset($assinante->grupos_atendimento) ? $assinante->grupos_atendimento : null)}}
 							</center>
 						</div>
 
 					</div>
 
 					<div class="form-group row">
-						
+
 						<div class='col-md-4'>
 							<center>
-								<label for="salas_conferencia" class=""> Salas de Conferência </label><br>
-								{{Form::checkbox('salas_conferencia', 1, isset($assinante->salas_conferencia) ? $assinante->salas_conferencia : null, ['data-size'=>'mini'])}}
+								<label for="fila" class=""> Filas de Atendimento  </label><br>
+								{{Form::checkbox('fila', 1, isset($assinante->fila) ? $assinante->fila : null)}}
 							</center>
 						</div>
 
 						<div class='col-md-4'>
 							<center>
-								<label for="filas_atendimento" class=""> Filas de Atendimento  </label><br>
-								{{Form::checkbox('filas_atendimento', 1, isset($assinante->filas_atendimento) ? $assinante->filas_atendimento : null, ['data-size'=>'mini'])}}
+								<label for="saudacoes" class=""> Áudio de saudação  </label><br>
+								{{Form::checkbox('saudacoes', 1, isset($assinante->saudacoes) ? $assinante->saudacoes : null)}}
 							</center>
 						</div>
 
 						<div class='col-md-4'>
 							<center>
-								<label for="ura_atendimento" class=""> URA de Atendimento </label><br>
-								{{Form::checkbox('ura_atendimento', 1, isset($assinante->ura_atendimento) ? $assinante->ura_atendimento : null, ['data-size'=>'mini'])}}
+								<label for="ura" class=""> URA de Atendimento </label><br>
+								{{Form::checkbox('ura', 1, isset($assinante->ura) ? $assinante->ura : null)}}
 							</center>
 						</div>
 					
 					</div>
+
 	</div>
 
 </div>
