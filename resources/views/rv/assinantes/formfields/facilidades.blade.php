@@ -59,6 +59,16 @@
 					
 					</div>
 
+					<div class="form-group row">
+
+						<div class='col-md-4'>
+							<center>
+								<label for="acesso_extrato" class=""> Acesso ao extrato  </label><br>
+								{{Form::checkbox('acesso_extrato', 1, isset($assinante->acesso_extrato) ? $assinante->acesso_extrato : null)}}
+							</center>
+						</div>
+					</div>
+
 	</div>
 
 </div>
