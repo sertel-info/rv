@@ -39,7 +39,8 @@ class GravacoesController extends Controller
     		return $el !== null && !empty($el);
     	});
 
-    	$gravacoes = $this->entity->select("*",DB::raw("MD5(gravacoes.id) as id_md5"))
+    	$gravacoes = $this->entity->select("*",DB::raw("MD5(gravacoes.id) as id_md5"), 
+                                               DB::raw("DATE_FORMAT(start, \"%d/%m/%Y %H:%i:%s\") as start"))
     				 ->leftjoin('cdr', 'cdr.uniqueid', '=', 'gravacoes.unique_id')
     				 ->where(function ($query) use ($identificadores_linhas){
 			                $query->where('cdr.disposition', '=', 'ANSWERED')

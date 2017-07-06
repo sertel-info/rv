@@ -20,7 +20,8 @@ class ExtratoDataTables extends Controller
 	    $identificadores_linhas = $this->getIdentificadoresLinha($linha);
 
         $ligacoes = \App\Models\Cdr::select("*", DB::raw('SEC_TO_TIME(billsec) as billsec_time'),
-                                                 DB::raw("IF(type='sainte', accountcode, src) as src"))
+                                                 DB::raw("IF(type='sainte', accountcode, src) as src"),
+                                                 DB::raw("DATE_FORMAT(start, \"%d/%m/%Y %H:%i:%s\") as start"))
                                     ->whereIn('dst', $identificadores_linhas)
                                     ->orWhere('accountcode', '=', $linha->autenticacao->login_ata)
                                     ->where('disposition', 'ANSWERED')

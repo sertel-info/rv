@@ -1,5 +1,5 @@
 @push('headers')
-
+	<link rel="stylesheet" type="text/css" href="/third_party/datatables/css/datatables.min.css">
 @endpush
 
 <div class="panel panel-default">

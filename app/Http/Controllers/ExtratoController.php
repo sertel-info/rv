@@ -32,7 +32,6 @@ class ExtratoController extends Controller
                                     ->with('did')
                                     ->first();
 
-
             $identificadores_linhas = $this->getIdentificadoresLinha($linha);
 
             $gravacoes = $this->entity->where(function ($query) use ($identificadores_linhas){

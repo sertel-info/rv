@@ -1,4 +1,5 @@
 @push('headers')
+	<link rel="stylesheet" type="text/css" href="/third_party/datatables/css/datatables.min.css">
 
 @endpush
 
@@ -7,22 +8,25 @@
     <h3 class="panel-title">Extrato</h3>
   </div>
   <div class="panel-body">
-    <table class="table table-bordered table-hover table-striped" id="table-extrato">
-	    <thead>
-	        <tr>
-	            <th>Origem</th>
-	            <th>Destino</th>
-	            <th>Data</th>
-	            <th>Duração</th>
-	            <th>Valor</th>
-	        </tr>
-	    </thead>
-	    <tbody>
-	    </tbody>
-	</table>
-  </div>
+  	<div class="container-fluid">
+	  	<div class='row'>
+		    <table class="table table-bordered table-hover table-striped table-responsive" id="table-extrato">
+			    <thead>
+			        <tr>
+			            <th>Origem</th>
+			            <th>Destino</th>
+			            <th>Data</th>
+			            <th>Duração</th>
+			            <th>Valor</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			    </tbody>
+			</table>
+	  </div>
+		</div>
+	</div>
 </div>
-
 
 @push('scripts')
 
@@ -35,11 +39,12 @@
 		          ajax: "{{route('rvc.extrato.linha.get')}}/{{md5($linha->id)}}",
 		          processing: true,
             	  serverSide: true,
+            	  ordering: false,
 		          columns: [
 		              {data: "src", name:"Origem"},
 		              {data: "dst",    name:"Destino"},
 		              {data: "start", name:"Start"},
-		              {data: "billsec", name:"Billsec"},
+		              {data: "billsec_time", name:"Billsec"},
 		              {data: "cost", name:"Valor"},
 		          ],
 		          columnDefs : [

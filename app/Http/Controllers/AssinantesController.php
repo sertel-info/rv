@@ -410,8 +410,11 @@ class AssinantesController extends Controller
 
         $dados_acesso = array("name"=>$request->nome_acesso,
                                 "email"=>$request->email_acesso,
-                                "password"=>$request->senha_acesso,
                                 "role"=>1);
+
+        if($request->senha_acesso !== "DeFPassWord"){
+            $dados_acesso['password'] = $request->senha_acesso;
+        }
 
         return ["acesso"=>$dados_acesso,
                 "financeiro"=>$dados_financeiros,

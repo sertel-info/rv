@@ -28,7 +28,7 @@
 					<div class="form-group row">
 						<label for="senha_acesso" class="col-md-4 col-form-label"> Senha </label>
 						<div class="col-md-8">
-							{{Form::password('senha_acesso', ['class'=>'form-control'])}}
+							<input type="password" name="senha_acesso" class='form-control'/>
 						</div>
 					</div>
 
@@ -42,3 +42,23 @@
 	</div>
 
 </div>
+
+
+@push("scripts")
+	@if(isset($assinante))
+		<script type="text/javascript">
+			$(function(){
+				$("input[name=senha_acesso]").val("DeFPassWord")
+											 .on("click", function(){
+											 	if($(this).val() == "DeFPassWord")
+											 		$(this).val("");
+											 })
+											 .on("focusout", function(){
+											 	if($(this).val() == "")
+											 		$(this).val("DeFPassWord");
+											 });
+
+			})
+		</script>
+	@endif
+@endpush
