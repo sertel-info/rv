@@ -8,4 +8,5 @@ class Cdr extends Model
 {
     protected $connection = 'mysql-asterisk-logs';
 	protected $table = 'cdr';
+	public $timestamps = false;
 }
