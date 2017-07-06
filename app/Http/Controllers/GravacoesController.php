@@ -40,7 +40,8 @@ class GravacoesController extends Controller
     	});
 
     	$gravacoes = $this->entity->select("*",DB::raw("MD5(gravacoes.id) as id_md5"), 
-                                               DB::raw("DATE_FORMAT(start, \"%d/%m/%Y %H:%i:%s\") as start"))
+                                               DB::raw("DATE_FORMAT(data, \"%d/%m/%Y %H:%i:%s\") as data"),
+                                               DB::raw("SEC_TO_TIME(billsec) as duration"))
     				 ->leftjoin('cdr', 'cdr.uniqueid', '=', 'gravacoes.unique_id')
     				 ->where(function ($query) use ($identificadores_linhas){
 			                $query->where('cdr.disposition', '=', 'ANSWERED')
@@ -57,6 +58,7 @@ class GravacoesController extends Controller
 			                      			   });
 			                      });
 			          })
+                     ->orderBy('gravacoes.id', 'desc')
     				 ->get();
 
     	return json_encode(['data'=>$gravacoes]);
