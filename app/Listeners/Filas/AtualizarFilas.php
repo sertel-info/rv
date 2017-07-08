@@ -68,5 +68,7 @@ class AtualizarFilas
         $parser->setFile(config('asterisk.queues_file'));
         $parser->write("rv_queues");
         $parser->commit();
+
+        exec("rasterisk -x reload");
     }
 }
