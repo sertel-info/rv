@@ -9,7 +9,6 @@
 
     <div class="panel-body" id="body-facilidades-{{$linha->md5_id}}">
 
-        
         {{csrf_field()}}
         
         @include('rvc.config.formfields.facilidades')
@@ -42,7 +41,7 @@
 
 
 		$("select[name=atend_automatico_destino]").on("rv_finished_changing", function(){
-      $(this).val("{{ $linha->facilidades->atend_automatico_destino }}").trigger("change");
+      $(this).val("{{ $linha->facilidades->atend_automatico_tipo !== 'ura' ? $linha->facilidades->atend_automatico_destino : 'ura' }}").trigger("change");
 		})
 
     $("select[name=atend_automatico_tipo]").trigger('change');

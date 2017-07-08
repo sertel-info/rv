@@ -37,7 +37,7 @@ class UraUpdateValidator extends FormRequest
         $rules["dig_asteristico_destino"] = "required_with:dig_asteristico_tipo";
 
         $rules['tipo_audio'] = "required";
-        $rules['arquivo_audio'] = "required|file|mimes:wav";
+        $rules['arquivo_audio'] = "file|mimes:wav";
 
         return $rules;
     }

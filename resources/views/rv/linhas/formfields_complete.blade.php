@@ -52,8 +52,8 @@
 			
 			@if(isset($linha->facilidades))
 				$("select[name=atend_automatico_destino]").on("rv_finished_changing", function(){
-      				$(this).val("{{ $linha->facilidades->atend_automatico_destino }}").trigger("change");
-				});
+			      $(this).val("{{ $linha->facilidades->atend_automatico_tipo !== 'ura' ? $linha->facilidades->atend_automatico_destino : 'ura' }}").trigger("change");
+				})
 			@endif
 		})
 	</script>

@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UraAtualizada' => [
             'App\Listeners\AtualizarUra',
         ],
+         'App\Events\Filas\FilaModificada' => [
+            'App\Listeners\Filas\AtualizarFilas',
+        ],
         'App\Events\ItensModificados' => [
             'App\Listeners\AtualizaArquivos'
         ]

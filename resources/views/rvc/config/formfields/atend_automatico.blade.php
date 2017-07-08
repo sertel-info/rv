@@ -44,9 +44,9 @@ $(function(){
 
 		alvo.hide();
 
-	    if(el.val() == 'ura'){
+	    /*if(el.val() == 'ura'){
 	    	return;
-	    }
+	    }*/
 
 		if(alvo.parent().find("img").length < 1)
 			alvo.parent().append("<img src='/ajax-loader.gif'></img>");
@@ -148,7 +148,14 @@ $(function(){
 	})
 
 	$('select[name=atend_automatico_destino]').on("rv.opt_ura_selected", function(ev){
-		$(this).trigger("rv_finished_changing");
+		var el = $(this);
+
+		opts = "<option value='ura'>Minha Ura</option>";
+
+		el.html($(opts));
+		el.show();
+		el.parent().find("img").remove();
+		el.trigger("rv_finished_changing");
 	})
 });
 

@@ -8,7 +8,7 @@ use App\Models\Linhas\Linhas;
 use App\Http\Requests\Validators\LinhasValidator;
 use App\Events\ItensModificados;
 use App\Events\LinhaAtualizada;
-
+use Auth;
 
 class LinhasController extends Controller
 {   
@@ -61,6 +61,15 @@ class LinhasController extends Controller
         $dados = $this->getDataObject($request);
 
         $assinante = \App\Models\Assinantes\Assinantes::where(DB::raw('MD5(id)', $request->assinante))->first();
+
+        if($dados['facilidades']['atend_automatico_tipo'] == 'ura'){
+            
+            if(isset($assinante->ura->id))
+                $dados['facilidades']['atend_automatico_destino'] = md5($assinante->ura->id);
+            else
+                $dados['facilidades']['atend_automatico_destino'] = null;
+
+        }
 
         $linha = $this->entity->create($dados['basicos'])
                                             ->assinante()
@@ -186,6 +195,7 @@ class LinhasController extends Controller
     {   
         $id = md5($request->_id);
         $dados = $this->getDataObject($request);
+
         $linha = \App\Models\Linhas\Linhas::where(DB::raw('MD5(id)'), $id)
                                           ->with("autenticacao")
                                           ->with("configuracoes")
@@ -193,8 +203,18 @@ class LinhasController extends Controller
                                           ->with("permissoes")
                                           ->first();
 
-        $trans_resul = DB::transaction(function() use($linha, $dados, $request){
+        $assinante = $linha->assinante;
+
+        $trans_resul = DB::transaction(function() use($linha, $dados, $request, $assinante){
             try{
+
+                if($dados['facilidades']['atend_automatico_tipo'] == 'ura'){
+                    if(isset($assinante->ura->id))
+                        $dados['facilidades']['atend_automatico_destino'] = md5($assinante->ura->id);
+                    else
+                        $dados['facilidades']['atend_automatico_destino'] = null;
+                }
+                
                 $linha->update($dados['basicos']);
                 $linha->autenticacao->update($dados['autenticacao']);
                 $linha->configuracoes->update($dados['configuracoes']);

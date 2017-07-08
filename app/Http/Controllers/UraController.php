@@ -76,6 +76,7 @@ class UraController extends Controller
     public function update(UraUpdateValidator $request){
 
        $assinante = Auth::user()->assinante;
+       $dados_transaction = array();
        //$ura_relation = $assinante->ura();
 
        if(($ura = $assinante->ura()->first()) !== null){
@@ -113,14 +114,19 @@ class UraController extends Controller
           $audio_novo = new Audios();
           $audio_novo->fill($audio_assoc_arr);
           $audio_novo->assinante_id = $ura->assinante_id;
-
+   
+          $dados_transaction['audio_novo'] = $audio_novo;
+          $dados_transaction['audio_importado']=$audio_importado;
        }
        
+       $dados_transaction['ura']= $ura;
        try{
 
-          DB::transaction(function() use ($audio_novo, $ura, $audio_importado){
+          DB::transaction(function() use ($dados_transaction){
+                 $ura = $dados_transaction['ura'];
                  
-                 if(isset($audio_importado)){
+                 if(isset($dados_transaction['audio_importado'])){
+                    $audio_novo = $dados_transaction['audio_novo'];
                     $audio_novo->save();
                     $ura->audio_id = $audio_novo->id;
                     $this->moveAudio($audio_importado, $audio_novo);
