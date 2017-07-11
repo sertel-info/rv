@@ -16,6 +16,7 @@
 			            <th>Origem</th>
 			            <th>Destino</th>
 			            <th>Data</th>
+			            <th>Hora</th>
 			            <th>Duração</th>
 			            <th>Valor</th>
 			        </tr>
@@ -36,28 +37,39 @@
 <script type="text/javascript">
 	$(function(){
 		$("#table-extrato").dataTable({
-		          ajax: "{{route('rvc.extrato.linha.get')}}/{{md5($linha->id)}}",
+		          ajax: {
+		          		url: "{{route('rvc.extrato.linha.data')}}"+"{{ (isset($linha) ? '/'.md5($linha->id) : '')}}",
+		          		data: function(data){
+				          	data.filters = {
+				          		tipo_chamada : $("select[name='tipo_chamada']").val(),
+				          		tipo_destino : $("select[name='tipo_destino']").val(),
+				          		origem : $("input[name='origem']").val(),
+				          		destino : $("input[name='destino']").val(),
+				          		data_min : $("input[name='data_min']").val(),
+				          		data_max : $("input[name='data_max']").val(),
+				          		hora_min : $("input[name='hora_min']").val(),
+				          		hora_max : $("input[name='hora_max']").val(),
+				          		duracao_min : $("input[name='duracao_min']").val(),
+				          		duracao_max : $("input[name='duracao_max']").val()
+				          	};
+				          }
+		      	  },
 		          processing: true,
             	  serverSide: true,
             	  ordering: false,
 		          columns: [
-		              {data: "src", name:"Origem"},
+		              {data: "origem", name:"Origem"},
 		              {data: "dst",    name:"Destino"},
-		              {data: "start", name:"Start"},
+		              {data: "date", name:"Date"},
+		              {data: "time", name:"Time"},
 		              {data: "billsec_time", name:"Billsec"},
 		              {data: "cost", name:"Valor"},
 		          ],
 		          columnDefs : [
 		          {
-		          	targets: 4, 
+		          	targets: 5, 
 		          	render: function(data){
 		          		return data.toString().concat(' R$');
-		          	}
-		          },
-		          {
-		          	targets: 3, 
-		          	render: function(data){
-		          		return data.toString().concat(' Seg.');
 		          	}
 		          }
 		          ]

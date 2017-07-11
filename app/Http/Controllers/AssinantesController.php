@@ -277,23 +277,6 @@ class AssinantesController extends Controller
         return json_encode(['status'=>$status]);
     }
 
-    public function datatables(Request $request){
-        if($request->ajax()){
-
-           $assinantes = $this->entity->select(DB::raw("IF(tipo,concat(nome, ' ',sobrenome),nome_fantasia) as nome_completo,
-                                                        IF(tipo=1,'PF','PJ') as tipo,
-                                                        MD5(id) as id_md5,
-                                                        1 as plano
-                                                    "))
-                                    ->with(["planos"=>function($query){
-                                            $query->select("nome", "id");
-                                     }])
-                                    ->get();
-
-            return json_encode(['data'=>$assinantes]); 
-        }
-    }
-
     public function get(Request $request){
         //plano, tipo, facilidades, status
         $assinante = $this->entity->select(DB::raw('assinantes.id,

@@ -12,12 +12,18 @@
 */
 
 Route::get('/teste', function(){
-    $fixer = new App\Helpers\BillFixer\BillFixer;
-    dd($fixer->verificarDebitos());
-    return view('errors.error_layout');
+    $fixer = new App\Helpers\TypeFixer\TypeFixer;
+    $fixer->exec();
+
+    $fixer = new App\Helpers\AccountsFixer\AccountsFixer;
+    $fixer->exec();
+
+    $fixer = new App\Helpers\DstTypeFixer\DstTypeFixer;
+    $fixer->exec();    
+    //return view('errors.error_layout');
 });
 
-Route::get('/', 'HomeController@index')->middleware("auth");
+Route::get('/', 'HomeController@index')->middleware("auth")->name("index");
 
 Route::group(['middleware' => 'auth', 'prefix'=>'configuracoes'], function () {
     Route::get('/', 'ConfiguracoesController@index')->name("rv.configuracoes.index");    
@@ -29,7 +35,7 @@ Route::group(['middleware' => 'auth', 'prefix'=>'assinantes'], function () {
     Route::get('/gerenciar', 'AssinantesController@manage')->name("rv.assinantes.manage");
     Route::get('/editar/{id?}', 'AssinantesController@edit')->name("rv.assinantes.edit");
     Route::get('/pegar/{id?}', 'AssinantesController@get')->name("rv.assinantes.get");
-    Route::get('/data', 'AssinantesController@datatables')->name("rv.assinantes.datatables");
+    Route::get('/data', 'Datatables\AssinantesDataTables@anyData')->name("rv.assinantes.datatables");
     Route::post('/guardar', 'AssinantesController@store')->name("rv.assinantes.store");
     Route::put('/atualizar/{id?}', 'AssinantesController@update')->name("rv.assinantes.update");
     Route::delete('/deletar', 'AssinantesController@destroy')->name("rv.assinantes.destroy");
@@ -64,14 +70,25 @@ Route::group(['middleware' => 'auth', 'prefix'=>'planos'], function () {
 });
 
 
+Route::group(['prefix'=>'morph'], function(){
+    Route::get('/morph/exec/{id?}', 'MorphController@exec')->name('rv.morph');    
+    Route::get('/morph/finish/', 'MorphController@unmorph')->name('rv.unmorph');    
+});
+
 Route::group(['middleware' => 'auth', 'prefix'=>'cliente'], function () {
-    Route::group(['prefix'=>'contas'], function(){
+    Route::group(['prefix'=>'billing'], function(){
         Route::get('/', 'BillingController@getContas')->name("rv.cliente.contas");
     });
 
     Route::get('/linhas/get', 'ClientesController@getLinhas')->name('rvc.get.linhas');
     Route::get('/grupos/get', 'ClientesController@getGrupos')->name('rvc.get.grupos');
    
+    Route::group(['prefix'=>'conta'], function(){
+        Route::get('/editar', 'Clientes\ContasController@edit')->name('rvc.conta.edit');
+        Route::put('/atualizar', 'Clientes\ContasController@update')->name('rvc.conta.update');
+        Route::get('/editar/senha', 'Clientes\ContasController@editPassword')->name('rvc.conta.edit_password');
+        Route::put('/atualizar/senha', 'Clientes\ContasController@updatePassword')->name('rvc.conta.update_password');
+    });
 
     Route::group(['prefix'=>'configuracoes'], function(){
 
@@ -99,7 +116,8 @@ Route::group(['middleware' => 'auth', 'prefix'=>'cliente'], function () {
         Route::get('/', 'ExtratoController@index')->name('rvc.extrato.index');
         Route::get('/get', 'ExtratoController@dataTables')->name('rvc.extrato.get');
         Route::get('/exibir/{id?}', 'ExtratoController@show')->name('rvc.extrato.show');
-        Route::get('/linha/{id?}', 'Datatables\ExtratoDataTables@anyData')->name('rvc.extrato.linha.get');
+        Route::get('/linha/{id?}', 'Datatables\ExtratoDataTables@anyData')->name('rvc.extrato.linha.data');
+        Route::get('/filter/{linha?}', 'Datatables\ExtratoDataTables@filter')->name('rvc.extrato.filter');
     });
 
 

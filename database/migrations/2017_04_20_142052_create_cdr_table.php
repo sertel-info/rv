@@ -42,6 +42,9 @@ class CreateCdrTable extends Migration
             $table->index('calldate');
             $table->index('dst');
             $table->index('accountcode');     
+            $table->string('dst_id', 25);     
+            $table->string('src_id', 25);     
+            $table->string('dst_type', 25);     
             /*
 CREATE TABLE cdr (
     accountcode VARCHAR(20), 

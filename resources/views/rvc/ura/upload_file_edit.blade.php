@@ -21,12 +21,12 @@
 <div class='form-group'>
 	<label class='control-label col-md-3'></label>
 	<div class='col-md-5'>
-		<a class='btn btn-primary' id="change-audio-file"> 
+		<a class='btn btn-warning' id="change-audio-file"> 
 			<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
 	 		Trocar arquivo de áudio
 	 	</a>
-	 	<a class='btn btn-warning' style="display:none" id="cancel-change-audio-file"> 
-			<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+	 	<a class='btn btn-danger' style="display:none" id="cancel-change-audio-file"> 
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 	 		Cancelar
 	 	</a>
  	</div>

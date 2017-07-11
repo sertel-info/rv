@@ -6,96 +6,135 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Datatables;
 use DB;
+use Auth;
+use App\Helpers\AGIClasses\Numero;
 
 class ExtratoDataTables extends Controller
 {
-    public function anyData($id)
+    public function anyData(Request $request)
 	{
-	    $linha = \App\Models\Linhas\Linhas::where(DB::raw('md5(linhas.id)'), $id)
-	                                    ->with('autenticacao')
-	                                    ->with('configuracoes')
-	                                    ->with('did')
-	                                    ->first();
+        $id = $request->id;
 
-	    $identificadores_linhas = $this->getIdentificadoresLinha($linha);
+	    $linha_query = Auth::user()->assinante->linhas();
 
-        $ligacoes = \App\Models\Cdr::select("*", DB::raw('SEC_TO_TIME(billsec) as billsec_time'),
-                                                 DB::raw("IF(type='sainte', accountcode, src) as src"),
-                                                 DB::raw("DATE_FORMAT(start, \"%d/%m/%Y %H:%i:%s\") as start"))
-                                    ->whereIn('dst', $identificadores_linhas)
-                                    ->orWhere('accountcode', '=', $linha->autenticacao->login_ata)
-                                    ->where('disposition', 'ANSWERED')
-                                    ->orderBy('id', 'desc')
-                                    ->get();
-       
-        return Datatables::of($ligacoes)->make(true);
-	    
-        /*$query = \App\Models\Cdr::select("*", DB::raw('SEC_TO_TIME(billsec) as billsec_time'));
+        if($id !== null){
+            $linha_query->where(DB::raw('md5(linhas.id)'), $id);
+        }
+
+        $linhas = $linha_query->with('autenticacao')
+                                ->with('configuracoes')
+                                ->with('did')
+                                ->get();                  
+
+        $query = \App\Models\Cdr::select("*", DB::raw('SEC_TO_TIME(billsec) as billsec_time'),
+                                              DB::raw("IF(type='sainte', accountcode, src) as origem"),
+                                              DB::raw("DATE_FORMAT(DATE(calldate), \"%d/%m/%Y\") as date"),
+                                              DB::raw("TIME_FORMAT(TIME(calldate), \"%H:%i:%s\") as time"));
                                    
         $filtros = $request->filters;
 
-        $query->where(function($query) use ($filtros, $identificadores_linhas, $linha){
+        $identificadores_linhas = $this->getIdentificadoresLinhas($linhas);
+
+        $query->where(function($query) use ($filtros, $identificadores_linhas, $linhas){
+            
             if(!empty($filtros['destino'])){
-                $query->where('dst', 'like', '%'.$filtros['destino'].'%');
+                
+                $query->where(function($query) use ($filtros){
+                    $query->where("dst", $filtros['destino']);
+                
+                    $query->orWhere(function($query) use ($filtros){
+                        $query->whereIn("type", ["internas", "entrante"]);
+                        $query->where('peeraccount', "=", $filtros['destino']);
+                    });
+                });  
+               
+               
             } 
-            
-            $query->whereIn('dst', $identificadores_linhas);
-            
+
             if(!empty($filtros['origem'])){
-                $query->where('src', 'like', "'%".$filtros['origem']."%'");
-                $query->where('accountcode', '=', $linha->autenticacao->login_ata);                
+                $query->where(function($query) use ($filtros){
+
+                    $query->where("src", $filtros['origem']);
+
+                    $query->orWhere(function($query) use ($filtros){
+                        $query->whereIn("type", ["sainte", "internas"]);
+                        $query->where("accountcode", "=", $filtros['origem']);
+                    });
+                });
             } 
-            
-            $query->orWhere('accountcode', '=', $linha->autenticacao->login_ata);                
-        
         });
-       
+
+        $query->where(function($query) use ($linhas){
+            $query->whereIn("accountcode", $linhas->pluck("autenticacao.login_ata")->toArray());
+            $query->orWhereIn("peeraccount", $linhas->pluck("autenticacao.login_ata")->toArray());
+        });
+
+        //dd($query->toSql(), $query->getBindings());
 
         if(!empty($filtros['data_min'])){
-            $query->where('calldate', '>=', $filtros['data_min']);
+            $data_min_obj = \DateTime::createFromFormat("d/m/Y", $filtros['data_min']);
+            $query->where(DB::raw('DATE(calldate)'), '>=', $data_min_obj->format("Y-m-d"));
         }
 
         if(!empty($filtros['data_max'])){
-            $query->where('calldate', '<=', $filtros['data_max']);
+            $data_max_obj = \DateTime::createFromFormat("d/m/Y", $filtros['data_min']);
+            $query->where(DB::raw('DATE(calldate)'), '<=', $data_max_obj->format("Y-m-d"));
         }
 
         if(!empty($filtros['duracao_min'])){
-            $query->where('billsec', '>=', $filtros['duracao_min']);
+            list($horas, $min, $sec) = explode(":",$filtros['duracao_min']);
+            $seconds = ($horas*60*60)+($min*60)+$sec;
+            $query->where('billsec', '>=', $seconds);
         }
 
         if(!empty($filtros['duracao_max'])){
-            $query->where('billsec', '<=', $filtros['duracao_max']);
+            list($horas, $min, $sec) = explode(":",$filtros['duracao_max']);
+            $seconds = ($horas*60*60)+($min*60)+$sec;
+            $query->where('billsec', '<=', $seconds);
         }
 
-        if(!empty($filtros['valor_min'])){
-            $query->where('cost', '<=', $filtros['valor_min']);
+        if(!empty($filtros['hora_min'])){
+            $query->where(DB::raw('TIME(calldate)'), '>=', $filtros['hora_min']);
         }
 
-        if(!empty($filtros['valor_max'])){
-            $query->where('cost', '<=', $filtros['valor_max']);
+        if(!empty($filtros['hora_max'])){
+            $query->where(DB::raw('TIME(calldate)'), '<=', $filtros['hora_max']);
         }
 
-        $query
-                                    ->where('disposition', 'ANSWERED')
-                                    ->orderBy('id', 'desc')
-                                    ->get();
+        if(!empty($filtros['tipo_chamada'])  && $filtros['tipo_chamada'] !== 'todos'){
+            $query->where('type', '=', $filtros['tipo_chamada']);
+        }
+
+        if(!empty($filtros['tipo_destino']) && $filtros['tipo_destino'] !== 'todos'){
+            $query->where('dst_type', '=', $filtros['tipo_destino']);
+        } else {
+            $query->where('dst_type', '<>', "")
+                  ->where('dst_type', '<>', "aplicacao");
+        }
+
+        $query->where('disposition', 'ANSWERED')
+              ->orderBy('id', 'desc')->get();
                                     
-	    return Datatables::of($query)->make(true);*/
+	    return Datatables::of($query)->make(true);
 
 	}
 
-	public function getIdentificadoresLinha($linha){
+	public function getIdentificadoresLinhas($linhas){
         $array_ids = array();
+        
+        foreach($linhas as $linha){
 
-        if(isset($linha->did))
-            array_push($array_ids, $linha->did->extensao_did);
+            if(isset($linha->did))
+                array_push($array_ids, $linha->did->extensao_did);
 
-        if(isset($linha->autenticacao))
-            array_push($array_ids, $linha->autenticacao->login_ata);
+            if(isset($linha->autenticacao))
+                array_push($array_ids, $linha->autenticacao->login_ata);
 
-        if(isset($linha->configuracoes))
-            array_push($array_ids, $linha->configuracoes->callerid);
-
+            if(isset($linha->configuracoes))
+                array_push($array_ids, $linha->configuracoes->callerid);   
+        
+        }
+      
         $identificadores_linhas = array_unique($array_ids);
 
         $identificadores_linhas = array_filter($identificadores_linhas, function($el){
@@ -104,4 +143,6 @@ class ExtratoDataTables extends Controller
 
        return $identificadores_linhas;
     }
+
+
 }

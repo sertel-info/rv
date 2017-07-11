@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Cdr;
 use App\Models\Linhas\DadosAutenticacaoLinhas;
 use App\Models\Linhas\DadosConfiguracoesLinhas;
-use App\Helpers\BillFixer\BillCalculator;
-use App\Helpers\BillFixer\Numero;
+use App\Helpers\AGIClasses\BillCalculator;
+use App\Helpers\AGIClasses\Numero;
 
 class BillFixer extends Controller {
 

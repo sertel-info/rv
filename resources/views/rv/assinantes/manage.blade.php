@@ -49,17 +49,15 @@
 		              				   "<span class='glyphicon glyphicon-pencil gi-2x'></span>"+
 		              				   "</a>";
 
-		              btnActions += "&nbsp&nbsp<a data-id="+data+" data-wrapper='modal-assinantes' data-action='view' href='{{route('rv.assinantes.get')}}/"+data+"'>"+
+		              /*btnActions += "&nbsp&nbsp<a data-id="+data+" data-wrapper='modal-assinantes' data-action='view' href='{{route('rv.assinantes.get')}}/"+data+"'>"+
 		              				   "<span class='glyphicon glyphicon-eye-open gi-2x'></span>"+
-		              				   "</a>";
-
-		              /*btnActions += "&nbsp&nbsp<a data-id="+data+" data-wrapper='modal-assinantes' data-action='view' href='#'>"+
-		              				   "<span class='glyphicon glyphicon-user gi-2x'></span>"+
 		              				   "</a>";*/
 
 		              btnActions += "&nbsp&nbsp<a data-action='delete' data-id="+data+" data-title='Assinante' href='{{route('rv.assinantes.destroy')}}'>"+
 		              				   "<span class='glyphicon  glyphicon-trash gi-2x'></span>"+
 		              				   "</a>";
+
+		              btnActions += '&nbsp&nbsp <a href="{{route("rv.morph")}}/'+data+'"> <span class="glyphicon glyphicon-user gi-2x" aria-hidden="true"></span></a>';
 
 		              return btnActions;
 		            },

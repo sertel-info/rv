@@ -24,10 +24,18 @@
                             {{-- <li><a href="{{ url('/register') }}">Registrar</a></li> --}}
                         @else
 
-                            @if(Auth::User()->role == 1)
-                                <li><a>Créditos : {{Auth::User()->assinante()->first()->financeiro->creditos}} R$</a></li>
-                                
+                            @if(Session::has("is_morphed") && Session::get("is_morphed") == true)
+                                <li><a href="{{ route('rv.unmorph') }}">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                     Voltar como admin
+                                    </a>
+                                </li>
                             @endif
+
+                            @if(Auth::User()->role == 1)
+                                <li><a class=''>Créditos : {{Auth::User()->assinante()->first()->financeiro->creditos}} R$</a></li>      
+                            @endif
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -35,14 +43,19 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{ route('rvc.conta.edit') }}">
+                                               Conta
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Sair
+                                                onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                Sair
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
+                                                {{ csrf_field() }}
                                         </form>
                                     </li>
                                 </ul>

@@ -80,8 +80,12 @@ class ExtratoController extends Controller
                                              ->first();
     }
 
-    public function show($id){
-        $linha = $this->getUsuario()->assinante->linhas()->where(DB::Raw('MD5(id)'), $id)->first();
-        return view('rvc.extrato.show', ['linha'=>$linha, 'active'=>'extrato']);
+    public function show(Request $request){
+        if($request->id !== null){
+            $linha = $this->getUsuario()->assinante->linhas()->where(DB::Raw('MD5(id)'), $request->id )->first();
+            return view('rvc.extrato.show', ['linha'=>$linha, 'active'=>'extrato']);
+        }
+
+        return view('rvc.extrato.show', ['active', 'extrato']);
     }
 }

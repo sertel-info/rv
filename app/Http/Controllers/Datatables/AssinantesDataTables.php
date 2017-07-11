@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Datatables\Clientes;
+namespace App\Http\Controllers\Datatables;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,9 +17,9 @@ class AssinantesDataTables extends Controller
  * @return \Illuminate\View\View
  */
 
-public function index(){
+/*public function index(){
     return $this->render('users');
-}
+}*/
 
 /**
  * Process datatables ajax request.
@@ -28,14 +28,17 @@ public function index(){
  */
 public function anyData()
 {
-    $users = Assinantes::select(DB::raw('IF(nome is null, nome_fantasia, nome) as nome'),
-    							DB::raw('MD5(id) as id_md5'),
-    							DB::raw("IF(tipo = 0, 'PF', 'PJ') as tipo")
-    							)
-    					->with('planobj')
-    					->get();
+    $assinantes = Assinantes::select(DB::raw("IF(tipo,concat(nome, ' ',sobrenome),nome_fantasia) as nome_completo,
+                                                        IF(tipo=1,'PF','PJ') as tipo,
+                                                        MD5(id) as id_md5,
+                                                        plano
+                                                    "))
+                                    ->with(["planos"=>function($query){
+                                            $query->select("nome", "id");
+                                     }])
+                                    ->get();
 
-    return Datatables::of($users)->make(true);
+    return Datatables::of($assinantes)->make(true);
 }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\BillFixer;
+namespace App\Helpers\AGIClasses;
 
 class Numero {
 	
@@ -57,9 +57,11 @@ class Numero {
 				$this->numero = substr($mts[0], 1);
 
 			} else {
+
 				$this->tipo = 'servico';
 				$this->operadora = 'nextel';
 				$this->numero = $mts[0];
+			
 			}
 
 			return;
@@ -73,7 +75,7 @@ class Numero {
 				$numero = $mts[4].$mts[5];
 			}
 
-			$tipo = 'nextel';	
+			$tipo = 'movel';	
 		/*in_array($mts[4],$nonoDigito) && */			
 		} elseif(!in_array(substr($mts[5],0,2),$nextel) && preg_match("/^[6-9]/", $mts[6],$m)){
 								
@@ -108,7 +110,7 @@ class Numero {
 			$tipo = 'fixo';
 							
 		} else {
-			$this->write_console(__FILE__, __LINE__, 'NUMERO EM FORMATO DESCNOHECIDO: '.$this->numero_completo, $this->verbose);
+			//$this->write_console(__FILE__, __LINE__, 'NUMERO EM FORMATO DESCNOHECIDO: '.$this->numero_completo, $this->verbose);
 			return;			
 		}
 		
