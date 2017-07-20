@@ -40,38 +40,11 @@
 
 				$('input[name=cnpj]').mask('00.000.000/0000-00', {reverse: true});
 				$('input[name=cpf]').mask('000.000.000-00', {reverse: true});
-				$('input[name=cliente_desde], input[name=dia_vencimento]').mask('00/00/0000');
-				$('input[name=limite_credito], input[name=creditos]').mask('###0.00', {reverse: true});
+				$('input[name=dia_vencimento]').mask('00');
+				$('input[name=alerta_saldo]').mask('000.000.000.000.000,00 R$', {reverse: true});
+				$('input[name=espaco_disco]').mask('0000 GB', {reverse: true});
 		});
 		
-		function randomString()
-		{
-		    var text = "";
-		    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-		    for( var i=0; i < 8; i++ )
-		        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-		    return text;
-		}
-
-		function seedForm(){
-			$('input[type=text]').each(function(){
-				$(this).val(randomString());
-			});
-			
-			//estado
-			$('input[name=estado]').val('RJ');
-			//timestamps
-			$('input[name=cliente_desde]').val('2017-03-03 10:10:10');
-			$('input[name=dia_vencimento]').val('2017-03-03 10:10:10');
-			//integers
-			$('input[name=dias_bloqueio]').val('2');
-			$('input[name=espaco_disco]').val('2');
-			//floats
-			$('input[name=limite_credito]').val('2.00');
-			$('input[name=alerta_saldo]').val('5.00');
-		}
 
 	</script>
 

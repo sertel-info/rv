@@ -17,7 +17,10 @@ class CreateAssinantesTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->integer('plano')->unsigned()->nullable();
+            $table->integer('plano')
+                  ->unsigned()
+                  ->nullable();
+            
             $table->foreign('plano')
                       ->references('id')
                       ->on('planos')

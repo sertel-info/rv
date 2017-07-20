@@ -26,41 +26,57 @@ class ExtratoDataTables extends Controller
                                 ->with('did')
                                 ->get();                  
 
+        $destino_select = "CASE type".
+                          " WHEN 'sainte' THEN dst".
+                          " WHEN 'entrante' THEN IF(peeraccount <> dst, CONCAT(dst, ' <',peeraccount,'>'), dst )".
+                          " WHEN 'internas' THEN dst".
+                          " ELSE dst END ";
+        
         $query = \App\Models\Cdr::select("*", DB::raw('SEC_TO_TIME(billsec) as billsec_time'),
                                               DB::raw("IF(type='sainte', accountcode, src) as origem"),
                                               DB::raw("DATE_FORMAT(DATE(calldate), \"%d/%m/%Y\") as date"),
-                                              DB::raw("TIME_FORMAT(TIME(calldate), \"%H:%i:%s\") as time"));
+                                              DB::raw("TIME_FORMAT(TIME(calldate), \"%H:%i:%s\") as time"),
+                                              DB::raw($destino_select." as destino"));
                                    
         $filtros = $request->filters;
 
-        $identificadores_linhas = $this->getIdentificadoresLinhas($linhas);
-
-        $query->where(function($query) use ($filtros, $identificadores_linhas, $linhas){
+        $query->where(function($query) use ($filtros){
             
-            if(!empty($filtros['destino'])){
-                
-                $query->where(function($query) use ($filtros){
-                    $query->where("dst", $filtros['destino']);
-                
-                    $query->orWhere(function($query) use ($filtros){
-                        $query->whereIn("type", ["internas", "entrante"]);
-                        $query->where('peeraccount', "=", $filtros['destino']);
-                    });
-                });  
-               
-               
-            } 
-
             if(!empty($filtros['origem'])){
-                $query->where(function($query) use ($filtros){
+                $origem = preg_replace('/[^0-9]/', '', $filtros['origem']);
 
-                    $query->where("src", $filtros['origem']);
+                $query->where(function($query) use ($origem){
+                    $query->where("src", $origem);
+                    $query->orWhere("src", "like", "__".$origem);
+                    $query->orWhere(function($query) use ($origem){
+                        $query->where(DB::raw('CHAR_LENGTH(src)'),">=", 8);
+                        $query->where("src", "like", "____".$origem);
+                    });
 
-                    $query->orWhere(function($query) use ($filtros){
+                    $query->orWhere(function($query) use ($origem){
                         $query->whereIn("type", ["sainte", "internas"]);
-                        $query->where("accountcode", "=", $filtros['origem']);
+                        $query->where("accountcode", "=", $origem);
                     });
                 });
+            } 
+
+            if(!empty($filtros['destino'])){
+                $destino = preg_replace('/[^0-9]/', '', $filtros['destino']);
+
+                $query->where(function($query) use ($destino){
+                    $query->where("dst", $destino);
+                    $query->orWhere("dst", "like", "0".$destino);
+                    $query->orWhere("dst", "like", "__".$destino);
+                    $query->orWhere(function($query) use ($destino){
+                        $query->where(DB::raw('CHAR_LENGTH(dst)'),">", 8);
+                        $query->where("dst", "like", "____".$destino);
+                    });
+                    
+                    $query->orWhere(function($query) use ($destino){
+                        $query->where("type", "entrante");
+                        $query->where('peeraccount', "=", $destino);
+                    });
+                });         
             } 
         });
 

@@ -1,13 +1,4 @@
 
-
-					<div class="form-group row">
-						<div class='col-md-4'>
-								<center>
-									<label for="gravacao" class=""> Gravação  </label><br>
-									{{Form::checkbox('gravacao', 1, $linha->facilidades->gravacao or 0, ['class'=>'form-control'])}}
-								</center>
-						</div>
-					</div>
 					<div class="form-group row">
 						<div class='col-md-4 '>
 							<center>

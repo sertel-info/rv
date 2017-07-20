@@ -61,7 +61,11 @@ class AtualizaArquivos
             }
         }
   
-      
+        /** EXTENSÃO PARA CHAMAR O HANGUP **/
+
+        $this->parser->addInclude("ramal_virtual_hangup", "ramal_virtual_internas", "extension");
+        $this->parser->addInclude("ramal_virtual_hangup", "ramal_virtual_entrada", "extension");
+
         /** RAMAL VIRTUAL APLICAÇÂO **/
         $configs = \App\Models\Configuracoes::first();
 
@@ -70,6 +74,7 @@ class AtualizaArquivos
                                       "AGI(ramal_virtual/rv_aplicacao.php)",
                                       "ramal_virtual_aplicacao"
                                       );
+
 
         $this->parser->setFile(config('app.asterisk_files')['extension']);
         $this->parser->write('extension');
@@ -123,7 +128,6 @@ class AtualizaArquivos
                                     $did->senha_did,
                                     $did->ip_did,
                                     $did->extensao_did);
-
 
         $this->parser->addExtension('_'.$did->extensao_did,
                                             '1',

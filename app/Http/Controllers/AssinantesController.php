@@ -330,7 +330,6 @@ class AssinantesController extends Controller
                                                             dias_bloqueio,
                                                             DATE_FORMAT(dia_vencimento, "%d/%m/%Y") as dia_vencimento,
                                                             espaco_disco,
-                                                            CONCAT(limite_credito, " R$") as limite_crédito,
                                                             CONCAT(alerta_saldo, " R$") as alerta_saldo,
                                                             "Financeiro" as table_name
                                                             '));
@@ -349,10 +348,6 @@ class AssinantesController extends Controller
                                             "sobrenome",
                                             "rg",
                                             "tipo");
-
-            $dados_basicos['creditos'] = isset($request->creditos_iniciais) ?
-                                                $request->creditos_iniciais :
-                                                $request->creditos;
 
         } else {
             
@@ -378,7 +373,6 @@ class AssinantesController extends Controller
                                         "celular");
 
         $dados_financeiros = $request->only("dias_bloqueio",
-                                            "limite_credito",
                                             "alerta_saldo",
                                             "espaco_disco",
                                             "dia_vencimento");

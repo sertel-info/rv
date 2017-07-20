@@ -32,3 +32,8 @@
 	font-size:2em;
 	text-align: center;
 }
+
+/* botão de fechar o alert das notificações */
+.close-right{
+	margin-right:5px;
+}

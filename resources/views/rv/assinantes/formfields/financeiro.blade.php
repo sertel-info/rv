@@ -22,13 +22,6 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="limite_credito" class="col-md-4 col-form-label"> Limite Crédito </label>
-						<div class="col-md-8">
-							{{Form::text('limite_credito', null, ['class'=>'form-control'])}}
-						</div>
-					</div>
-
-					<div class="form-group row">
 						<label for="alerta_saldo" class="col-md-4 col-form-label"> Alerta de Saldo </label>
 						<div class="col-md-8">
 							{{Form::text('alerta_saldo', null, ['class'=>'form-control'])}}
@@ -43,14 +36,7 @@
 						</div>
 					</div>
 
-					@if(Request::url() == route('rv.assinantes.create'))
-						<div class="form-group row">
-							<label for="creditos" class="col-md-4 col-form-label"> Créditos iniciais</label>
-							<div class="col-md-8">
-								{{Form::text('creditos', null, ['class'=>'form-control']) }}
-							</div>
-						</div>
-					@endif
+
 	</div>
 
 </div>

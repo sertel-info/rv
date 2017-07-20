@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -20,8 +21,10 @@
                     
                         <!-- Authentication Links -->
                         @if (Auth::guest())
+                           
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             {{-- <li><a href="{{ url('/register') }}">Registrar</a></li> --}}
+                            
                         @else
 
                             @if(Session::has("is_morphed") && Session::get("is_morphed") == true)
@@ -33,8 +36,13 @@
                             @endif
 
                             @if(Auth::User()->role == 1)
-                                <li><a class=''>Créditos : {{Auth::User()->assinante()->first()->financeiro->creditos}} R$</a></li>      
+                                <li>
+                                    <a class=''>Créditos : {{Auth::User()->assinante()->first()->financeiro->creditos}} R$
+                                    </a>
+                                </li>
+      
                             @endif
+
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -44,24 +52,62 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ route('rvc.conta.edit') }}">
-                                               Conta
+                                            Conta
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                                 onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                                Sair
+                                            Sair
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
+                                            {{ csrf_field() }}
                                         </form>
                                     </li>
                                 </ul>
                             </li>
+
                         @endif
                     </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+@push("scripts")    
+    <script type="text/javascript">
+        $(function(){
+            var popover_content = $("#notifications-stub");
+           
+            $("[data-toggle=popover]").popover({
+                title: "Notificações",
+                content: popover_content.html(),
+                html: true
+            });
+            
+            popover_content.remove();
+
+            $('body').on("click", '.close', function(){
+              //diminui 1 no contador do "Mais X ..."
+              var oflow = $("#overflow");
+
+              if(oflow.length > 0){
+                var count = oflow.find("#overflow-count");
+                var curr_val = parseInt(count.html());
+                var new_val = curr_val-1;
+
+                if(new_val == 0){
+                    oflow.remove();
+                } else {
+                    count.html(new_val);
+                }
+
+              }
+
+              $(this).parents(".media-line").hide();
+
+            });
+        })
+    </script>
+@endpush

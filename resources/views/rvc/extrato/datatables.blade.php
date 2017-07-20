@@ -59,7 +59,7 @@
             	  ordering: false,
 		          columns: [
 		              {data: "origem", name:"Origem"},
-		              {data: "dst",    name:"Destino"},
+		              {data: "destino",    name:"Destino"},
 		              {data: "date", name:"Date"},
 		              {data: "time", name:"Time"},
 		              {data: "billsec_time", name:"Billsec"},
@@ -71,7 +71,60 @@
 		          	render: function(data){
 		          		return data.toString().concat(' R$');
 		          	}
+		          },
+		          {
+		          	targets: 0, 
+		          	render: function(data){
+		          		data = data.replace(/^[0]/, "");
+		          		if(data.length >= 10 && data.length <= 14){
+		          			//return data;
+		          			
+		          			var num_arr = data.match(/^(00|0|9090|90|55)?(([0-9]{2})?([0-9]{2}))?(([0-9])[0-9]{7,})(\s.*)?/);
+
+		          			var ddd = num_arr[4] !== undefined ? "("+num_arr[4].toString()+")" : "";
+		          			
+		          			if(num_arr[5]){
+		          				var num = num_arr[5];
+		          				num = num.replace(/^([0-9]{4,5})([0-9]{4})$/, "$1-$2");
+		          			} else {
+		          				num = data;
+		          			}
+		          			
+		          			return ddd.concat(' ',num);
+
+		          		}
+
+		          		return data;
+		          	}
+		          },
+		          {
+		          	targets: 1, 
+		          	render: function(data){
+		          		data = data.replace(/^[0]/, "");
+		          		if(data.length >= 8 && data.length <= 25){
+		          			//return data;
+		          			
+		          			var num_arr = data.match(/^(00|0|9090|90|55)?(([0-9]{2})?([0-9]{2}))?(([0-9])[0-9]{7,})(\s.*)?/);
+
+		          			var ddd = num_arr[4] !== undefined ? "("+num_arr[4].toString()+")" : "";
+		          			
+		          			if(num_arr[5]){
+		          				var num = num_arr[5];
+		          				var resto = num_arr[7] !== undefined ? num_arr[7] : "";  
+		          				num = num.replace(/^([0-9]{4,5})([0-9]{4})$/, "$1-$2");
+		          			} else {
+		          				var resto = "";
+		          				num = data;
+		          			}
+		          			
+		          			return ddd.concat(' ',num, resto);
+
+		          		}
+
+		          		return data;
+		          	}
 		          }
+
 		          ]
 		      });
 	});

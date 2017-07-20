@@ -36,9 +36,9 @@ class ClientesController extends Controller
                                   ->whereRaw("MD5(id) = '".$id."'")
                                   ->first();
 
-    	if($user->role !== 1){
-    		return abort(404);
-    	}
+      	if($user->role !== 1){
+      		return abort(404);
+      	}
 
         return view('rvc.config.edit', ['panel_title'=>'Configurações',
                                          'active'=>'config',

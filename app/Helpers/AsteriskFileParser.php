@@ -98,6 +98,17 @@ class AsteriskFileParser implements AsteriskConfigFileParserContract{
         }
     }
 
+    public function addInclude($context_to_include, $session, $buffer){
+       if(!$this->sessionExists($session, $buffer)){
+            $this->addSession($session, $buffer);
+            array_push($this->buffers[$buffer], 'include=>'.$context_to_include);
+       } else {
+            $session = $this->getSession($this->buffers[$buffer], $session);
+            array_push($session['conteudo'], 'include=>'.$context_to_include);
+            array_splice($this->buffers[$buffer], $session['inicio'], $session['tamanho'], $session['conteudo']);
+       }
+    }
+
     public function addExtensionUra($exten, $prioridade, $app, $contexto){
         if(!$this->sessionExists($contexto, 'app_ura')){
             $this->addSession($contexto, 'app_ura');

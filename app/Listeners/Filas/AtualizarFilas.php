@@ -29,11 +29,11 @@ class AtualizarFilas
     public function handle(FilaModificada $event)
     {   
         $parser = new Queues();
-
+        
         $filas = Filas::with('linhas.autenticacao')->with('assinante')->get();
         
         foreach($filas as $fila){
-            $parser->addSession($fila->nome, "rv_queues");
+            $parser->addSession($fila->nome.'-'.$fila->id, "rv_queues");
 
             $fila_attrs = array(
                                 "strategy"=>$fila->tipo,

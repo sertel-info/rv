@@ -39,4 +39,9 @@ class User extends Authenticatable
     public function getRoleAttribute($value){
         return intval($value);
     }
+
+    public function notification(){
+        return $this->hasMany('App\Models\Notifications', 'user_id', 'id');
+    }
+
 }

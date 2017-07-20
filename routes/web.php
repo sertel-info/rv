@@ -24,11 +24,35 @@ Route::get('/teste', function(){
 });
 
 Route::get('/', 'HomeController@index')->middleware("auth")->name("index");
+Route::get('/home', 'HomeController@index')->middleware("auth")->name("index");
 
-Route::group(['middleware' => 'auth', 'prefix'=>'configuracoes'], function () {
-    Route::get('/', 'ConfiguracoesController@index')->name("rv.configuracoes.index");    
-    Route::post('/atualizar', 'ConfiguracoesController@update')->name("rv.configuracoes.update");    
-});
+Route::group(['middleware' => 'auth',
+              'prefix'=>'configuracoes', 
+              'namespace'=>"Admin\Configuracoes"],
+               function () {
+                
+                Route::group(['prefix'=>'geral'], function () {
+                    Route::get('/', 'ConfigGeralController@index')->name("rv.configuracoes.geral");
+                    Route::post('/udpate', 'ConfigGeralController@update')
+                            ->name("rv.configuracoes.geral.update");
+                });
+                
+                Route::group(['prefix'=>'voice_mail'], function () {
+                    Route::get('/', 'ConfigVoiceMailController@index')->name("rv.configuracoes.voice_mail");    
+                    Route::post('/update', 'ConfigVoiceMailController@update')->name("rv.configuracoes.voice_mail.update");    
+                });
+
+                Route::group(['prefix'=>'notificacoes'], function () {
+                    Route::get('/', 'ConfigNotificacoesController@index')->name("rv.configuracoes.notificacoes");
+                    Route::post('/update', 'ConfigNotificacoesController@update')->name("rv.configuracoes.notificacoes.update");
+                    Route::post('/edit', 'ConfigNotificacoesController@edit')->name("rv.configuracoes.notificacoes.edit");
+                    Route::get('/create', 'ConfigNotificacoesController@create')->name("rv.configuracoes.notificacoes.create");
+                    Route::get('/store', 'ConfigNotificacoesController@store')->name("rv.configuracoes.notificacoes.store");
+                });
+
+                //Route::post('/atualizar', 'ConfiguracoesController@update')->name("rv.configuracoes.update");
+                }
+);
 
 Route::group(['middleware' => 'auth', 'prefix'=>'assinantes'], function () {
     Route::get('/criar', 'AssinantesController@create')->name("rv.assinantes.create");
