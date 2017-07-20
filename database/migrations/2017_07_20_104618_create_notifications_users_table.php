@@ -16,7 +16,7 @@ class CreateNotificationsUsersTable extends Migration
         Schema::create('notifications_users', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->interger('user_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
