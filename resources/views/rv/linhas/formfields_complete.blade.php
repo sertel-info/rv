@@ -39,7 +39,6 @@
 				$('#form-did').collapse(state ? 'show' : 'hide');
 			});
 
-						
 			$("input[type=checkbox]").not("[name=status]").bootstrapSwitch();
 
 			$("input[name=status]").bootstrapSwitch({"onText": "Ativo", "offText": "Inativo"});

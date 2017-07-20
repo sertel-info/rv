@@ -76,11 +76,6 @@
 		              				   "<span class='glyphicon glyphicon-pencil gi-2x'></span>"+
 		              				   "</a>";
 
-
-		              btnActions += "&nbsp&nbsp<a data-id="+data+" data-wrapper='modal-linhas' data-action='view' href='{{route('rv.linhas.get')}}/"+data+"'>"+
-		              				   "<span class='glyphicon glyphicon glyphicon-eye-open gi-2x'></span>"+
-		              				   "</a>";
-
 		              btnActions += "&nbsp&nbsp<a data-action='delete' data-id="+data+" data-title='Linha' href='{{route('rv.linhas.destroy')}}'>"+
 		              				   "<span class='glyphicon glyphicon glyphicon glyphicon-trash gi-2x'></span>"+
 		              				   "</a>";
