@@ -2,13 +2,11 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hash;
 
 class User extends Authenticatable
 {
-    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -40,8 +38,8 @@ class User extends Authenticatable
         return intval($value);
     }
 
-    public function notification(){
-        return $this->hasMany('App\Models\Notifications', 'user_id', 'id');
+    public function notificacoes(){
+        return $this->hasMany('App\Models\Notificacoes\NotificacoesUsers', 'user_id', 'id');
     }
 
 }

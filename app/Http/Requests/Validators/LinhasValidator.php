@@ -29,7 +29,7 @@ class LinhasValidator extends FormRequest
         $basicos = array("tecnologia"=>"required",
                             "ddd_local"=>"sometimes|max:9999|integer",
                             "nome"=>"required|max:25|unique:linhas,nome".($ignore ? ','.$this->get('_id') : ''),
-                            "funcionalidade"=>"required",
+                            "plano"=>"required",
                             "status_did"=>"sometimes|nullable",
                             "simultaneas"=>"sometimes|integer",
                             "codecs"=>"nullable|array");

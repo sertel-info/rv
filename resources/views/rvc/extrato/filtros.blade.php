@@ -2,7 +2,7 @@
   <div class="panel-heading">
     <h3 class="panel-title">Filtros</h3>
   </div>
-  <div class="panel-body">
+  <div class="panel-body collapse">
   	<div class="container-fluid">
 	  	<div class='row'>
 			<form class="form-horizontal" id="form-filtros">

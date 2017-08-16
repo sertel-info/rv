@@ -21,6 +21,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\ItensModificados' => [
             'App\Listeners\AtualizaArquivos'
+        ],
+        'App\Events\Creditos\CreditosAdicionados' => [
+            'App\Listeners\Notificacoes\CriarNotificacaoCreditosAdicionados'
+        ],
+        'App\Events\Creditos\CreditosRemovidos' => [
+            'App\Listeners\Notificacoes\CriarNotificacaoCreditosRemovidos'
         ]
     ];
 

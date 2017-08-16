@@ -3,31 +3,22 @@
 
 @endpush
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Extrato</h3>
-  </div>
-  <div class="panel-body">
-  	<div class="container-fluid">
-	  	<div class='row'>
-		    <table class="table table-bordered table-hover table-striped table-responsive" id="table-extrato">
-			    <thead>
-			        <tr>
-			            <th>Origem</th>
-			            <th>Destino</th>
-			            <th>Data</th>
-			            <th>Hora</th>
-			            <th>Duração</th>
-			            <th>Valor</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-			    </tbody>
-			</table>
-	  </div>
-		</div>
-	</div>
-</div>
+
+			    <table class="table table-bordered table-hover table-striped table-responsive" id="table-extrato">
+				    <thead>
+				        <tr>
+				            <th>Origem</th>
+				            <th>Destino</th>
+				            <th>Data</th>
+				            <th>Hora</th>
+				            <th>Duração</th>
+				            <th>Valor</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    </tbody>
+				</table>
+		
 
 @push('scripts')
 
@@ -52,11 +43,12 @@
 				          		duracao_min : $("input[name='duracao_min']").val(),
 				          		duracao_max : $("input[name='duracao_max']").val()
 				          	};
-				          }
+				        }
 		      	  },
 		          processing: true,
             	  serverSide: true,
             	  ordering: false,
+            	  searching:false,
 		          columns: [
 		              {data: "origem", name:"Origem"},
 		              {data: "destino",    name:"Destino"},

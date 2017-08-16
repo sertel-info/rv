@@ -10,14 +10,14 @@
 <script type="text/javascript">
 	$(function(){
 		
-		$("input[name=active_email]")
+		$("input[name=ativar_email]")
 						.on("init.bootstrapSwitch switchChange.bootstrapSwitch", function(ev, state){
 							$(this).parents('.form-group:first')
 								   .find("div.collapse")
 								   .collapse(state ? "show" : "hide");
 						});
 		
-		$("input[name=active_email]").bootstrapSwitch({"onText": "Ativo", "offText": "Inativo"});
+		$("input[name=ativar_email], input[name=status]").bootstrapSwitch({"onText": "Ativo", "offText": "Inativo"});
 	})
 
 </script>

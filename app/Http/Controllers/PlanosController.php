@@ -52,6 +52,8 @@ class PlanosController extends Controller
                                       "valor_movel_ddd"=>$request->valor_movel_ddd,
                                       "valor_ddi"=>$request->valor_ddi,
                                       "valor_ip"=>$request->valor_ip,
+                                      "valor_movel_entrante"=>$request->valor_movel_entrante,
+                                      "valor_fixo_entrante"=>$request->valor_fixo_entrante,
                                       "simultaneas"=>$request->simultaneas,
                                       "descricao"=>$request->descricao
                                     ]);
@@ -127,6 +129,8 @@ class PlanosController extends Controller
                             "valor_movel_ddd"=>$request->valor_movel_ddd,
                             "valor_ddi"=>$request->valor_ddi,
                             "valor_ip"=>$request->valor_ip,
+                            "valor_movel_entrante"=>$request->valor_movel_entrante,
+                            "valor_fixo_entrante"=>$request->valor_fixo_entrante,
                             "simultaneas"=>$request->simultaneas,
                             "descricao"=>$request->descricao
                             ]);

@@ -17,13 +17,16 @@ class Planos extends Model
 							"valor_movel_ddd",
 							"valor_ddi",
 							"valor_ip",
-							"descricao"
+							"valor_movel_entrante",
+							"valor_fixo_entrante",
+							"descricao",
 						   ];
 
 
-	function assinantes(){
+	public function assinantes(){
 		return $this->hasMany("App\Models\Assinantes", "plano");
 	} 
+
 
 	public function scopeWithIdMd5($query){
     	if($query->getQuery()->columns == null){ 

@@ -68,12 +68,21 @@
           &nbsp Configuracoes 
  			<span class="caret arrow"></span></a>
             <ul class="nav nav-pills nav-stacked collapse inner-pill-list" id="configuracoes_toggle">
+	            
 	            <li data-parent="outside-list" class=' inner-nav {{ isset($active) && $active == "configuracoes.geral" ? "active" : "" }}'> 
 			   		<a href="{{route('rv.configuracoes.geral')}}">
 			   		<span class="glyphicon glyphicon-cog"></span>
 			   		&nbsp Geral
 			   		</a> 
 		   		</li>
+	            
+	            <li data-parent="outside-list" class=' inner-nav {{ isset($active) && $active == "configuracoes.geral" ? "active" : "" }}'> 
+			   		<a href="{{route('rv.configuracoes.geral')}}">
+			   		<span class="glyphicon glyphicon-cog"></span>
+			   		&nbsp Limites de reenvio
+			   		</a> 
+		   		</li>
+
 	            <li data-parent="outside-list" class=' inner-nav {{ isset($active) && $active == "configuracoes.voice_mail" ? "active" : "" }}'> 
 			   		<a href="{{route('rv.configuracoes.voice_mail')}}">
 			   		<span class="glyphicon glyphicon-cog"></span>
@@ -81,12 +90,13 @@
 			   		</a> 
 		   		</li>
 	            
-	            <!-- <li data-parent="outside-list" class='inner-nav {{isset($active) && $active == "pla_gerenciar.notificacoes" ? "active" : "" }}'>
+	             <li data-parent="outside-list" class='inner-nav {{isset($active) && $active == "pla_gerenciar.notificacoes" ? "active" : "" }}'>
 			   		<a href="{{route('rv.configuracoes.notificacoes')}}" >
 			   		<span class="glyphicon glyphicon-cog"></span>
 			   		&nbsp Notificações
 			   		</a> 
-		 	    </li> -->
+		 	    </li> 
+
             </ul>
         </li>
 

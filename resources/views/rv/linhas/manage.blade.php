@@ -11,11 +11,9 @@
 	<thead>
 		<th>Nome</th>
 		<th>Assinante</th>
-		<th>Funcionalidade</th>
 		<th>Ações</th>
 	</thead>
 	<tbody>
-		<td></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -65,12 +63,11 @@
 		          columns: [
 		              {data: "nome",name:"nome"},
 		              {data: "nome_assinante", name:"assinante"},
-		              {data: "funcionalidade", name:"funcionalidade"},
 		              {data: "id_md5", name:"acoes"}
 		          ],
 		          columnDefs: [
 		          {
-		            targets:3,
+		            targets:2,
 		            render: function(data, meta, type, full){
 		              var btnActions = "<a href='{{route('rv.linhas.edit')}}/"+data+"'>"+
 		              				   "<span class='glyphicon glyphicon-pencil gi-2x'></span>"+

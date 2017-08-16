@@ -203,64 +203,6 @@ class AssinantesController extends Controller
         }
     }
 
-    public function getCredits(Request $request){
-        if(!$request->ajax()){
-            return json_encode(['status'=>0]);
-        } 
-
-        $id = $request->u; 
-
-        $assinante = $this->entity->where(DB::raw('MD5(assinantes.id)'), $id)
-                                                            ->with('financeiro')
-                                                            ->first();
-
-        if($assinante){
-            return json_encode(['status'=>1, 'credits'=>$assinante->financeiro->creditos]);
-        }
-
-        return json_encode(['status'=>0]);
-
-    }
-
-    /** A variável operation é o md5 da palavra "mais" ou da palavra "menos" **/
-    public function updateCredits(Request $request){
-        try{
-            $user = $request->u;
-            $valor_mais = $request->c_add;
-            $valor_menos = $request->c_rmv;
-            $operacao = $request->o;
-
-            $assinante = $this->entity->where(DB::raw('MD5(assinantes.id)'), $user)
-                                                                ->with('financeiro')
-                                                                ->first();
-
-            $qtd_creditos_atual = $assinante->financeiro->creditos;
-            
-            if($operacao == md5('mais')){
-              $qtd_creditos_nova = floatval($qtd_creditos_atual)+floatval($valor_mais);
-            } else if($operacao == md5('menos')){
-              $qtd_creditos_nova = floatval($qtd_creditos_atual)-floatval($valor_menos);
-              if($qtd_creditos_nova < 0){
-                 return json_encode(["status"=>-1, 
-                                      "novo_valor"=>$qtd_creditos_nova]);
-              }
-            }
-            
-            $assinante->financeiro->update(['creditos'=>$qtd_creditos_nova]);
-            
-            return json_encode(["status"=>1, 
-                                  "novo_valor"=>$qtd_creditos_nova]);
-
-        } catch (\Exception $e){
-            return json_encode(["status"=>0, 
-                                  "novo_valor"=>$qtd_creditos_nova]);            
-        }
-        
-
-        
-        //$assinante->financeiro->creditos->decrease(floatval($valor_menos));
-    }
-
     /**
      * Remove the specified resource from storage.
      *

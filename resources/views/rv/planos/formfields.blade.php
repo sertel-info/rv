@@ -85,6 +85,25 @@
 						</div>
 					</div>
 
+
+					<div class="form-group row">
+						<label for="pla_val_ip" class="col-md-4 col-form-label "> Valor Fixo Entrante  </label>
+						<div class="col-md-8">
+						   	
+						   	{{Form::text("valor_fixo_entrante", null, ['class'=>'form-control money-val'])}}
+
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="pla_val_ip" class="col-md-4 col-form-label "> Valor Móvel Entrante  </label>
+						<div class="col-md-8">
+						   	
+						   	{{Form::text("valor_movel_entrante", null, ['class'=>'form-control money-val'])}}
+
+						</div>
+					</div>
+
 					<div class="form-group row">
 						<label for="pla_descricao" class="col-md-4 col-form-label"> Descrição  </label>
 						<div class="col-md-8">

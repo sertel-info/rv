@@ -3,9 +3,11 @@
 namespace App\Models\Assinantes;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ScopesTraits\WithIdMd5ScopeTrait;
 
 class Assinantes extends Model
 {   
+    use WithIdMd5ScopeTrait;
 
     protected $table = "assinantes";
 
@@ -48,6 +50,10 @@ class Assinantes extends Model
         return $this->hasOne('App\User', 'assinante_id', 'id');
     }
 
+    public function user(){
+        return $this->hasOne('App\User', 'assinante_id', 'id');
+    }
+
     public function saudacoes(){
         return $this->hasMany('App\Models\Saudacoes', 'assinante_id', 'id');
     }
@@ -71,12 +77,6 @@ class Assinantes extends Model
         return $this->hasMany("App\Models\GruposAtendimento", "assinante_id", "id");
     }
 
-    public function scopeWithIdMd5($query){
-        if($query->getQuery()->columns == null){ 
-            $query->addSelect('*');
-        }
-        $query->addSelect(\DB::Raw('MD5(assinantes.id) as id_md5'));
-    }
 
     public function ura(){
         return $this->hasOne("App\Models\Uras", "assinante_id", "id");

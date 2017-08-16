@@ -7,6 +7,9 @@ use App\Models\Cdr;
 use App\User;
 use Auth;
 use DB;
+use App\Helpers\Extrato\CdrQueryFilterApplier;
+use App\Helpers\Extrato\ExtratoFormatedQueryGetter;
+use App\Helpers\Excel\ExtratoCollectionToCsvConverter;
 
 class ExtratoController extends Controller
 {
@@ -87,5 +90,33 @@ class ExtratoController extends Controller
         }
 
         return view('rvc.extrato.show', ['active', 'extrato']);
+    }
+
+    public function export(Request $request){
+
+        try{
+            $linha_query = Auth::user()->assinante->linhas();
+
+            if($request->id !== null){
+                $linha_query->where(DB::raw('md5(linhas.id)'), $request->id);
+            }
+
+            $linhas = $linha_query->with('autenticacao')->get();  
+            
+            $query = ExtratoFormatedQueryGetter::get($linhas);
+
+            $filtered_query = CdrQueryFilterApplier::getFilteredQuery($query, $request->filters);
+
+            $extrato = $filtered_query->get();
+            
+            $converter = new ExtratoCollectionToCsvConverter();
+            $file = $converter->convert($extrato);
+            
+            return $file->download('csv');
+
+        } catch(\Exception $e){
+            return json_encode(['status'=>0]);
+        }
+        
     }
 }

@@ -4,6 +4,7 @@
 
 	@include("rvc.gravacoes.player")
 
+	@include("rvc.gravacoes.filtros")
 	@include("rvc.gravacoes.datatables")
 
 @endsection

@@ -14,9 +14,9 @@ class Linhas extends Model
 							"ddd_local",
 							"nome",
 							"simultaneas",
-							"funcionalidade",
 							"status_did",
 							"codecs",
+							"plano",
 							"cli"
 	];
 
@@ -73,6 +73,15 @@ class Linhas extends Model
     	return $this->belongsToMany('App\Models\GruposAtendimento', 'grupos_linhas', 'linha_id', 'grupo_id');
     }
 
+    public function plano(){
+    	//tenta pegar o plano da linha, se não pega o plano do assinante
+    	if($this->plano == null){
+    		return $this->assinante->planos;
+    	}
+
+    	return $this->hasOne("App\Models\Planos\Planos", 'plano', 'id')->first();
+    }
+
     public function scopeWithIdMd5($query){
     	if($query->getQuery()->columns == null){ 
     		$query->addSelect('*');
@@ -84,4 +93,11 @@ class Linhas extends Model
     	return $this->belongsToMany("App\Models\Filas", 'linhas_filas', 'linha_id', 'fila_id');
     }
     
+
+	public function setPlanoAttribute($value){
+		if($value <= 0)
+			$value = null;
+
+		$this->attributes['plano'] = $value;
+	}
 }

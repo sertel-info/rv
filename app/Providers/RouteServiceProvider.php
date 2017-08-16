@@ -51,10 +51,37 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+
+        Route::group(['middleware' => 'web', 'namespace'=>$this->namespace], function(){
+
+            include (base_path("routes/web.php"));
+
+
+
+            foreach (glob(base_path("routes/rv/*.php")) as $filename)
+            {   
+                include $filename;
+            }
+            
+            Route::group(['prefix'=>'clientes'], function () {
+                foreach (glob(base_path("routes/rv/clientes/*.php")) as $filename)
+                {   
+                    include $filename;
+                }
+            });
+
+
+            foreach (glob(base_path("routes/rv/notificacoes/*.php")) as $filename)
+            {   
+                include $filename;
+            }
+
+        });
+
+
     }
+
+
 
     /**
      * Define the "api" routes for the application.

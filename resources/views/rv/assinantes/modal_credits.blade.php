@@ -12,36 +12,33 @@
 
 		<div class='row'>
 			<div class="col-md-6">			
-				<form class="credits-form" action="{{route('rv.assinantes.creditos.update')}}" method="post" swal-title="Adicionar">
+				<form class="credits-form" action="{{route('rv.assinantes.creditos.increase')}}" method="post" swal-title="Adicionar" id="form-increase-credits">
 					{{csrf_field()}}
-					<input type="text" name="o" class="hidden" value="{{md5('mais')}}">
 					<input type="text" name="u" class="hidden">
-						<div class='alert-success' style="padding:20px">
-							<h2> <span class="glyphicon glyphicon-plus gi-1x"></span> Adicionar </h2>
-							<div class="form-group form-group-lg">
-								<input name="c_add" class='form-control'/>
-							</div>
-							<div class='row' style='margin-top:10px'>
-								<button class="btn btn-block btn-success"> Salvar </button>
-							</div>							
+					<div class='alert-success' style="padding:20px">
+						<h2> <span class="glyphicon glyphicon-plus gi-1x"></span> Adicionar </h2>
+						<div class="form-group form-group-lg">
+							<input name="c_add" class='form-control'/>
 						</div>
-
+						<div class='row' style='margin-top:10px'>
+							<button class="btn btn-block btn-success"> Salvar </button>
+						</div>							
+					</div>
 				</form>
 			</div>
 			<div class="col-md-6">
-				<form class="credits-form" action="{{route('rv.assinantes.creditos.update')}}" method="post" swal-title="Debitar">
+				<form class="credits-form" action="{{route('rv.assinantes.creditos.decrease')}}" method="post" swal-title="Debitar" id="form-decrease-credits">
 					{{csrf_field()}}
-					<input type="text" name="o" class="hidden" value="{{md5('menos')}}">
 					<input type="text" name="u" class="hidden">
-						<div class='alert-danger' style="padding:20px">
-							<h2> <span class="glyphicon glyphicon-minus gi-1x"></span> Remover </h2>
-							<div class="form-group form-group-lg">
-								<input name="c_rmv" class='form-control'/>
-							</div>
-							<div class='row' style='margin-top:10px'>
-								<button class="btn btn-block btn-danger"> Salvar </button>
-							</div>	
-						</div>			
+					<div class='alert-danger' style="padding:20px">
+						<h2> <span class="glyphicon glyphicon-minus gi-1x"></span> Remover </h2>
+						<div class="form-group form-group-lg">
+							<input name="c_rmv" class='form-control'/>
+						</div>
+						<div class='row' style='margin-top:10px'>
+							<button class="btn btn-block btn-danger"> Salvar </button>
+						</div>	
+					</div>			
 				</form>
 			</div>
 		</div>
@@ -61,22 +58,32 @@
 		$('#curr_credits').on('rv-change-value', function(ev, value){
 			$('#curr_credits .h1').html(String(value)+String(' R$'));
 		});
+
 		$('.credits-form').on("submit", function(ev){
 			ev.preventDefault();
 			var form = $(this),
 				data = {
-					'o':form.find('input[name=o]').val(),
 					'u':form.find('input[name=u]').val(),
 					'_token':form.find('input[name=_token]').val(),
 					'c_rmv':form.find('input[name=c_rmv]').val(),
 					'c_add':form.find('input[name=c_add]').val()
-				},
-				valor = data.c_rmv || data.c_add;
+				};			
 
-			form.hide();
+				if($(this).attr("id") == "form-increase-credits"){
+					var valor = data.c_add;
+				} else {
+					var valor = data.c_rmv;
+				}
 
-			var loading = $('<img src="/ajax-loader.gif"></img>');
-			form.after(loading);
+				if(parseFloat(valor) <= 0 || valor == "" || valor==null){
+					swal({
+						title: 'Erro !',
+						text: 'Preenche o formulário com um valor válido !',
+						type: 'warning'
+					});
+					return;
+				}
+
 
 			swal({
 				  title: 'Confirme !',
@@ -87,9 +94,20 @@
 				  confirmButtonColor: '#3085d6',
 				  cancelButtonColor: '#d33',
 				  confirmButtonText: 'Sim',
-				  calcelButtonText: 'Cancelar'
+				  calcelButtonText: 'Cancelar',
+				  closeOnConfirm:false
 				},function () {
-					  $.post(form.attr('action'), data, function(resp){
+					form.hide();
+					var loading = $('<img src="/ajax-loader.gif" class="loading"></img>');
+					form.after(loading);
+					
+					$.ajax({
+						url: form.attr('action'),
+						data: data,
+						method: 'POST',
+						timeout: 5000,
+						success: function(resp){
+
 								resp = JSON.parse(resp);
 
 								if(resp.status == 1){
@@ -101,10 +119,18 @@
 									form.trigger('rv-generic-error');
 								}
 
+					 	},
+					 	error: function(){
+					 		form.trigger('rv-generic-error');
+					 		loading.remove();
+					 		form.show();
+					 	}
+					
+					}).done(function(){
+						loading.remove();
+						form.show();
+					});
 
-								form.show();
-								loading.remove();								
-					 });
 				})
 			
 		});
@@ -116,10 +142,11 @@
 				  'Sucesso',
 				  'Créditos atualizados com sucesso',
 				  'success'
-				)
+				);
 		});
 
 		$('.credits-form').on('rv-generic-error', function(ev){
+
 			swal(
 				  'Ops !',
 				  'Um erro inesperado ocorreu, tente novamente.',

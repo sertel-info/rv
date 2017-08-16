@@ -1,0 +1,2 @@
+execute o script instal.sh para que irá criar o servico "rv_notificacoes"
+que pode ser iniciado com o comando 'service rv_notificacoes start'

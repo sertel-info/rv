@@ -25,11 +25,17 @@ class CreateLinhasTable extends Migration
                       ->on('assinantes')
                       ->onDelete('set null');
 
+            $table->integer('plano')->unsigned()->nullable();
+            $table->foreign('plano')
+                  ->references('id')
+                  ->on('planos')
+                  ->onDelete("set null");
+
             $table->string("tecnologia", 10);
             $table->string("nome", 25);
             $table->integer("ddd_local")->nullable();
             $table->integer('simultaneas')->nullable();
-            $table->string("funcionalidade", 15);
+            //$table->string("funcionalidade", 15);
             $table->boolean("status_did")->default(0);
             $table->boolean("cli")->default(0);
             //seria json, mas deu erro no mysql, e deixei varchar pra depois mudar

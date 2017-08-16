@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Linhas\Linhas;
+use App\Models\Planos\Planos;
 use App\Http\Requests\Validators\LinhasValidator;
 use App\Events\ItensModificados;
 use App\Events\LinhaAtualizada;
@@ -40,10 +41,14 @@ class LinhasController extends Controller
                                                             return [$item->id_md5=>$item->nome];
                                                         });
 
+        $planos = Planos::withIdMd5()->get()->mapWithKeys(function($item){
+                                                return [$item->id=>$item->nome];
+                                            })->toArray();
 
         return view("rv.linhas.create", ["active"=>"lin_criar",
                                          "panel_title"=>"Criar Linha",
                                          "assinantes"=>$assinantes,
+                                         "planos"=>$planos,
                                          "codecs"=>$this->getCodecsList(),
                                          "rotas"=>$this->getTroncosList()]);
     }
@@ -168,6 +173,10 @@ class LinhasController extends Controller
                                          "linhas.id")
                              ->first();
 
+        $planos = Planos::withIdMd5()->get()->mapWithKeys(function($item){
+                                                return [$item->id=>$item->nome];
+                                            })->toArray();
+
         $codecs_added = $linha->codecs;
         $codecs = array_diff($this->getCodecsList(), $codecs_added);
 
@@ -181,6 +190,7 @@ class LinhasController extends Controller
                                          "codecs_added"=>$codecs_added,
                                          "codecs"=>$codecs,
                                          "rotas"=>$rotas,
+                                         "planos"=>$planos,
                                          "rotas_added"=>$rotas_added]);
     }
 
@@ -229,6 +239,7 @@ class LinhasController extends Controller
 
                 return 1;
             }catch(\Exception $e){
+                dd($e);
                 return 0;
             }
         });
@@ -313,11 +324,7 @@ class LinhasController extends Controller
     public function datatables(){
         $linhas = $this->entity->select(DB::raw('md5(linhas.id) as id_md5, 
                                                 IF(ISNULL(assinantes.nome), assinantes.nome_fantasia, assinantes.nome) as nome_assinante,
-                                                linhas.nome as nome,
-                                                case funcionalidade when "portal_voz" then "Portal de Voz"
-                                                                    when "linha_ip" then "Linha IP"
-                                                                    when "callingguard" then "Callingguard"
-                                                                    end as funcionalidade
+                                                linhas.nome as nome
                                                 '))
                                ->with('assinante')
                                ->leftjoin("dados_facilidades_linhas",
@@ -415,17 +422,15 @@ class LinhasController extends Controller
                                     "status");
 
        
-
         $dados_basicos = $request->only("tecnologia",
                                         "ddd_local",
                                         "nome",
-                                        "funcionalidade",
                                         "status_did",
                                         "codecs",
                                         "cli",
-                                        "simultaneas"
+                                        "simultaneas",
+                                        "plano"
                                         );
-
 
         $dados_basicos['assinante_id'] = \App\Models\Assinantes\Assinantes::where( DB::raw("MD5(id)"), $request->assinante_id)
                                           ->first()

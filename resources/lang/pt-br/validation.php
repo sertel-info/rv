@@ -43,7 +43,7 @@ return [
     'image'                => ':attribute deve ser uma imagem.',
     'in'                   => ':attribute é inválido.',
     'in_array'             => ':attribute campo não existe em :other.',
-    'integer'              => ':attribute deve ser um inteiro.',
+    'integer'              => ':attribute deve ser um número inteiro.',
     'ip'                   => ':attribute deve ser um endereço IP válido.',
     'json'                 => ':attribute deve ser um JSON válido.',
     'max'                  => [
@@ -104,6 +104,15 @@ return [
         ],
         'cx_postal_email' => [
             'required_with' => 'O campo :attribute é obrigatório quando Caixa Postal estiver ativa'
+        ],
+        'escutar_evento' => [
+            'not_in' => 'O campo :attribute é obrigatório'
+        ],
+        'email_assunto' => [
+            'required_with' => 'O campo :attribute é obrigatório quando Envio de Email estiver ativo'
+        ],
+        'email_corpo' => [
+            'required_with' => 'O campo :attribute é obrigatório quando Envio de Email estiver ativo'
         ]
 
     ],
@@ -128,7 +137,19 @@ return [
         "cx_postal_email" => "Email da caixa postal",
         "saudacoes_destino" => "Saudacoes Destino",
         "num_siga_me" => "Número do Siga-me",
-        "cadeado pin" => "Pin do cadeado"
+        "cadeado pin" => "Pin do cadeado",
+        //formulario de notificações
+        "mensagem"=>"Mensagem",
+        "titulo"=>"Título",
+        "nome"=>"Nome",
+        "nivel"=>"Nível",
+        "escutar_evento"=>"Evento",
+        "ativar_email"=>"Ativar Email",
+        "email_assunto"=>"Assundo do Email",
+        "intervalo_reenvio"=>"Intervalo de reenvio",
+        "numero_envios"=>"Número de envios",
+        "email_corpo"=>"Corpo do email"
+        //**************************
     ],
 
 ];

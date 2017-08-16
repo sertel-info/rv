@@ -52,19 +52,19 @@
 						</div>
 					</div>
 
-					<div class="form-group row" style="margin-top:30px">
-						<label for="funcionalidade" class='col-md-4 col-form-label'> Funcionalidade </label>
-						<div class='col-md-8'>
-						    {{Form::select("funcionalidade", ["linha_ip"=>"LINHA IP"],
-															 null, ['class'=>'form-control'])}}
-
-						</div>
-					</div>
-
 					<div class="form-group row">
 						<label for="cli" class="col-md-4 col-form-label"> Rota com CLI </label>
 						<div class="col-md-8">
 								{{Form::checkbox('cli', 1, null, ['class'=>'form-control'])}}
+						</div>
+					</div>
+
+					<div class="form-group row" style="margin-top:30px">
+						<label for="plano" class='col-md-4 col-form-label'> Plano </label>
+						<div class='col-md-8'>
+						    {{Form::select("plano", array_merge(["0"=>"Usar plano do assinante"], $planos),
+															 null, ['class'=>'form-control'])}}
+
 						</div>
 					</div>
 

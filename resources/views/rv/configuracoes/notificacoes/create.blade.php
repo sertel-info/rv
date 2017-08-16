@@ -11,6 +11,7 @@
 
 		<div class="row container-fluid">
 			<form action="{{route('rv.configuracoes.notificacoes.store')}}" method="POST">
+                {{ csrf_field() }}
     			@include('rv.configuracoes.notificacoes.formfields_complete')
     			<button class="btn btn-success btn-block"> Salvar </button>
     		</form>

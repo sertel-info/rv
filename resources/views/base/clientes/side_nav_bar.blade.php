@@ -71,6 +71,13 @@
   	         Configurações 
            </a>
         </li>
+
+        <li class="">
+          <a class="btn-warning" data-parent="#stacked-menu" href="{{route('rvc.payments.index')}}" >
+             <span class='glyphicon glyphicon-star' aria-hidden='true'></span> 
+             Adicionar Créditos 
+           </a>
+        </li>
 	</ul>
 
 </div>

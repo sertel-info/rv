@@ -43,7 +43,8 @@
       
                             @endif
 
-
+                            @include("base.notifications.notifications")
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -75,39 +76,3 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-@push("scripts")    
-    <script type="text/javascript">
-        $(function(){
-            var popover_content = $("#notifications-stub");
-           
-            $("[data-toggle=popover]").popover({
-                title: "Notificações",
-                content: popover_content.html(),
-                html: true
-            });
-            
-            popover_content.remove();
-
-            $('body').on("click", '.close', function(){
-              //diminui 1 no contador do "Mais X ..."
-              var oflow = $("#overflow");
-
-              if(oflow.length > 0){
-                var count = oflow.find("#overflow-count");
-                var curr_val = parseInt(count.html());
-                var new_val = curr_val-1;
-
-                if(new_val == 0){
-                    oflow.remove();
-                } else {
-                    count.html(new_val);
-                }
-
-              }
-
-              $(this).parents(".media-line").hide();
-
-            });
-        })
-    </script>
-@endpush
