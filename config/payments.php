@@ -16,6 +16,6 @@ return array(
     							 "failure"=> "http://".config('app.url')."/pagamentos/finished?status=failure"),
     		 
     		 //"sandbox_init_point" para o sandbox e "init_point" para o modo produção
-    		 "init_point"=>"sandbox_init_point"
+    		 "init_point"=>"init_point"
     		);
 
