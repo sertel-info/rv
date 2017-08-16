@@ -61,7 +61,7 @@
 		          {
 		          	targets: 5, 
 		          	render: function(data){
-		          		return data.toString().concat(' R$');
+		          		return 'R$ '.concat(data.toString());
 		          	}
 		          },
 		          {
