@@ -143,7 +143,8 @@ class SaudacoesController extends Controller
           mkdir(storage_path('audios_saudacoes'));
         }
 
-        $audio_movido = $audio_importado->move(storage_path('audios_saudacoes'), $audio->nome.".".$audio->extensao);
+        $basename_audio = $audio->nome.".".$audio->extensao;
+        $audio_movido = $audio_importado->move("/tmp", $basename_audio);
 
         $astk_audio_path = config('asterisk.audios_path');
         
@@ -151,7 +152,9 @@ class SaudacoesController extends Controller
            mkdir($astk_audio_path);
         }
 
+        exec("sox "."/tmp/".$basename_audio." -r 8000 -c 1 -s ".storage_path('audios_saudacoes')."/".$basename_audio);
         symlink($audio_movido->getPathName(), $astk_audio_path.'/'.$audio->nome.".".$audio->extensao);
+        unlink("/tmp/".$basename_audio);
     }
 
     public function destroy(Request $request){
