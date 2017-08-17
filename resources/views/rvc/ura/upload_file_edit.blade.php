@@ -13,7 +13,9 @@
 	<label class='control-label col-md-3'> Arquivo de Áudio: </label>
 	<div class='col-md-5'>
 		<audio id="audio-preview-player" class='mejs-player'>
-			<source src="{{route('rvc.uras.audios.get_blob')}}/{{md5($ura->audio->id)}}" type='audio/wav'/>
+			@if(isset($ura->audio))
+				<source src="{{route('rvc.uras.audios.get_blob')}}/{{md5($ura->audio->id)}}" type='audio/wav'/>
+			@endif
 		</audio>
 	</div>
 </div>

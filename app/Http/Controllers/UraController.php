@@ -78,69 +78,69 @@ class UraController extends Controller
        $assinante = Auth::user()->assinante;
        $dados_transaction = array();
        //$ura_relation = $assinante->ura();
+      try{
+         if(($ura = $assinante->ura()->first()) !== null){
+             $ura->fill($request->only($this->entity->getFillable()));
 
-       if(($ura = $assinante->ura()->first()) !== null){
-           $ura->fill($request->only($this->entity->getFillable()));
+         } else {
+            
+             $ura = new $this->entity();
+             $ura->fill($request->only($this->entity->getFillable()));
+             $ura->assinante_id = $assinante->id;
 
-       } else {
-          
-           $ura = new $this->entity();
-           $ura->fill($request->only($this->entity->getFillable()));
-           $ura->assinante_id = $assinante->id;
+         }
 
-       }
+         //se houver audio na request
+         if($request->hasFile('arquivo_audio')){
+            $audio_importado = $request->file("arquivo_audio");
 
-       //se houver audio na request
-       if($request->hasFile('arquivo_audio')){
-          $audio_importado = $request->file("arquivo_audio");
+            /* Se houver um audio antigo, deleta-o */
+            if(($audio_antigo = $ura->audio()->first()) !== null){
+                
+                $caminho = pathinfo($audio_antigo->caminho);
+                unlink($caminho['dirname']."/".$caminho['basename']);
+                
+                /*link simbólico*/
+                $asterisk_audio_path = config("asterisk.audios_path") . "/" . $caminho['basename'];
+                unlink($asterisk_audio_path);
+                /******/
+                
+                $audio_antigo->delete();
 
-          /* Se houver um audio antigo, deleta-o */
-          if(($audio_antigo = $ura->audio()->first()) !== null){
-              
-              $caminho = pathinfo($audio_antigo->caminho);
-              unlink($caminho['dirname']."/".$caminho['basename']);
-              
-              /*link simbólico*/
-              $asterisk_audio_path = config("asterisk.audios_path") . "/" . $caminho['basename'];
-              unlink($asterisk_audio_path);
-              /******/
-              
-              $audio_antigo->delete();
+            } 
 
-          } 
+            $audio_assoc_arr = $this->getAudioData($audio_importado);
 
-          $audio_assoc_arr = $this->getAudioData($audio_importado);
-
-          $audio_novo = new Audios();
-          $audio_novo->fill($audio_assoc_arr);
-          $audio_novo->assinante_id = $ura->assinante_id;
-   
-          $dados_transaction['audio_novo'] = $audio_novo;
-          $dados_transaction['audio_importado']=$audio_importado;
-       }
+            $audio_novo = new Audios();
+            $audio_novo->fill($audio_assoc_arr);
+            $audio_novo->assinante_id = $ura->assinante_id;
+     
+            $dados_transaction['audio_novo'] = $audio_novo;
+            $dados_transaction['audio_importado']=$audio_importado;
+         }
+         
+         $dados_transaction['ura']= $ura;
        
-       $dados_transaction['ura']= $ura;
-       try{
 
-          DB::transaction(function() use ($dados_transaction){
-                 $ura = $dados_transaction['ura'];
-                 
-                 if(isset($dados_transaction['audio_importado'])){
-                    $audio_novo = $dados_transaction['audio_novo'];
-                    $audio_novo->save();
-                    $ura->audio_id = $audio_novo->id;
-                    $this->moveAudio($audio_importado, $audio_novo);
-                 }
+            DB::transaction(function() use ($dados_transaction){
+                   $ura = $dados_transaction['ura'];
+                   
+                   if(isset($dados_transaction['audio_importado'])){
+                      $audio_novo = $dados_transaction['audio_novo'];
+                      $audio_novo->save();
+                      $ura->audio_id = $audio_novo->id;
+                      $this->convertAndMoveAudio($dados_transaction['audio_importado'], $audio_novo);
+                   }
 
-                 $ura->save();
+                   $ura->save();
 
-                 \App\Http\Controllers\SessionController::flashMessage('success',
-                                                                       'Sucesso',
-                                                                       'Ura atualizada com sucesso.');
+                   \App\Http\Controllers\SessionController::flashMessage('success',
+                                                                         'Sucesso',
+                                                                         'Ura atualizada com sucesso.');
 
-                 //event(new UraAtualizada($assinante->id, $ura->id));
+                   //event(new UraAtualizada($assinante->id, $ura->id));
 
-          });
+            });
                 
        } catch (\Exception $e){
         dd($e);
@@ -169,8 +169,9 @@ class UraController extends Controller
     }
 
 
-    public function moveAudio($audio_importado, $audio){
-        $audio_movido = $audio_importado->move(storage_path('audios_ura'), $audio->nome.".".$audio->extensao);
+    public function convertAndMoveAudio($audio_importado, $audio){
+        $basename_audio = $audio->nome.".".$audio->extensao;
+        $audio_movido = $audio_importado->move("/tmp/", $basename_audio);
 
         $astk_audio_path = config('asterisk.audios_path');
         
@@ -178,7 +179,11 @@ class UraController extends Controller
            mkdir($astk_audio_path);
         }
 
-        symlink($audio_movido->getPathName(), $astk_audio_path.'/'.$audio->nome.".".$audio->extensao);
+        exec("sox "."/tmp/".$basename_audio." -r 8000 -c 1 -s ".storage_path().config('uras.pasta_redirect')."/".$basename_audio);
+
+        unlink("/tmp/".$basename_audio);
+        
+        symlink($audio_movido->getPathName(), $astk_audio_path.'/'.$audio->nome.".wav");
     }
 
 
