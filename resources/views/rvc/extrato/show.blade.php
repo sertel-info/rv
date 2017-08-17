@@ -1,5 +1,9 @@
 @extends('base.base')
 
+@push("headers")
+	<link rel="stylesheet" type="text/css" href="/third_party/sweet-alert/css/sweetalert.css">
+@endpush
+
 @section('content')
 	
 	@include("rvc.extrato.filtros")
@@ -24,3 +28,8 @@
     </div>
 
 @endsection
+
+
+@push("scripts")
+	<script type="text/javascript" src="/third_party/sweet-alert/js/sweetalert.min.js"></script>
+@endpush

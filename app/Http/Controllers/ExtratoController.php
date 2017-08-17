@@ -107,8 +107,7 @@ class ExtratoController extends Controller
 
             $filtered_query = CdrQueryFilterApplier::getFilteredQuery($query, $request->filters);
 
-            $extrato = $filtered_query->get();
-            
+            $extrato = $filtered_query->addSelect(DB::raw("CONCAT('R$ ', cost) as formated_cost"))->get();
             $converter = new ExtratoCollectionToCsvConverter();
             $file = $converter->convert($extrato);
             

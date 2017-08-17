@@ -7,14 +7,13 @@ class ExtratoCollectionToCsvConverter {
 
 
 	public function convert(\Illuminate\Support\Collection $collection){
-
 		$extrato = $collection->map(function($el){
 						            return collect($el)->only(["origem",
 						                                        "destino",
 						                                        "date",
 						                                        "time",
 						                                        "billsec_time",
-						                                        "cost",
+						                                        "formated_cost",
 						                                        "type"])
 						                                ->toArray();
 						                  });
@@ -29,7 +28,7 @@ class ExtratoCollectionToCsvConverter {
 				$sheet->appendRow(["Origem", "Destino", "Data", "Hora", "Duração", "Tipo", "Valor"]);
 				
 				foreach($extrato as $el){
-					$sheet->appendRow([$el['origem'], $el['destino'], $el['date'], $el['time'], $el['billsec_time'], $el['type'], $el['cost']]);
+					$sheet->appendRow([$el['origem'], $el['destino'], $el['date'], $el['time'], $el['billsec_time'], $el['type'], $el['formated_cost']]);
 				}
 
 		    });

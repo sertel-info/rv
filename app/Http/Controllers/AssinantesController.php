@@ -80,7 +80,6 @@ class AssinantesController extends Controller
                 $assinante->acesso()->save($acesso);
                 return 1;
             } catch(\Exception $e){
-                dd($e);
                 return 0;
             }
             

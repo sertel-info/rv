@@ -42,25 +42,21 @@
 				success: function(resp){
 					
 					
-					saveData(resp, "Extrato_"+Date.now()+".csv");
-					/*resp = JSON.parse(resp);
+					resp = JSON.parse(resp);
 
 					if(resp.status !== 1){
-						alert(0);
-						
+						swal("Erro",
+							 "Um erro ocorreu ao gerar seu arquivo",
+							 "error");
+						return;
 					}
+					saveData(resp, "Extrato_"+Date.now()+".csv");
 
-					var blob = new Blob([resp],  {type: "application/csv"});
-					var url = URL.createObjectURL(blob);
-					window.location = url;
-
-					alert(blob.size);*/
 				},
 				error: function(){
-					/*swal("Erro",
+					swal("Erro",
 						 "Um erro ocorreu ao gerar seu arquivo",
-						 "danger");*/
-						 alert(0);
+						 "error");
 				}
 				});
 		})

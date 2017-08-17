@@ -21,6 +21,7 @@ class ExtratoFormatedQueryGetter {
                                         DB::raw("IF(type='sainte', accountcode, src) as origem"),
                                         DB::raw("DATE_FORMAT(DATE(calldate), \"%d/%m/%Y\") as date"),
                                         DB::raw("TIME_FORMAT(TIME(calldate), \"%H:%i:%s\") as time"),
+                                        DB::raw("concat('R$ ', cost) as formated_cost"),
                                         DB::raw($destino_select." as destino"));
 
         $query->where('disposition', 'ANSWERED')
