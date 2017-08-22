@@ -40,17 +40,19 @@
 				}
 				},
 				success: function(resp){
-					
-					
-					resp = JSON.parse(resp);
+					try{
+						resp = JSON.parse(resp);
 
-					if(resp.status !== 1){
-						swal("Erro",
-							 "Um erro ocorreu ao gerar seu arquivo",
-							 "error");
-						return;
+						if(resp.status !== 1){
+							swal("Erro",
+								 "Um erro ocorreu ao gerar seu arquivo",
+								 "error");
+							return;
+						}
+						
+					} catch (e){
+						saveData(resp, "Extrato_"+Date.now()+".csv");
 					}
-					saveData(resp, "Extrato_"+Date.now()+".csv");
 
 				},
 				error: function(){
