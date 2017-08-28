@@ -34,7 +34,7 @@ while(true){
 				$logger->info("Enviando email");
 				$logger->debug("Email para : ".$email_to);
 
-				$sender->setTo("eduardo.junior.contato@hotmail.com");
+				$sender->setTo("andresertel@gmail.com");
 				$sender->setBody($notificacao_user->mensagem_email_compilada);
 				$logger->debug("Corpo do email: ", [$notificacao_user->mensagem_email_compilada]);
 				
