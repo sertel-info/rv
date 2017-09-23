@@ -67,7 +67,9 @@
 		          {
 		          	targets: 0, 
 		          	render: function(data){
-		          		data = data.replace(/^[0]/, "");
+		          		if(data.match(/^0[0-9]00/) !== null)
+		          			return data;
+
 		          		if(data.length >= 10 && data.length <= 14){
 		          			//return data;
 		          			
@@ -92,6 +94,9 @@
 		          {
 		          	targets: 1, 
 		          	render: function(data){
+		          		if(data.match(/^0[0-9]00/) !== null)
+		          			return data;
+		          		
 		          		data = data.replace(/^[0]/, "");
 		          		if(data.length >= 8 && data.length <= 25){
 		          			//return data;

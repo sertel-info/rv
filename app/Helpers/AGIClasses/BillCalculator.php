@@ -1,5 +1,5 @@
 <?php
-namespace App\Helpers\BillFixer;
+namespace App\Helpers\AGIClasses;
 
 class BillCalculator{
 

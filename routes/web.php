@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/teste', "PaymentsController@test");
+Route::get('/teste', "DebugController@correctBill");
 
 Route::get('/', 'HomeController@index')->middleware("auth")->name("index");
 Route::get('/home', 'HomeController@index')->middleware("auth")->name("index");

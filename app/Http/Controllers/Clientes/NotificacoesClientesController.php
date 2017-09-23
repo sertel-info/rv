@@ -65,7 +65,7 @@ class NotificacoesClientesController extends Controller
       }
 
       $page = $request->page;
-      return json_encode($this->getNotificacoesColletion(true)->forPage($page, 10)->toArray());
+      return json_encode($this->getNotificacoesCollection(true)->forPage($page, 10)->toArray());
   }
 
   public function checkNew(Request $request){

@@ -27,11 +27,11 @@ class ExtratoFormatedQueryGetter {
         $query->where('disposition', 'ANSWERED')
               	  ->orderBy('id', 'desc');
 
-
         $query->where(function($query) use ($linhas){
             $query->whereIn("accountcode", $linhas->pluck("autenticacao.login_ata")->toArray());
             $query->orWhereIn("peeraccount", $linhas->pluck("autenticacao.login_ata")->toArray());
         });
+
 
         return $query;
 

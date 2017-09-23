@@ -91,8 +91,7 @@ class CdrQueryFilterApplier {
         if(!empty($filtros['tipo_destino']) && $filtros['tipo_destino'] !== 'todos'){
             $query->where('dst_type', '=', $filtros['tipo_destino']);
         } else {
-            $query->where('dst_type', '<>', "")
-                  ->where('dst_type', '<>', "aplicacao");
+            $query->where('dst_type', '<>', "aplicacao");
         }
 
         return $query;

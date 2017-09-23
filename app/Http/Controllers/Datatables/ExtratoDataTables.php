@@ -28,8 +28,6 @@ class ExtratoDataTables extends Controller
         $query = ExtratoFormatedQueryGetter::get($linhas);
         $filtered_query = CdrQueryFilterApplier::getFilteredQuery($query, $request->filters);
 
-        $filtered_query->get();
-                                    
 	    return Datatables::of($filtered_query)->make(true);
 
 	}
