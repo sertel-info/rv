@@ -7,4 +7,5 @@ Route::group(['middleware' => 'auth','prefix'=>'extrato'], function(){
     Route::get('/linha/{id?}', 'Datatables\ExtratoDataTables@anyData')->name('rvc.extrato.linha.data');
     Route::get('/filter/{linha?}', 'Datatables\ExtratoDataTables@filter')->name('rvc.extrato.filter');
     Route::get('/export/', 'ExtratoController@export')->name('rvc.extrato.export');
+    Route::get('/historico/ligacoes/get', 'Datatables\ExtratoDataTables@transactionsAnyData')->name('rvc.extrato.hist_transacoes.get_mine');
 });

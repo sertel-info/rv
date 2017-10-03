@@ -118,4 +118,5 @@ class ExtratoController extends Controller
         }
         
     }
+
 }

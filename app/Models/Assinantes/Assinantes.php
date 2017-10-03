@@ -85,4 +85,8 @@ class Assinantes extends Model
     public function filas(){
         return $this->hasMany("App\Models\Filas", "assinante_id", "id");
     }
+
+    public function atualizacoesCreditos(){
+        return $this->hasMany("App\Models\AtualizacaoCreditos", "assinante_id", "id");
+    }
 }

@@ -30,33 +30,14 @@ class ExtratoDataTables extends Controller
 
 	    return Datatables::of($filtered_query)->make(true);
 
-	}
+	} 
 
-/*
-	public function getIdentificadoresLinhas($linhas){
-        $array_ids = array();
-        
-        foreach($linhas as $linha){
-
-            if(isset($linha->did))
-                array_push($array_ids, $linha->did->extensao_did);
-
-            if(isset($linha->autenticacao))
-                array_push($array_ids, $linha->autenticacao->login_ata);
-
-            if(isset($linha->configuracoes))
-                array_push($array_ids, $linha->configuracoes->callerid);   
-        
-        }
-      
-        $identificadores_linhas = array_unique($array_ids);
-
-        $identificadores_linhas = array_filter($identificadores_linhas, function($el){
-            return $el !== null && !empty($el);
-        });
-
-       return $identificadores_linhas;
+    public function transactionsAnyData(Request $request){
+        $assinante = Auth::user()->assinante;
+        $transactions = $assinante->atualizacoesCreditos()
+                                  ->selectRaw("DATE_FORMAT(DATE(created_at), '%d/%m/%Y') as date, TIME(created_at) as time, value as value")
+                                  ->get();
+        return Datatables::of($transactions)->make(true);
     }
-*/
 
 }

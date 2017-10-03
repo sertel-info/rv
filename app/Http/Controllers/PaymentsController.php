@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Payments\MpPayments;
 use App\Models\Payments\MpPreferences;
 use App\Models\Assinantes\Assinantes;
-use App\Eventts\Creditos\CreditosAdicionados;
+use App\Events\Creditos\CreditosAdicionados;
+use App\Models\AtualizacaoCreditos;
 use DB;
 use MP;
 use Auth;
@@ -91,16 +92,24 @@ class PaymentsController extends Controller
 
 				if($current_mp_status == "approved"){
 					$qtd_creditos = floatval($payment_data['response']['collection']['transaction_amount']);
-					$financeiro_assinante->creditos = floatval($financeiro_assinante->creditos) + $qtd_creditos;
+					
+					$qtd_cred_atual = $financeiro_assinante->creditos;
+					$financeiro_assinante->creditos = floatval($qtd_cred_atual) + $qtd_creditos;
 
 					$payment->rv_status = "payed";
+
+					//cria o registro de atualização nos créditos
+		            $atualizacao = new AtualizacaoCreditos();
+		            $atualizacao->value = floatval($qtd_creditos);
+		            $atualizacao->assinante_id = $request->a_id;
+		            $atualizacao->valor_anterior = floatval($qtd_cred_atual);
+		            $atualizacao->save();
 				}
 
-				DB::transaction(function() use ($financeiro_assinante, $payment){
+				DB::transaction(function() use ($financeiro_assinante, $payment, $atualizacao){
 					$financeiro_assinante->save();
 					$payment->save();
 				});
-				
 			}
 			
 			event(CreditosAdicionados(Auth::User()->assinante, $request));
