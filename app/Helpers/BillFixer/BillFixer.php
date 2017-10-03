@@ -61,23 +61,18 @@ class BillFixer extends Controller {
 	public function fix0800(){
 		$ligacoes = Cdr::where("type", "entrante")
 					->where("disposition", "ANSWERED")
-					->where("billsec", ">", 3)
+					->where("billsec", ">", 0)
 					->where("dst", "08006068174")
 					->get();
 
 		$dados_linha = DadosAutenticacaoLinhas::where('login_ata', 8174)->first();
 		$linha = Linhas::where("id", $dados_linha->linha_id)->first();
 		$plano = $linha->plano();
-
+		$total = 0;
 		foreach($ligacoes as $ligacao){
 			$num = new Numero($ligacao->src);
 
-			/*if($ligacao->src == "21964221082" || $ligacao->src == "21982644573"){
-				dd($ligacao->src);
-				$ligacao->delete();
-				continue;
-			}*/
-
+			
 			if($num->getTipo() == null){
 				$tipo = 'movel';
 			} else {
@@ -87,8 +82,10 @@ class BillFixer extends Controller {
 			$tarifa = $plano->__get('valor_'  . $tipo . '_entrante');
 			$custo = BillCalculator::calcTarifa('movel', $tarifa, $ligacao->billsec);
 			$ligacao->cost = $custo;
+			$total += $custo;
 			$ligacao->save();
 		}
+		dd($total);
 
 	}
 }
