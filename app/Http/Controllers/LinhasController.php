@@ -370,7 +370,7 @@ class LinhasController extends Controller
             return [];
         }
         
-        $troncos_linha = $this->entity->find(19)->configuracoes->rotas_saida;
+        //$troncos_linha = $this->entity->find(19)->configuracoes->rotas_saida;
 
         return array_keys($troncos);
     }
