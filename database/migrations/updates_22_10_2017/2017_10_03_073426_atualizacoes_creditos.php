@@ -13,10 +13,7 @@ class AtualizacoesCreditos extends Migration
      */
     public function up()
     {
-        Schema::table('atualizacoes_creditos', function($table)
-        {
-            $table->decimal('valor_anterior', 10, 2);
-        });
+        
     }
 
     /**
@@ -26,11 +23,6 @@ class AtualizacoesCreditos extends Migration
      */
     public function down()
     {
-        if(Schema::hasColumn('atualizacoes_creditos', 'valor_anterior')){
-             Schema::table('atualizacoes_creditos', function($table)
-            {
-               $table->dropColumn('valor_anterior');
-            });
-        }
+        //
     }
 }

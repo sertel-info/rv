@@ -31,7 +31,7 @@ class CreateLinhasTable extends Migration
                   ->on('planos')
                   ->onDelete("set null");
 
-            $table->string("tecnologia", 10);
+            //$table->string("tecnologia", 10);
             $table->string("nome", 25);
             $table->integer("ddd_local")->nullable();
             $table->integer('simultaneas')->nullable();
