@@ -5732,15 +5732,27 @@ var Table = function (_React$Component) {
 
 			/*dados que serão enviados para caso seja utilizados dados remotos*/
 		};_this.remote_data = {};
+		/*
+  * Este atributo determina se o loading será mostrado ou não
+  * Usado para tabelas que fiquem dando refresh não mostrarem o loading 
+  * A cada requisição
+  */
+		_this.should_show_loading = true;
+
 		_this.getRemoteData = _this.getRemoteData.bind(_this);
 		_this.handlePageChange = _this.handlePageChange.bind(_this);
+		_this.refreshData = _this.refreshData.bind(_this);
+
 		return _this;
 	}
 
 	_createClass(Table, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
-			//this.getRemoteData();
+			if (this.props.refresh_time !== undefined) {
+				this.should_show_loading = false;
+				window.setInterval(this.getRemoteData, this.props.refresh_time);
+			}
 		}
 	}, {
 		key: 'componentWillReceiveProps',
@@ -5756,10 +5768,13 @@ var Table = function (_React$Component) {
 	}, {
 		key: 'getRemoteData',
 		value: function getRemoteData() {
+			alert(this.state.remote);
 			var $tbody = $("#" + this.props.id + " tbody");
 
-			$tbody.find('tr').hide();
-			$tbody.append('<tr class="loading-row"><td colspan=' + this.state.columns.length + '> <center> <img src="/img/sertel-loading.gif" class="loading"/> </center></td><tr>');
+			if (this.should_show_loading) {
+				$tbody.find('tr').hide();
+				$tbody.append('<tr class="loading-row"><td colspan=' + this.state.columns.length + '> <center> <img src="/img/sertel-loading.gif" class="loading"/> </center></td><tr>');
+			}
 
 			var params = {
 				curr_page: this.state.curr_page + 1,
@@ -5775,15 +5790,17 @@ var Table = function (_React$Component) {
 				params: params
 
 			}).then(function (response) {
+				console.log(response);
 				var data = response.data;
+				var callback = !this.should_show_loading ? function () {} : function () {
+					$tbody.find(".loading-row").remove();
+					$tbody.find("tr").show();
+				};
 				this.setState({
 					total_records: data.total_records,
 					data: data.data,
 					page_count: Math.ceil(data.total_records / parseInt(this.state.page_size))
-				}, function () {
-					$tbody.find(".loading-row").remove();
-					$tbody.find("tr").show();
-				});
+				}, callback);
 			}.bind(this)).catch(function (error) {
 
 				console.log(error);
@@ -5804,10 +5821,11 @@ var Table = function (_React$Component) {
 				null,
 				_react2.default.createElement(
 					'td',
-					{ colSpan: columns.length },
+					{ className: 'text-center', colSpan: columns.length },
 					' Nenhum registro '
 				)
 			) : state.data.map(function (row, i) {
+				var td_class = this.props.td_class;
 				return _react2.default.createElement(
 					'tr',
 					{ key: i },
@@ -5827,13 +5845,14 @@ var Table = function (_React$Component) {
 						var cell_data = column.render == undefined ? data : column.render(data, row);
 						return _react2.default.createElement(
 							'td',
-							{ key: i },
+							{ className: td_class, key: i },
 							cell_data
 						);
 					})
 				);
 			}.bind(this));
 
+			var th_class = this.props.th_class;
 			return _react2.default.createElement(
 				'div',
 				null,
@@ -5849,7 +5868,7 @@ var Table = function (_React$Component) {
 							state.columns.map(function (column, i) {
 								return _react2.default.createElement(
 									'th',
-									{ key: i },
+									{ className: th_class, key: i },
 									column.title
 								);
 							})
@@ -30391,7 +30410,7 @@ module.exports.default = axios;
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 

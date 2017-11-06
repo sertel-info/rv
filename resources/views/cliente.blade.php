@@ -13,7 +13,8 @@
 		_ROUTES_ = {
 			client : {
 				get_cli_header_data : "{{route('cliente.get_header_data')}}",
-				unmorph : "{{route('cliente.unmorph')}}"
+				unmorph : "{{route('cliente.unmorph')}}",
+				get_linhas_stats : "{{route('cliente.get_linhas_stats')}}"
 			},
 			extrato : {
 				transacoes_data : "{{route('cliente.extrato.trasacoes.get')}}",
