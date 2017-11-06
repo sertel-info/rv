@@ -17,42 +17,6 @@ class LinhasController extends Controller
     public function __construct(Linhas $linhas){
         $this->entity = $linhas;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {   
-        $assinantes = \App\Models\Assinantes\Assinantes::select(DB::Raw("IF(ISNULL(nome), nome_fantasia, nome) as nome, MD5(id) as id_md5"))
-                                                        ->orderBy("nome", "asc")
-                                                        ->get()
-                                                        ->mapWithKeys(function($item){
-                                                            return [$item->id_md5=>$item->nome];
-                                                        });
-
-        $planos = Planos::withIdMd5()->get()->mapWithKeys(function($item){
-                                                return [$item->id=>$item->nome];
-                                            })->toArray();
-
-        return view("rv.linhas.create", ["active"=>"lin_criar",
-                                         "panel_title"=>"Criar Linha",
-                                         "assinantes"=>$assinantes,
-                                         "planos"=>$planos,
-                                         "codecs"=>$this->getCodecsList(),
-                                         "rotas"=>$this->getTroncosList()]);
-    }
-
 
     /**
      * Store a newly created resource in storage.
@@ -108,18 +72,6 @@ class LinhasController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *to
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function manage()
-    {
-        return view("rv.linhas.manage", ["active"=>"lin_gerenciar",
-                                         "panel_title"=>"Gerenciar Linhas"]);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -153,7 +105,7 @@ class LinhasController extends Controller
             $linha->configuracoes->update($dados['configuracoes']);
             $linha->facilidades->update($dados['facilidades']);
             $linha->permissoes->update($dados['permissoes']);
-            //$linha->did->update($dados['did']);
+            $linha->did->update($dados['did']);
 
             event(new ItensModificados());
             DB::commit();
@@ -213,26 +165,6 @@ class LinhasController extends Controller
        }
     }
 
-
-
-    public function datatables(){
-        $linhas = $this->entity->select(DB::raw('md5(linhas.id) as id_md5, 
-                                                IF(ISNULL(assinantes.nome), assinantes.nome_fantasia, assinantes.nome) as nome_assinante,
-                                                linhas.nome as nome
-                                                '))
-                               ->with('assinante')
-                               ->leftjoin("dados_facilidades_linhas",
-                                          "dados_facilidades_linhas.linha_id",
-                                          "linhas.id")
-                               ->leftjoin("assinantes",
-                                          "assinantes.id",
-                                          "linhas.assinante_id")
-                               ->get();
-
-        return json_encode(['data'=>$linhas]);
-
-    }
-
     public function getCodecsList(){
         return ["ulaw",
                 "alaw",
@@ -251,7 +183,7 @@ class LinhasController extends Controller
                 ];
     }
 
-    public function getTroncosList(){
+    /*public function getTroncosList(){
         $arquivo = "/var/lib/asterisk/agi-bin/ramal_virtual/rv_troncos.ini";
         
         if(!file_exists($arquivo)){
@@ -267,7 +199,7 @@ class LinhasController extends Controller
         $troncos_linha = $this->entity->find(19)->configuracoes->rotas_saida;
 
         return array_keys($troncos);
-    }
+    }*/
 
 
     public function getDataObject($request){

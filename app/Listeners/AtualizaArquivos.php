@@ -100,6 +100,7 @@ class AtualizaArquivos
         $sip_ramais_arr = array("username"=>$autenticacao->usuario,
                                 "secret"=>$autenticacao->senha,
                                 "nat"=>'force_rport,comedia',
+                                "qualify"=>'yes',
                                 "callerid"=>"\"".$linha->assinante->nome."\"".
                                 "<".$callerid.">",
                                 "type"=>"friend",
