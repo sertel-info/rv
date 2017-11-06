@@ -5752,8 +5752,10 @@ var Table = function (_React$Component) {
 	_createClass(Table, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
-			this.should_show_loading = false;
-			this.interval = window.setInterval(this.getRemoteData, 2000);
+			if (this.props.refresh_time !== undefined) {
+				this.should_show_loading = false;
+				this.interval = window.setInterval(this.getRemoteData, 2000);
+			}
 		}
 	}, {
 		key: 'componentWillUnmount',
@@ -5795,7 +5797,6 @@ var Table = function (_React$Component) {
 				params: params
 
 			}).then(function (response) {
-				console.log(response);
 				var data = response.data;
 				var callback = !this.should_show_loading ? function () {} : function () {
 					$tbody.find(".loading-row").remove();

@@ -39,8 +39,10 @@ class Table extends React.Component {
 	}
 
 	componentDidMount(){
-		this.should_show_loading = false;
-		this.interval = window.setInterval(this.getRemoteData, 2000);
+		if(this.props.refresh_time !== undefined){
+			this.should_show_loading = false;
+			this.interval = window.setInterval(this.getRemoteData, 2000);
+		}
 	}
 
 	componentWillUnmount(){
@@ -81,7 +83,6 @@ class Table extends React.Component {
 			params: params
 
 		}).then(function(response){
-			console.log(response);
 			let data = response.data;
 			let callback = !this.should_show_loading ?  ()=>{} : () => {		
 																		$tbody.find(".loading-row").remove();
