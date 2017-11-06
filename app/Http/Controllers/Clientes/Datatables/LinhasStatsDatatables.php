@@ -76,11 +76,11 @@ class LinhasStatsDatatables extends Controller {
 
 			
 			/*para teste REMOVEEER*/
-			$arr = json_decode('[{"login_ata":"2000","nome":"dudu","status":"OK"},{"login_ata":"5020","nome":"Sertelx","status":"UNREACHABLE"},{"login_ata":"1151","nome":"Diego 1151","status":"UNKNOWN"},{"login_ata":"2020","nome":"magma-2127","status":"UNKNOWN"}]');
+			/*$arr = json_decode('[{"login_ata":"2000","nome":"dudu","status":"OK"},{"login_ata":"5020","nome":"Sertelx","status":"UNREACHABLE"},{"login_ata":"1151","nome":"Diego 1151","status":"UNKNOWN"},{"login_ata":"2020","nome":"magma-2127","status":"UNKNOWN"}]');
 			$rt = new ReactTable();
 			$rt->setData(collect($arr)->forPage($request->curr_page, $request->itens_per_page));
 			$rt->setTotalRecords(count($arr));
-			return $rt->getResponse();
+			return $rt->getResponse();*/
 			/*-----------*/
 
 

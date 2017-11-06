@@ -4119,9 +4119,12 @@ var Table = function (_React$Component) {
   */
 		_this.should_show_loading = true;
 
+		/*variável que guarda o intervalo, no caso de tabelas que tenham refresh*/
+		_this.interval = null;
+
 		_this.getRemoteData = _this.getRemoteData.bind(_this);
 		_this.handlePageChange = _this.handlePageChange.bind(_this);
-		_this.refreshData = _this.refreshData.bind(_this);
+		//this.refreshData = this.refreshData.bind(this);
 
 		return _this;
 	}
@@ -4129,10 +4132,13 @@ var Table = function (_React$Component) {
 	_createClass(Table, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
-			if (this.props.refresh_time !== undefined) {
-				this.should_show_loading = false;
-				window.setInterval(this.getRemoteData, this.props.refresh_time);
-			}
+			this.should_show_loading = false;
+			this.interval = window.setInterval(this.getRemoteData, 2000);
+		}
+	}, {
+		key: 'componentWillUnmount',
+		value: function componentWillUnmount() {
+			if (this.interval !== null) window.clearInterval(this.interval);
 		}
 	}, {
 		key: 'componentWillReceiveProps',
@@ -4148,7 +4154,6 @@ var Table = function (_React$Component) {
 	}, {
 		key: 'getRemoteData',
 		value: function getRemoteData() {
-			alert(this.state.remote);
 			var $tbody = $("#" + this.props.id + " tbody");
 
 			if (this.should_show_loading) {
