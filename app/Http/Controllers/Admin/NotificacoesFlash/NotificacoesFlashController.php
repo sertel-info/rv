@@ -10,6 +10,7 @@ use App\Models\Notificacoes\NotificacoesFlashUsers;
 use App\Models\Assinantes\Assinantes;
 use App\Http\Controllers\SessionController;
 use App\Helpers\NotificationMessageCompiler\NotificationMessageCompiler;
+use App\Http\Requests\Validators\Assinantes\NotificacoesFlashRequest;
 
 class NotificacoesFlashController extends Controller
 {   
@@ -18,15 +19,10 @@ class NotificacoesFlashController extends Controller
         $this->entity = $not;
     }
 
-
-    public function create(Request $request){
-   		return view('rv.notificacoes_flash.create', ['assinante_md5_id'=>$request->a]);
-    }
-
-    public function store(Request $request){
+    public function store(NotificacoesFlashRequest $request){
         try{
 
-            $assinante = Assinantes::whereRaw("MD5(id) = '".$request->a."'")->first();
+            $assinante = Assinantes::find($request->a);
             $notification = new NotificacoesFlash();
             $form_data = $this->getRequestData($request);
             $notification->fill($form_data);
@@ -35,8 +31,6 @@ class NotificacoesFlashController extends Controller
             $compiled_msg = $msg_compiler->compile($notification->mensagem, 
                                                     $assinante, 
                                                     $request);
-
-                
 
             $notification_user = new NotificacoesFlashUsers();
             $notification_user->vista = false;
@@ -51,21 +45,18 @@ class NotificacoesFlashController extends Controller
                 $notification_user->mensagem_email_compilada = $email_compiled_msg;
             }
 
-
-            DB::transaction(function() use ($notification, $notification_user){
+            DB::beginTransaction();
                 $notification->save();
                 $notification_user->notificacao_flash_id = $notification->id;
                 $notification_user->save();
-            });
+            DB::commit();
 
-            SessionController::flashMessage("success", "Sucesso ", "Configurações atualizadas com sucesso");
-
-            return redirect()->route('rv.assinantes.manage');
+            return response('', 200);
 
         } catch (\Exception $ex){
+            DB::rollback();
             dd($ex);
-            SessionController::flashMessage("danger", "Ops ", "Um erro inesperado ocorreu, tente novamente.");
-            return redirect()->back()->withInput();
+            return response('', 200);
         }
     }
 

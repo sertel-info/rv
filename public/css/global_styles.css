@@ -1,0 +1,165 @@
+.loading-sm {
+	width: 45px;
+	height: 45px;
+	margin:4px;
+}
+
+.input-sm {
+	height: 40px !important;
+	padding: 5px 10px;
+	font-size: 14px;
+	line-height: 1.5;
+	border-radius: 3px
+}
+
+.full-width {
+	width: 100%;
+}
+
+.m-0 {
+	margin: 0px;
+}
+
+.m-1 {
+	margin: 2px;
+}
+
+.m-2 {
+	margin: 4px;
+}
+
+.m-3 {
+	margin: 6px;
+}
+
+.m-4 {
+	margin: 8px;
+}
+
+.m-5 {
+	margin: 10px;
+}
+
+.mt-0 {
+	margin-top: 0px;
+}
+
+.mt-1 {
+	margin-top: 2px;
+}
+
+.mt-2 {
+	margin-top: 4px;
+}
+
+.mt-3 {
+	margin-top: 6px;
+}
+
+.mt-4 {
+	margin-top: 8px;
+}
+
+.mt-5 {
+	margin-top: 10px;
+}
+
+.mr-0 {
+	margin-right: 0px;
+}
+
+.mr-1 {
+	margin-right: 2px;
+}
+
+.mr-2 {
+	margin-right: 4px;
+}
+
+.mr-3 {
+	margin-right: 6px;
+}
+
+.mr-4 {
+	margin-right: 8px;
+}
+
+.mr-5 {
+	margin-right: 10px;
+}
+
+
+
+.ml-0 {
+	margin-left: 0px;
+}
+
+.ml-1 {
+	margin-left: 2px;
+}
+
+.ml-2 {
+	margin-left: 4px;
+}
+
+.ml-3 {
+	margin-left: 6px;
+}
+
+.ml-4 {
+	margin-left: 8px;
+}
+
+.ml-5 {
+	margin-left: 10px;
+}
+
+
+.pl-0 {
+	padding: 0px;
+}
+
+.p-1 {
+	padding: 2px;
+}
+
+.p-2 {
+	padding: 4px;
+}
+
+.p-3 {
+	padding: 6px;
+}
+
+.p-4 {
+	padding: 8px;
+}
+
+.p-5 {
+	padding: 10px;
+}
+
+
+.pl-0 {
+	padding-left: 0px;
+}
+
+.pl-1 {
+	padding-left: 2px;
+}
+
+.pl-2 {
+	padding-left: 4px;
+}
+
+.pl-3 {
+	padding-left: 6px;
+}
+
+.pl-4 {
+	padding-left: 8px;
+}
+
+.pl-5 {
+	padding-left: 10px;
+}

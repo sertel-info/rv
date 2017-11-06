@@ -30,6 +30,16 @@ class MpPreferences extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('mp_preferences', function($table)
+        {   
+            if(Schema::hasColumn('mp_preferences', 'assinante_id')){
+                $table->dropForeign(['assinante_id']);
+                $table->dropColumn("assinante_id");
+            }
+            /*$table->integer("assinante_id")->unsigned();
+            $table->foreign("assinante_id")
+                  ->references("id")
+                  ->on("assinantes");*/
+        });
     }
 }

@@ -89,4 +89,8 @@ class Assinantes extends Model
     public function atualizacoesCreditos(){
         return $this->hasMany("App\Models\AtualizacaoCreditos", "assinante_id", "id");
     }
+
+    public function getInscricaoEstadualAttribute($value){
+        return $value == null ? "" : $value;
+    }
 }

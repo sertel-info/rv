@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Clientes;
+namespace App\Http\Controllers\Clientes\Clientes;
 
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Controllers\Auth\UpdateController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\SessionController;
 
 class ContasController extends Controller {
 

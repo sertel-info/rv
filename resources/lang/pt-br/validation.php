@@ -96,15 +96,6 @@ return [
     */
 
     'custom' => [
-        'atend_automatico_destino' => [
-            'required_if' => 'O campo :attribute é obrigatório quando Atendimento Automático estiver ativo'
-        ],
-        'cx_postal_pw' => [
-            'required_with' => 'O campo :attribute é obrigatório quando Caixa Postal estiver ativa'
-        ],
-        'cx_postal_email' => [
-            'required_with' => 'O campo :attribute é obrigatório quando Caixa Postal estiver ativa'
-        ],
         'escutar_evento' => [
             'not_in' => 'O campo :attribute é obrigatório'
         ],
@@ -113,7 +104,38 @@ return [
         ],
         'email_corpo' => [
             'required_with' => 'O campo :attribute é obrigatório quando Envio de Email estiver ativo'
-        ]
+        ],
+         'email_corpo' => [
+            'required_with' => 'O campo :attribute é obrigatório quando Envio de Email estiver ativo'
+        ],
+        "cadeado_pin" => [
+            "required_if" => 'O campo :attribute é obrigatório quando Cadeado Pessoal estiver ativo'
+        ],
+        "num_siga_me" => [
+            "required_if" => 'O campo :attribute é obrigatório quando Siga me estiver ativo'
+        ],
+        "cx_postal_pw" => [
+            "required_if" => 'O campo :attribute é obrigatório quando Caixa Postal estivar ativa'
+        ],
+        "atend_automatico_tipo" => [
+            "required_if" => 'O campo :attribute é obrigatório quando Atendimento automáticao estiver ativo'
+        ],
+        "atend_automatico_destino" => [
+            "required_if" => 'O campo :attribute é obrigatório quando Atendimento automáticao estiver ativo'
+        ],
+         "usuario_did" => [
+            "required_if" => 'O campo :attribute é obrigatório quando DID estiver ativo'
+        ],
+         "senha_did" => [
+            "required_if" => 'O campo :attribute é obrigatório quando DID estiver ativo'
+        ],
+         "ip_did" => [
+            "required_if" => 'O campo :attribute é obrigatório quando DID estiver ativo'
+        ],
+         "extensao_did" => [
+             "required_if" => 'O campo :attribute é obrigatório quando DID estiver ativo'
+        ],
+
 
     ],
 
@@ -138,6 +160,10 @@ return [
         "saudacoes_destino" => "Saudacoes Destino",
         "num_siga_me" => "Número do Siga-me",
         "cadeado pin" => "Pin do cadeado",
+        "password"=>"Senha",
+        "email"=>"Email",
+        "password_confirm"=>"Confirmação de senha",
+        "name"=>"Nome",
         //formulario de notificações
         "mensagem"=>"Mensagem",
         "titulo"=>"Título",
@@ -148,8 +174,84 @@ return [
         "email_assunto"=>"Assundo do Email",
         "intervalo_reenvio"=>"Intervalo de reenvio",
         "numero_envios"=>"Número de envios",
-        "email_corpo"=>"Corpo do email"
+        "email_corpo"=>"Corpo do email",
         //**************************
-    ],
+        //formulário de linhas
+        "assinante" => "Assinante",
+        "ddd_local" => "DDD Local",
+        "simultaneas" => "Simultâneas",
+        "rota_cli" => "Rota CLI",
+        "plano" => "Plano",
+        "login_ata" => "Login ATA",
+        "usuario" => "Usuário",
+        "senha" => "Senha",
+        "ip" => "IP",
+        "porta" => "Porta",
+        "status_did" => "Status do DID",
+        "usuario_did" => "Usuário do DID",
+        "senha_did" => "Senha do DID",
+        "ip_did" => "IP do DID",
+        "extensao_did" => "Extensão do DID",
+        "codecs" => "Codecs",
+        "rotas_saida" => "Rotas de Saíra",
+        "callerid" => "Callerid",
+        "call_group" => "Call Group",
+        "pickup_group" => "Pickup Group",
+        "envio_dtmf" => "Envio de DTMF",
+        "ring_falso" => "Ring falso",
+        "nat" => "NAT",
+        "gravacao" => "Gravação",
+        "cadeado_pessoal" => "Cadeado pessoal",
+        "siga_me" => "Siga-me",
+        "caixa_postal" => "Caixa Postal",
+        "cadeado_pin" => "PIN do Cadeado",
+        "pode_monitorar" => "Pode Monitorar",
+        "monitoravel" => "Monitoravel",
+        "num_siga_me" => "Número do Siga me",
+        "cx_postal_pw" => "Senha da Caixa Postal",
+        "cx_postal_email" => "Email da Caixa Postal",
+        "ligacao_fixo" => "Ligação para fixo",
+        "ligacao_internacional" => "Ligação internacional",
+        "ligacao_movel" => "Ligação para móvel",
+        "ligacao_ip" => "Ligação para Ip",
+        "status" => "Status",
+        //*************
+        /** formulário de assinantes **/
+        "tipo" => "Tipo",
+        "cpf" => "CPF",
+        "nome_fantasia" => "Nome Fantasia",
+        "razao_social" => "Razão Social",
+        "cnpj" => "CNPJ",
+        "inscricao_estadual" => "Inscrição Estadual",
+        "sobrenome" => "Sobrenome",
+        "cep" => "CEP",
+        "endereco" => "Endereço",
+        "complemento" => "Complemento",
+        "bairro" => "Bairro",
+        "cidade" => "Cidade",
+        "estado" => "Estado",
+        "pais" => "País",
+        "site" => "Site",
+        "telefone" => "Telefone",
+        "fax" => "FAX",
+        "celular" => "Celular",
+        "gravacoes" => "Gravações",
+        "correio_voz" => "Correio de voz",
+        "grupos_atendimento" => "Grupos de atendimento",
+        "fila" => "Fila",
+        "saudacoes" => "Saudações",
+        "ura" => "URA",
+        "acesso_extrato" => "Acesso ao Extrato",
+        "dias_bloqueio" => "Dias de Bloqueio",
+        "dia_vencimento" => "Dia de Vencimento",
+        "alerta_saldo" => "Alerta de Saldo",
+        "espaco_disco" => "Espaço em disco",
+        "nome_acesso" => "Nome de Acesso",
+        "email_acesso" => "Email de Acesso",
+        "senha_acesso" => "Senha de Acesso",
+        /*Formulário Grupo de Atendimento do Cliente*/
+        "tempo_chamada" => "Tempo de chamada"
+
+    ]
 
 ];

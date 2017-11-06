@@ -10,7 +10,7 @@ class Linhas extends Model
     protected $table = "linhas";
 
     protected $fillable = ["assinante_id",
-							"tecnologia",
+							//"tecnologia",
 							"ddd_local",
 							"nome",
 							"simultaneas",
@@ -95,9 +95,11 @@ class Linhas extends Model
     
 
 	public function setPlanoAttribute($value){
-		if($value <= 0)
+		if(!is_numeric($value) || $value < 0)
 			$value = null;
 
 		$this->attributes['plano'] = $value;
 	}
+
+
 }

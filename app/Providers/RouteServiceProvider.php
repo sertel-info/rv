@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use JWTAuth;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+        $this->mapAdminRoutes();
+        $this->mapClientesRoutes();
 
         //
     }
@@ -52,35 +55,35 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
 
-        Route::group(['middleware' => 'web', 'namespace'=>$this->namespace], function(){
-
+        Route::group(['namespace'=>$this->namespace], function(){
             include (base_path("routes/web.php"));
-
-
-
-            foreach (glob(base_path("routes/rv/*.php")) as $filename)
-            {   
-                include $filename;
-            }
-            
-            Route::group(['prefix'=>'clientes'], function () {
-                foreach (glob(base_path("routes/rv/clientes/*.php")) as $filename)
-                {   
-                    include $filename;
-                }
-            });
-
-
-            foreach (glob(base_path("routes/rv/notificacoes/*.php")) as $filename)
-            {   
-                include $filename;
-            }
-
+            include (base_path("routes/auth.php"));
         });
-
 
     }
 
+
+    protected function mapAdminRoutes(){
+        Route::group(['namespace'=>$this->namespace], function(){
+            include (base_path("routes/rv/admin/linhas.php"));
+            include (base_path("routes/rv/admin/assinantes.php"));
+            include (base_path("routes/rv/admin/planos.php"));
+            include (base_path("routes/rv/admin/notificacoes_flash.php"));
+            include (base_path("routes/rv/admin/notificacoes.php"));
+            include (base_path("routes/rv/admin/configuracoes.php"));
+            include (base_path("routes/rv/admin/dashboard.php"));
+        });
+    }
+
+    protected function mapClientesRoutes(){
+        Route::group(['namespace'=>$this->namespace."\Clientes"], function(){
+            include (base_path("routes/rv/clientes/clientes.php"));
+            include (base_path("routes/rv/clientes/extrato.php"));
+            include (base_path("routes/rv/clientes/grupos.php"));
+            include (base_path("routes/rv/clientes/linhas.php"));
+            include (base_path("routes/rv/clientes/gravacoes.php"));
+        });
+    }
 
 
     /**

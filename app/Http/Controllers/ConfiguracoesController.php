@@ -13,13 +13,17 @@ class ConfiguracoesController extends Controller
 		$this->entity = $cfg;
 	}
     
-    public function index(){
-    	$configuracoes = $this->entity->first();
-
-
-    	return view("rv.configuracoes.index", ['active'=>'configuracoes',
-    											'panel_title'=>'Configurações',
-    											'configuracoes'=>$configuracoes]);
+    public function get(){
+    	$configuracoes = $this->entity->firstOrCreate([], [
+            'prefx_aplicacoes' => "",
+            'atalho_siga_me' => "",
+            'atalho_cadeado' => "",
+            'voice_mail_remetente_padrao' => "",
+            'voice_mail_assunto_padrao' => "",
+            'voice_mail_mensagem_padrao' => ""
+        ]);
+        
+        return response()->json(['configuracoes'=>$configuracoes], 200);
     }
 
     public function update(Request $request){
@@ -30,15 +34,10 @@ class ConfiguracoesController extends Controller
             
             event(new ItensModificados());
 
-            SessionController::flashMessage("success", "Sucesso ", "Configurações atualizadas com sucesso");
-
-            return redirect()->route('rv.configuracoes.index');
-
+            return response('', 200);
 
         } catch (\Exception $ex){
-           SessionController::flashMessage("danger", "Ops ", "Um erro inesperado ocorreu, tente novamente.");
-
-           return redirect()->back()->withInput();
+           return response('', 500);
         }
     }
 }

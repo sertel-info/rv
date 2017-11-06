@@ -3,27 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use JWTAuth;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    /*public function __construct()
-    {
-        $this->middleware('auth');
-    }*/
+    
+    function index(Request $request)
+    {	
+    	
+        try {
+    		
+    		JWTAuth::setToken($request->cookie('token'));
+            if (! $user = JWTAuth::authenticate()) {
+                return redirect()->route('auth.login');
+            }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('home', ['panel_title'=>'Início',
-                             'active'=>'']);
+            if($user->role == 0)
+                return view("admin");
+            else if($user->role == 1){
+                return view("cliente");
+            } else {
+                return redirect()->route('auth.login');
+            }
+
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return redirect()->route('auth.login');
+
+        }
+        	
     }
 }

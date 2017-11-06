@@ -34,4 +34,44 @@ class Planos extends Model
     	}
         $query->addSelect(\DB::Raw('MD5(planos.id) as id_md5'));
     }
+
+    public function getDescricaoAttribute($value){
+    	return $value == null ? "" : $value;
+    }
+
+    public function setValorSmsAttribute($value){
+    	$this->attributes['valor_sms'] = floatval($value);
+    }
+
+     public function setValorFixoLocalAttribute($value){
+    	$this->attributes['valor_fixo_local'] = floatval($value);
+    }
+
+    public function setValorFixoDddAttribute($value){
+    	$this->attributes['valor_fixo_ddd'] = floatval($value);
+    }
+
+    public function setValorMovelLocalAttribute($value){
+    	$this->attributes['valor_movel_local'] = floatval($value);
+    }
+
+    public function setValorMovelDddAttribute($value){
+    	$this->attributes['valor_movel_ddd'] = floatval($value);
+    }
+
+    public function setValorDdiAttribute($value){
+    	$this->attributes['valor_ddi'] = floatval($value);
+    }
+
+    public function setValorIpAttribute($value){
+    	$this->attributes['valor_ip'] = floatval($value);
+    }
+
+    public function setValorMovelEntranteAttribute($value){
+    	$this->attributes['valor_movel_entrante'] = floatval($value);
+    }
+
+    public function setValorFixoEntranteAttribute($value){
+    	$this->attributes['valor_fixo_entrante'] = floatval($value);
+    }
 }

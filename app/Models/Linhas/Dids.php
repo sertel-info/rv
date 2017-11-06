@@ -12,10 +12,15 @@ class Dids extends Model
 							"senha_did",
 							"ip_did",
 							"extensao_did",
-							"linha_id"];
+							"linha_id",
+							"status_did"];
 
 
 	public function linha(){
 		return $this->belongsTo('\App\Models\Linhas\Linhas', 'linha_id');
+	}
+
+	public function getStatusDidAttribute($value){
+		return (Boolean)$value;
 	}
 }

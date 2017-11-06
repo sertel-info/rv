@@ -1,0 +1,17 @@
+
+.brand {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+  height: 60px;
+  }
+
+.login-brand span {
+  color: #30a5ff; 
+  font-size: 32px !important
+}
+
+.login-brand {
+  background-color: #444444; 
+  font-size: 32px !important; 
+}

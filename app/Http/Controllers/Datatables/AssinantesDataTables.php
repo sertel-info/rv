@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Assinantes\Assinantes;
 use Datatables;
 use DB;
+use ReactTable;
 
 class AssinantesDataTables extends Controller
 {
@@ -26,19 +27,22 @@ class AssinantesDataTables extends Controller
  *
  * @return \Illuminate\Http\JsonResponse
  */
-public function anyData()
+public function anyData(Request $request)
 {
     $assinantes = Assinantes::select(DB::raw("IF(tipo,concat(nome, ' ',sobrenome),nome_fantasia) as nome_completo,
                                                         IF(tipo=1,'PF','PJ') as tipo,
-                                                        MD5(id) as id_md5,
-                                                        plano
+                                                        plano,
+                                                        id
                                                     "))
                                     ->with(["planos"=>function($query){
                                             $query->select("nome", "id");
                                      }])
-                                    ->get();
-
-    return Datatables::of($assinantes)->make(true);
+                                    ->with("acesso");
+                                    
+    $rt = new ReactTable();
+    $rt->setData($assinantes->forPage($request->curr_page, $request->itens_per_page)->get());
+    $rt->setTotalRecords(Assinantes::count());
+    return $rt->getResponse();
 }
 
 }

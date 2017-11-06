@@ -39,9 +39,9 @@ class AtualizaArquivos
                                                 $query->with('facilidades');
                                             }])
                                             ->get();
-
         foreach($linhas as $linha){
-            //gera os extensions do dialplan            
+            //gera os extensions do dialplan 
+                   
             $this->parser->addExtension('_0'.$linha->autenticacao->login_ata,
                                             '1',
                                             "AGI(ramal_virtual/rv_internas.php)",
@@ -123,7 +123,9 @@ class AtualizaArquivos
     }
 
     public function updateDid($did){
-      
+        if(!$did->status_did)
+            return;
+        
         $this->parser->addRegistry($did->usuario_did,
                                     $did->senha_did,
                                     $did->ip_did,

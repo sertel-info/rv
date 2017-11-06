@@ -32,5 +32,14 @@ class DadosFinanceiroAssinante extends Model
     	$value = preg_replace("/[^0-9\\.]/", '', $value);
 		$this->attributes['espaco_disco'] = floatval($value);
     }
+
+    public function setDiasBloqueioAttribute($value){
+    	if(!is_numeric($value))
+    		$value = 0;
+
+   		$this->attributes['dias_bloqueio'] = $value;
+    }
+
+    
     
 }

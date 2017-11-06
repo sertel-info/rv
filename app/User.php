@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'assinante_id', 'role'
+        'name', 'email', 'password', 'assinante_id', 'role', 'status'
     ];
 
     /**
@@ -40,6 +40,10 @@ class User extends Authenticatable
 
     public function notificacoes(){
         return $this->hasMany('App\Models\Notificacoes\NotificacoesUsers', 'user_id', 'id');
+    }
+
+    public function setStatusAttribute($value){
+        $this->attributes['status'] = (Boolean)$value;
     }
 
 }

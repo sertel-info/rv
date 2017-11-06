@@ -177,7 +177,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\AsteriskConfigFileParserProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class
+        Collective\Html\HtmlServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        App\Providers\ReactTableProvider::class
 
     ],
 
@@ -229,8 +231,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class
+        //'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'ReactTable' => App\Services\ReactTableService::class
     ],
 
     'asterisk_files'=>['extension'=>'/etc/asterisk/ramal_virtual/rv_extensions.conf',

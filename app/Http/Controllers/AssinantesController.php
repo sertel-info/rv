@@ -6,40 +6,13 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\Assinantes\Assinantes;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Requests\Validators\Assinantes\AssinantesRequest;
 
 class AssinantesController extends Controller
 {   
 
     public function __construct(Assinantes $assinantes){
         $this->entity = $assinantes;
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {   
-        $planos = \App\Models\Planos\Planos::select('id', 'nome')
-                                            ->get()
-                                            ->mapWithKeys(function($item){
-                                                return [$item->id=>$item->nome];
-                                            });
-
-
-        return view("rv.assinantes.create", ["panel_title"=>"Cadastrar Assinante",
-                                             "active"=>"ass_criar",
-                                             "planos"=>$planos]);
     }
 
     /**
@@ -50,7 +23,7 @@ class AssinantesController extends Controller
      */
  
 
-    public function store(Request $request)
+    public function store(AssinantesRequest $request)
     {   
         $dados = $this->getDataObjects($request);
         //$reg_ctrl = new RegisterController();
@@ -59,99 +32,25 @@ class AssinantesController extends Controller
         $contato = new \App\Models\Assinantes\DadosContatoAssinante($dados['contato']);
         $financeiro = new \App\Models\Assinantes\DadosFinanceiroAssinante($dados['financeiro']);
         $facilidades = new \App\Models\Assinantes\DadosFacilidadesAssinante($dados['facilidades']);
-        
-        /*if($reg_ctrl->validator($request)){
-            $reg_ctrl->create($dados['acesso']);
-        }*/
 
         $acesso = new \App\User($dados['acesso']);
 
-        $trans_resul = DB::transaction(function() use ($assinante,
-                                                         $contato,
-                                                         $financeiro,
-                                                         $facilidades,
-                                                         $acesso
-                                                         ){
-            try{
-                $assinante->save();
-                $assinante->contato()->save($contato);
-                $assinante->financeiro()->save($financeiro);
-                $assinante->facilidades()->save($facilidades);
-                $assinante->acesso()->save($acesso);
-                return 1;
-            } catch(\Exception $e){
-                return 0;
-            }
+        try{
+            DB::beginTransaction();
+
+            $assinante->save();
+            $assinante->contato()->save($contato);
+            $assinante->financeiro()->save($financeiro);
+            $assinante->facilidades()->save($facilidades);
+            $assinante->acesso()->save($acesso);
             
-        });
-       
-        if($trans_resul){
-            \App\Http\Controllers\SessionController::flashMessage('success',
-                                                                    'Sucesso',
-                                                                    'Assinante cadastrado com sucesso.');
-
-            return redirect()->route("rv.assinantes.manage");
-        } else {
-
-            \App\Http\Controllers\SessionController::flashMessage('danger',
-                                                                    'Error',
-                                                                    'Um erro inesperado ocorreu por favor tente novamente.');
-
-            return redirect()->back()->withInput();
+            DB::commit();
+            return response('', 200);
+        } catch(\Exception $e){
+            DB::rollback();
+            return response('', 500);
         }
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function manage()
-    {
-        return view("rv.assinantes.manage", ['active'=>'ass_gerenciar',
-                                             'panel_title'=>"Gerenciar Assinantes"]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-            $planos = \App\Models\Planos\Planos::select('id', 'nome')
-                                            ->get()
-                                            ->mapWithKeys(function($item){
-                                                return [$item->id=>$item->nome];
-                                            });
-
-            $assinante = $this->entity->select("*", "assinantes.id as id",
-                                                    "users.name as nome_acesso",
-                                                    "users.email as email_acesso",
-                                                    "password as password")
-                                      ->where(DB::raw('MD5(assinantes.id)'), $id)
-                                      ->leftjoin('dados_contato_assinantes',
-                                                 'assinantes.id', '=',
-                                                 'dados_contato_assinantes.assinante_id')
-                                      ->leftjoin("dados_facilidades_assinantes",
-                                                 'assinantes.id', '=',
-                                                 'dados_facilidades_assinantes.assinante_id')
-                                      ->leftjoin("users",
-                                                 'assinantes.id', '=',
-                                                 'users.assinante_id')
-                                      ->leftjoin("dados_financeiro_assinantes",
-                                                 'assinantes.id', '=',
-                                                 'dados_financeiro_assinantes.assinante_id')
-                                      ->first();
-
-            return view("rv.assinantes.edit", ["panel_title"=>"Editar Assinante",
-                                               "active"=>"pla_gerenciar",
-                                               "assinante"=>$assinante,
-                                               "planos"=>$planos]);
     }
 
     /**
@@ -161,10 +60,11 @@ class AssinantesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {   
+    public function update(AssinantesRequest $request)
+    {    
+        $id = $request->a;
         $dados = $this->getDataObjects($request);
-        $assinante = $this->entity->where(DB::raw('MD5(assinantes.id)'), $id)
+        $assinante = $this->entity->where('id', $id)
                                   ->with("contato")
                                   ->with("financeiro")
                                   ->with("planos")
@@ -172,34 +72,31 @@ class AssinantesController extends Controller
                                   ->with("acesso")
                                   ->first();
 
-        $trans_resul = DB::transaction(function() use ($assinante, $dados) {
-            try{
+        try{
 
-                $assinante->update($dados['basicos']);
+            DB::beginTransaction();
+
+            $assinante->update($dados['basicos']);
+            
+            if($assinante->contato !== null)
                 $assinante->contato->update($dados['contato']);
+            
+            if($assinante->financeiro !== null)
                 $assinante->financeiro->update($dados['financeiro']);
+
+            if($assinante->facilidades !== null)
                 $assinante->facilidades->update($dados['facilidades']);
+
+            if($assinante->acesso !== null)
                 $assinante->acesso->update($dados['acesso']);
 
-                return 1;
-            } catch(\Exception $e){
-                return 0;
-            }
-        });
-       
-        if($trans_resul){
-            \App\Http\Controllers\SessionController::flashMessage('success',
-                                                                    'Sucesso',
-                                                                    'Assinante atualizado com sucesso.');
-
-            return redirect()->route("rv.assinantes.manage");
-        } else {
-            \App\Http\Controllers\SessionController::flashMessage('danger',
-                                                                  'Erro',
-                                                                    'Um erro inesperado ocorreu por favor tente novamente.');
-
-            return redirect()->back()->withInput();
+            DB::commit();
+            return response('', 200);
+        } catch(\Exception $e){
+            DB::rollback();
+            return response('', 400);
         }
+      
     }
 
     /**
@@ -209,86 +106,47 @@ class AssinantesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
-    {
-        $assinante = $this->entity->where(DB::raw('MD5(id)'), $request->id)
-                                  ->first();
+    { 
+        try{
+           $assinante = $this->entity->where('id', $request->id)
+                                   ->first();
 
-        $status = $assinante->delete();
+           $assinante->delete();
 
-        return json_encode(['status'=>$status]);
+           return response()->json('', 200);
+
+        } catch (\Exception $e){
+           return response()->json('', 500);
+        }
+       
     }
 
-    public function get(Request $request){
-        //plano, tipo, facilidades, status
-        $assinante = $this->entity->select(DB::raw('assinantes.id,
-                                                    IF(assinantes.tipo, "PF", "PJ") as tipo,
-                                                    nome_fantasia,
-                                                    razao_social as razão_social,
-                                                    cnpj,
-                                                    inscricao_estadual,
-                                                    rg,
-                                                    assinantes.nome,
-                                                    sobrenome,
-                                                    cpf,
-                                                    planos.nome as plano'))
-                                    ->with(["contato"=>function($query){
-                                        $query->select(DB::raw('id, assinante_id, cep,
-                                                          endereco as endereço,
-                                                          complemento,
-                                                          bairro,
-                                                          cidade,
-                                                          estado,
-                                                          pais as país,
-                                                          email
-                                                          site,
-                                                          telefone,
-                                                          fax,
-                                                          celular,
-                                                          "Contato" as table_name'));
-                                    }])
-                                    ->with(["facilidades"=>function($query){
-                                         $query->select(DB::raw('id, assinante_id,
-                                                            IF(acesso_ramais, "ativo", "inativo") as acesso_ramais,
-                                                            IF(acesso_dids, "ativo", "inativo") as acesso_dids,
-                                                            IF(portal_voz, "ativo", "inativo") as portal_voz,
-                                                            IF(sala_conferencia, "ativo", "inativo") as sala_conferência,
-                                                            IF(fila_atendimento, "ativo", "inativo") as fila_atendimento,
-                                                            IF(ura_atendimento, "ativo", "inativo") as ura_atendimento,
-                                                            IF(envio_sms, "ativo", "inativo") as envio_sms,
-                                                            IF(acesso_callshop, "ativo", "inativo") as acesso_callshop,
-                                                            "Facilidades" as table_name'));
-                                    }])
-                                    ->with(["acesso"=>function($query){
-                                        $query->select(DB::raw('assinante_id,
-                                                           usuario as usuário,
-                                                           senha,
-                                                           IF(status, "ativo", "inativo"),
-                                                           "Acesso" as table_name'));
-                                    }])
-                                    ->with(["financeiro"=>function($query){
-                                        $query->select(DB::raw('
-                                                            assinante_id,
-                                                            dias_bloqueio,
-                                                            DATE_FORMAT(dia_vencimento, "%d/%m/%Y") as dia_vencimento,
-                                                            espaco_disco,
-                                                            CONCAT(alerta_saldo, " R$") as alerta_saldo,
-                                                            "Financeiro" as table_name
-                                                            '));
-                                    }])
-                                    ->leftjoin('planos', 'assinantes.plano', 'planos.id')
-                                    ->first();
 
-        return $assinante->toJson();
+    /**
+     * Retorna todos os assinantes, com seus nomes e ids os assinantes;
+     * Usada majoritariamente em <select>
+     *
+     * @param  Request $request 
+     * @return Json encoded assinantes
+     */
+    public function getAll(Request $request){
+        $assinantes = Assinantes::select('id', DB::raw('IF(nome IS NULL, nome_fantasia, nome) as nome'))
+                                  ->orderBy('nome','asc')
+                                  ->get();
+
+        return json_encode(["data"=>$assinantes]);
     }
+
 
     public function getDataObjects($request){
-        if($request->tipo){
+        if($request->tipo == "PF"){
             $dados_basicos = $request->only("plano",
                                             "cpf",
                                             "nome",
                                             "sobrenome",
-                                            "rg",
-                                            "tipo");
+                                            "rg");
+
+            $dados_basicos['tipo'] = 1;
 
         } else {
             
@@ -296,8 +154,10 @@ class AssinantesController extends Controller
                                             "razao_social",
                                             "cnpj",
                                             "inscricao_estadual",
-                                            "plano",
-                                            "tipo");
+                                            "plano");
+
+            $dados_basicos['tipo'] = 0;
+
         }
 
         $dados_contato = $request->only("cep",
@@ -327,8 +187,10 @@ class AssinantesController extends Controller
                                         "acesso_extrato");
 
         $dados_acesso = array("name"=>$request->nome_acesso,
-                                "email"=>$request->email_acesso,
-                                "role"=>1);
+                              "email"=>$request->email_acesso,
+                              "role"=>1,
+                              "status"=>$request->status
+                              );
 
         if($request->senha_acesso !== "DeFPassWord"){
             $dados_acesso['password'] = $request->senha_acesso;
@@ -340,4 +202,23 @@ class AssinantesController extends Controller
                 "contato"=>$dados_contato,
                 "basicos"=>$dados_basicos];
     }
+
+
+    public function get(Request $request){
+       try{
+            $assinante = $this->entity->with('contato')
+                                   ->with("facilidades")
+                                   ->with("acesso")
+                                   ->with('financeiro')
+                                   ->with('planos')
+                                   ->where('id', $request->a)
+                                   ->first();
+
+            return response()->json(["assinante"=>$assinante], 200);
+       
+       } catch (\Exception $e){
+            return response()->json([], 500);
+       }
+    }
+    
 }
