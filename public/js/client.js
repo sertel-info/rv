@@ -13113,7 +13113,7 @@ var _propTypes = __webpack_require__(9);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _inputmaskCore = __webpack_require__(293);
+var _inputmaskCore = __webpack_require__(294);
 
 var _inputmaskCore2 = _interopRequireDefault(_inputmaskCore);
 
@@ -13829,7 +13829,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ClientLinhasPickList = __webpack_require__(298);
+var _ClientLinhasPickList = __webpack_require__(299);
 
 var _ClientLinhasPickList2 = _interopRequireDefault(_ClientLinhasPickList);
 
@@ -31217,23 +31217,23 @@ var _HomeIndex = __webpack_require__(278);
 
 var _HomeIndex2 = _interopRequireDefault(_HomeIndex);
 
-var _ExtratoIndex = __webpack_require__(286);
+var _ExtratoIndex = __webpack_require__(287);
 
 var _ExtratoIndex2 = _interopRequireDefault(_ExtratoIndex);
 
-var _GruposIndex = __webpack_require__(294);
+var _GruposIndex = __webpack_require__(295);
 
 var _GruposIndex2 = _interopRequireDefault(_GruposIndex);
 
-var _GruposCreate = __webpack_require__(297);
+var _GruposCreate = __webpack_require__(298);
 
 var _GruposCreate2 = _interopRequireDefault(_GruposCreate);
 
-var _GruposEdit = __webpack_require__(300);
+var _GruposEdit = __webpack_require__(301);
 
 var _GruposEdit2 = _interopRequireDefault(_GruposEdit);
 
-var _GravacoesIndex = __webpack_require__(301);
+var _GravacoesIndex = __webpack_require__(302);
 
 var _GravacoesIndex2 = _interopRequireDefault(_GravacoesIndex);
 
@@ -31296,6 +31296,10 @@ var _PeerStatusList = __webpack_require__(279);
 
 var _PeerStatusList2 = _interopRequireDefault(_PeerStatusList);
 
+var _QueuesStatusList = __webpack_require__(286);
+
+var _QueuesStatusList2 = _interopRequireDefault(_QueuesStatusList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31336,6 +31340,11 @@ var HomeIndex = function (_React$Component) {
 					'div',
 					{ className: 'col-lg-6' },
 					_react2.default.createElement(_PeerStatusList2.default, null)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-lg-6' },
+					_react2.default.createElement(_QueuesStatusList2.default, null)
 				)
 			);
 		}
@@ -32179,15 +32188,93 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _MultiForm = __webpack_require__(287);
+var _Table = __webpack_require__(32);
+
+var _Table2 = _interopRequireDefault(_Table);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var QueuesStatusList = function (_React$Component) {
+	_inherits(QueuesStatusList, _React$Component);
+
+	function QueuesStatusList(props) {
+		_classCallCheck(this, QueuesStatusList);
+
+		return _possibleConstructorReturn(this, (QueuesStatusList.__proto__ || Object.getPrototypeOf(QueuesStatusList)).call(this, props));
+	}
+
+	_createClass(QueuesStatusList, [{
+		key: 'render',
+		value: function render() {
+			var columns_defs = [{
+				title: "Fila",
+				acessor: "nome_orig"
+			}, {
+				title: "TMA",
+				acessor: "talktime"
+			}, {
+				title: "TME",
+				acessor: "holdtime"
+			}];
+			return _react2.default.createElement(
+				'div',
+				{ className: 'panel panel-default' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'panel-heading' },
+					'Filas'
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'panel-body' },
+					_react2.default.createElement(_Table2.default, {
+						id: 'queues-table',
+						'class': 'table ',
+						remote: _ROUTES_.client.get_filas_stats,
+						columns: columns_defs,
+						send_remote_data: this.props.send_remote_data,
+						td_class: 'text-center',
+						th_class: 'text-center',
+						refresh_time: 2000
+					})
+				)
+			);
+		}
+	}]);
+
+	return QueuesStatusList;
+}(_react2.default.Component);
+
+module.exports = QueuesStatusList;
+
+/***/ }),
+/* 287 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _MultiForm = __webpack_require__(288);
 
 var _MultiForm2 = _interopRequireDefault(_MultiForm);
 
-var _ExtratoTransacoes = __webpack_require__(288);
+var _ExtratoTransacoes = __webpack_require__(289);
 
 var _ExtratoTransacoes2 = _interopRequireDefault(_ExtratoTransacoes);
 
-var _ExtratoLigacoes = __webpack_require__(290);
+var _ExtratoLigacoes = __webpack_require__(291);
 
 var _ExtratoLigacoes2 = _interopRequireDefault(_ExtratoLigacoes);
 
@@ -32240,7 +32327,7 @@ var ExtratoIndex = function (_React$Component) {
 module.exports = ExtratoIndex;
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32341,7 +32428,7 @@ var MultiForm = function (_React$Component) {
 module.exports = MultiForm;
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32353,7 +32440,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ExtratoTransacoesTable = __webpack_require__(289);
+var _ExtratoTransacoesTable = __webpack_require__(290);
 
 var _ExtratoTransacoesTable2 = _interopRequireDefault(_ExtratoTransacoesTable);
 
@@ -32404,7 +32491,7 @@ var ExtratoTransacoes = function (_React$Component) {
 module.exports = ExtratoTransacoes;
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32484,7 +32571,7 @@ var ExtratoTransacoesTable = function (_React$Component) {
 module.exports = ExtratoTransacoesTable;
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32496,11 +32583,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ExtratoLigacoesTable = __webpack_require__(291);
+var _ExtratoLigacoesTable = __webpack_require__(292);
 
 var _ExtratoLigacoesTable2 = _interopRequireDefault(_ExtratoLigacoesTable);
 
-var _ExtratoLigacoesFilters = __webpack_require__(292);
+var _ExtratoLigacoesFilters = __webpack_require__(293);
 
 var _ExtratoLigacoesFilters2 = _interopRequireDefault(_ExtratoLigacoesFilters);
 
@@ -32634,7 +32721,7 @@ var ExtratoLigacoes = function (_React$Component) {
 module.exports = ExtratoLigacoes;
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32737,7 +32824,7 @@ var ExtratoLigacoesTable = function (_React$Component) {
 module.exports = ExtratoLigacoesTable;
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32803,7 +32890,7 @@ var ExtratoLigacoesFilters = function (_React$Component) {
 module.exports = ExtratoLigacoesFilters;
 
 /***/ }),
-/* 293 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33317,7 +33404,7 @@ InputMask.Pattern = Pattern;
 module.exports = InputMask;
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33329,7 +33416,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _GruposTable = __webpack_require__(295);
+var _GruposTable = __webpack_require__(296);
 
 var _GruposTable2 = _interopRequireDefault(_GruposTable);
 
@@ -33384,7 +33471,7 @@ var GruposIndex = function (_React$Component) {
 module.exports = GruposIndex;
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33402,7 +33489,7 @@ var _Table2 = _interopRequireDefault(_Table);
 
 var _reactRouterDom = __webpack_require__(41);
 
-var _DestroyBtn = __webpack_require__(296);
+var _DestroyBtn = __webpack_require__(297);
 
 var _DestroyBtn2 = _interopRequireDefault(_DestroyBtn);
 
@@ -33476,7 +33563,7 @@ var GruposTable = function (_React$Component) {
 module.exports = GruposTable;
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33604,7 +33691,7 @@ var DestroyBtn = function (_React$Component) {
 module.exports = DestroyBtn;
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33707,7 +33794,7 @@ var GruposCreate = function (_FormInterface) {
 module.exports = GruposCreate;
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33723,7 +33810,7 @@ var _axios = __webpack_require__(18);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _PickList = __webpack_require__(299);
+var _PickList = __webpack_require__(300);
 
 var _PickList2 = _interopRequireDefault(_PickList);
 
@@ -33792,7 +33879,7 @@ var ClientLinhasPickList = function (_React$Component) {
 module.exports = ClientLinhasPickList;
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34052,7 +34139,7 @@ var PickList = function (_React$Component) {
 module.exports = PickList;
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34190,7 +34277,7 @@ var GruposEdit = function (_FormInterface) {
 module.exports = GruposEdit;
 
 /***/ }),
-/* 301 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34202,11 +34289,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _GravacoesTable = __webpack_require__(302);
+var _GravacoesTable = __webpack_require__(303);
 
 var _GravacoesTable2 = _interopRequireDefault(_GravacoesTable);
 
-var _GravacoesFilters = __webpack_require__(305);
+var _GravacoesFilters = __webpack_require__(306);
 
 var _GravacoesFilters2 = _interopRequireDefault(_GravacoesFilters);
 
@@ -34343,7 +34430,7 @@ var GravacoesIndex = function (_React$Component) {
 module.exports = GravacoesIndex;
 
 /***/ }),
-/* 302 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34359,7 +34446,7 @@ var _Table = __webpack_require__(32);
 
 var _Table2 = _interopRequireDefault(_Table);
 
-var _ListenBtn = __webpack_require__(303);
+var _ListenBtn = __webpack_require__(304);
 
 var _ListenBtn2 = _interopRequireDefault(_ListenBtn);
 
@@ -34459,7 +34546,7 @@ var GravacoesTable = function (_React$Component) {
 module.exports = GravacoesTable;
 
 /***/ }),
-/* 303 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34471,7 +34558,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _AudioPlayer = __webpack_require__(304);
+var _AudioPlayer = __webpack_require__(305);
 
 var _AudioPlayer2 = _interopRequireDefault(_AudioPlayer);
 
@@ -34554,7 +34641,7 @@ var ListenBtn = function (_React$Component) {
 module.exports = ListenBtn;
 
 /***/ }),
-/* 304 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34642,7 +34729,7 @@ var AudioPlayer = function (_React$Component) {
 module.exports = AudioPlayer;
 
 /***/ }),
-/* 305 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34658,7 +34745,7 @@ var _FilterToggleBtn = __webpack_require__(117);
 
 var _FilterToggleBtn2 = _interopRequireDefault(_FilterToggleBtn);
 
-var _GravacoesFiltersForm = __webpack_require__(306);
+var _GravacoesFiltersForm = __webpack_require__(307);
 
 var _GravacoesFiltersForm2 = _interopRequireDefault(_GravacoesFiltersForm);
 
@@ -34695,7 +34782,7 @@ var GravacoesFilters = function (_React$Component) {
 module.exports = GravacoesFilters;
 
 /***/ }),
-/* 306 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

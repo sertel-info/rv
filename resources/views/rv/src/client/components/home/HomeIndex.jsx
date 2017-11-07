@@ -1,5 +1,6 @@
 import React from 'react';
 import PeerStatusList from './PeerStatusList.jsx';
+import QueuesStatusList from './QueuesStatusList.jsx';
 
 class HomeIndex extends React.Component {
 	
@@ -18,6 +19,9 @@ class HomeIndex extends React.Component {
 					</div>
 					<div className="col-lg-6">
 						<PeerStatusList />
+					</div>
+					<div className="col-lg-6">
+						<QueuesStatusList />
 					</div>
 				</div>);
 	}

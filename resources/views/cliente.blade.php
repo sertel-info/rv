@@ -14,7 +14,8 @@
 			client : {
 				get_cli_header_data : "{{route('cliente.get_header_data')}}",
 				unmorph : "{{route('cliente.unmorph')}}",
-				get_linhas_stats : "{{route('cliente.get_linhas_stats')}}"
+				get_linhas_stats : "{{route('cliente.get_linhas_stats')}}",
+				get_filas_stats : "{{route('cliente.get_filas_stats')}}"
 			},
 			extrato : {
 				transacoes_data : "{{route('cliente.extrato.trasacoes.get')}}",
