@@ -3,8 +3,9 @@
 namespace App\Http\Requests\Validators;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\ValidatedRequest;
 
-class SaudacoesValidator extends FormRequest
+class SaudacoesRequest extends ValidatedRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +29,7 @@ class SaudacoesValidator extends FormRequest
             'tipo_audio' => "required",
         ];
 
-        if($this->isMethod("post")){
+        if($this->get("s") === null){
             $rules['arquivo_audio'] = "required|file|mimes:wav";
         }
 

@@ -29,9 +29,9 @@ class Linhas extends Model
 																	 json_encode($value) : "[]";
 	}
 
-	public function ura(){
-		return $this->hasOne("App\Models\Uras", "linha_id", "id");
-	}
+	/*public function uras(){
+		return $this->hasMany("App\Models\Uras", "linha_id", "id");
+	}*/
 
 	public function getCodecsAttribute($value){
 		if($value == null){

@@ -44,7 +44,10 @@ class NotificacoesFlashUsers extends Model
             $query->addSelect('*');
         }
 
-    	$query->addSelect(DB::raw("DATE_FORMAT(created_at, '%d/%m/%Y %H:%i:%s') as formated_created_at"),DB::raw("DATE_FORMAT(updated_at, '%d/%m/%Y %H:%i:%s') as formated_updated_at")
-    		);
+    	$query->addSelect(DB::raw("DATE_FORMAT(created_at, '%d/%m/%Y %H:%i:%s') as formated_created_at"),
+                          DB::raw("DATE_FORMAT(updated_at, '%d/%m/%Y %H:%i:%s') as formated_updated_at"),
+                          DB::raw("DATE_FORMAT(created_at, '%d') as dia"),
+                          DB::raw("MONTHNAME(created_at) as mes_ext")
+            );
     }
 }

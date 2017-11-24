@@ -2,6 +2,7 @@
 
 Route::group(['middleware'=>'token'], function () {
     Route::get('/header/data', 'ClientesController@getHeaderData')->name("cliente.get_header_data");
+    Route::get('/uperms', 'ClientesController@getUserPerms')->name("cliente.get_user_perms");
     Route::get('/unmorph', '\App\Http\Controllers\Auth\AuthUserController@unmorph')->name("cliente.unmorph");
 
     Route::get('/get/linhas/stats', 'Datatables\LinhasStatsDatatables@anyData')->name("cliente.get_linhas_stats");

@@ -13,5 +13,6 @@ class Configuracoes extends Model
      						'atalho_cadeado',
      						'voice_mail_remetente_padrao',
      						'voice_mail_assunto_padrao',
-     						'voice_mail_mensagem_padrao'];
+     						'voice_mail_mensagem_padrao',
+     						'prefx_monitoramento'];
 }

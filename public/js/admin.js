@@ -1304,6 +1304,86 @@ module.exports = ReactComponentTreeHook;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.withRouter = exports.matchPath = exports.Switch = exports.StaticRouter = exports.Router = exports.Route = exports.Redirect = exports.Prompt = exports.NavLink = exports.MemoryRouter = exports.Link = exports.HashRouter = exports.BrowserRouter = undefined;
+
+var _BrowserRouter2 = __webpack_require__(231);
+
+var _BrowserRouter3 = _interopRequireDefault(_BrowserRouter2);
+
+var _HashRouter2 = __webpack_require__(234);
+
+var _HashRouter3 = _interopRequireDefault(_HashRouter2);
+
+var _Link2 = __webpack_require__(108);
+
+var _Link3 = _interopRequireDefault(_Link2);
+
+var _MemoryRouter2 = __webpack_require__(236);
+
+var _MemoryRouter3 = _interopRequireDefault(_MemoryRouter2);
+
+var _NavLink2 = __webpack_require__(239);
+
+var _NavLink3 = _interopRequireDefault(_NavLink2);
+
+var _Prompt2 = __webpack_require__(242);
+
+var _Prompt3 = _interopRequireDefault(_Prompt2);
+
+var _Redirect2 = __webpack_require__(244);
+
+var _Redirect3 = _interopRequireDefault(_Redirect2);
+
+var _Route2 = __webpack_require__(109);
+
+var _Route3 = _interopRequireDefault(_Route2);
+
+var _Router2 = __webpack_require__(67);
+
+var _Router3 = _interopRequireDefault(_Router2);
+
+var _StaticRouter2 = __webpack_require__(250);
+
+var _StaticRouter3 = _interopRequireDefault(_StaticRouter2);
+
+var _Switch2 = __webpack_require__(252);
+
+var _Switch3 = _interopRequireDefault(_Switch2);
+
+var _matchPath2 = __webpack_require__(254);
+
+var _matchPath3 = _interopRequireDefault(_matchPath2);
+
+var _withRouter2 = __webpack_require__(255);
+
+var _withRouter3 = _interopRequireDefault(_withRouter2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.BrowserRouter = _BrowserRouter3.default;
+exports.HashRouter = _HashRouter3.default;
+exports.Link = _Link3.default;
+exports.MemoryRouter = _MemoryRouter3.default;
+exports.NavLink = _NavLink3.default;
+exports.Prompt = _Prompt3.default;
+exports.Redirect = _Redirect3.default;
+exports.Route = _Route3.default;
+exports.Router = _Router3.default;
+exports.StaticRouter = _StaticRouter3.default;
+exports.Switch = _Switch3.default;
+exports.matchPath = _matchPath3.default;
+exports.withRouter = _withRouter3.default;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2016-present, Facebook, Inc.
  *
@@ -1328,7 +1408,7 @@ module.exports = { debugTool: debugTool };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1634,86 +1714,6 @@ module.exports = {
   extend: extend,
   trim: trim
 };
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.withRouter = exports.matchPath = exports.Switch = exports.StaticRouter = exports.Router = exports.Route = exports.Redirect = exports.Prompt = exports.NavLink = exports.MemoryRouter = exports.Link = exports.HashRouter = exports.BrowserRouter = undefined;
-
-var _BrowserRouter2 = __webpack_require__(231);
-
-var _BrowserRouter3 = _interopRequireDefault(_BrowserRouter2);
-
-var _HashRouter2 = __webpack_require__(234);
-
-var _HashRouter3 = _interopRequireDefault(_HashRouter2);
-
-var _Link2 = __webpack_require__(108);
-
-var _Link3 = _interopRequireDefault(_Link2);
-
-var _MemoryRouter2 = __webpack_require__(236);
-
-var _MemoryRouter3 = _interopRequireDefault(_MemoryRouter2);
-
-var _NavLink2 = __webpack_require__(239);
-
-var _NavLink3 = _interopRequireDefault(_NavLink2);
-
-var _Prompt2 = __webpack_require__(242);
-
-var _Prompt3 = _interopRequireDefault(_Prompt2);
-
-var _Redirect2 = __webpack_require__(244);
-
-var _Redirect3 = _interopRequireDefault(_Redirect2);
-
-var _Route2 = __webpack_require__(109);
-
-var _Route3 = _interopRequireDefault(_Route2);
-
-var _Router2 = __webpack_require__(67);
-
-var _Router3 = _interopRequireDefault(_Router2);
-
-var _StaticRouter2 = __webpack_require__(250);
-
-var _StaticRouter3 = _interopRequireDefault(_StaticRouter2);
-
-var _Switch2 = __webpack_require__(252);
-
-var _Switch3 = _interopRequireDefault(_Switch2);
-
-var _matchPath2 = __webpack_require__(254);
-
-var _matchPath3 = _interopRequireDefault(_matchPath2);
-
-var _withRouter2 = __webpack_require__(255);
-
-var _withRouter3 = _interopRequireDefault(_withRouter2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.BrowserRouter = _BrowserRouter3.default;
-exports.HashRouter = _HashRouter3.default;
-exports.Link = _Link3.default;
-exports.MemoryRouter = _MemoryRouter3.default;
-exports.NavLink = _NavLink3.default;
-exports.Prompt = _Prompt3.default;
-exports.Redirect = _Redirect3.default;
-exports.Route = _Route3.default;
-exports.Router = _Router3.default;
-exports.StaticRouter = _StaticRouter3.default;
-exports.Switch = _Switch3.default;
-exports.matchPath = _matchPath3.default;
-exports.withRouter = _withRouter3.default;
 
 /***/ }),
 /* 16 */
@@ -2158,7 +2158,7 @@ var FormInterface = function (_React$Component) {
 			}.bind(this)).catch(function (error) {
 
 				var response = error.response;
-
+				console.log(error);
 				if (response.status == 401) window.location = "/login";
 
 				if (response.status == 400) {
@@ -3199,7 +3199,7 @@ module.exports = ReactElement;
 
 
 var ReactRef = __webpack_require__(136);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 
 var warning = __webpack_require__(3);
 
@@ -5755,7 +5755,10 @@ var Table = function (_React$Component) {
 			if (this.props.refresh_time !== undefined) {
 				this.should_show_loading = false;
 				this.interval = window.setInterval(this.getRemoteData, 2000);
+				return;
 			}
+
+			this.getRemoteData();
 		}
 	}, {
 		key: 'componentWillUnmount',
@@ -5790,24 +5793,32 @@ var Table = function (_React$Component) {
 
 			params = Object.assign(params, this.remote_data);
 
+			var callback = !this.should_show_loading ? function () {} : function () {
+				$tbody.find(".loading-row").remove();
+				$tbody.find("tr").show();
+			};
 			(0, _axios2.default)({
 
 				method: "GET",
 				url: this.state.remote,
-				params: params
+				params: params,
+				timeout: this.props.req_timeout !== undefined ? this.props.req_timeout : 5000
 
 			}).then(function (response) {
 				var data = response.data;
-				var callback = !this.should_show_loading ? function () {} : function () {
-					$tbody.find(".loading-row").remove();
-					$tbody.find("tr").show();
-				};
+
 				this.setState({
 					total_records: data.total_records,
 					data: data.data,
 					page_count: Math.ceil(data.total_records / parseInt(this.state.page_size))
 				}, callback);
 			}.bind(this)).catch(function (error) {
+
+				this.setState({
+					data: [],
+					total_records: 0,
+					page_count: 0
+				}, callback);
 
 				console.log(error);
 			}.bind(this));
@@ -5858,7 +5869,30 @@ var Table = function (_React$Component) {
 				);
 			}.bind(this));
 
-			var th_class = this.props.th_class;
+			var th_class = this.props.th_class,
+			    paginate = this.page_count > 1 ? _react2.default.createElement(
+				'div',
+				{ className: '' },
+				_react2.default.createElement(_reactPaginate2.default, { pageCount: this.state.page_count,
+					pageRangeDisplayed: 3,
+					marginPagesDisplayed: 1,
+					previousLabel: '<',
+					nextLabel: '>',
+					breakLabel: _react2.default.createElement(
+						'a',
+						{ href: '', onClick: function onClick(event) {
+								return event.preventDefault();
+							} },
+						'...'
+					),
+					initialPage: 0,
+					containerClassName: 'pagination pull-right',
+					pageClassName: '',
+					activeClassName: 'active',
+					breakClassName: '',
+					onPageChange: this.handlePageChange
+				})
+			) : "";
 			return _react2.default.createElement(
 				'div',
 				null,
@@ -5885,29 +5919,6 @@ var Table = function (_React$Component) {
 						null,
 						rows
 					)
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: '' },
-					_react2.default.createElement(_reactPaginate2.default, { pageCount: this.state.page_count,
-						pageRangeDisplayed: 3,
-						marginPagesDisplayed: 1,
-						previousLabel: '<',
-						nextLabel: '>',
-						breakLabel: _react2.default.createElement(
-							'a',
-							{ href: '', onClick: function onClick(event) {
-									return event.preventDefault();
-								} },
-							'...'
-						),
-						initialPage: 0,
-						containerClassName: 'pagination pull-right',
-						pageClassName: '',
-						activeClassName: 'active',
-						breakClassName: '',
-						onPageChange: this.handlePageChange
-					})
 				)
 			);
 		}
@@ -6532,7 +6543,7 @@ module.exports = getEventModifierState;
 var DOMLazyTree = __webpack_require__(26);
 var Danger = __webpack_require__(147);
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(54);
 var setInnerHTML = __webpack_require__(38);
@@ -7282,7 +7293,7 @@ var _prodInvariant = __webpack_require__(4);
 
 var ReactCurrentOwner = __webpack_require__(18);
 var ReactInstanceMap = __webpack_require__(32);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 var ReactUpdates = __webpack_require__(17);
 
 var invariant = __webpack_require__(2);
@@ -8470,7 +8481,7 @@ exports.default = createTransitionManager;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 var normalizeHeaderName = __webpack_require__(262);
 
 var DEFAULT_CONTENT_TYPE = {
@@ -9492,7 +9503,7 @@ module.exports = CSSProperty;
 
 var DOMProperty = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 
 var quoteAttributeValueForBrowser = __webpack_require__(161);
 var warning = __webpack_require__(3);
@@ -11808,7 +11819,7 @@ var ReactDOMContainerInfo = __webpack_require__(217);
 var ReactDOMFeatureFlags = __webpack_require__(218);
 var ReactFeatureFlags = __webpack_require__(78);
 var ReactInstanceMap = __webpack_require__(32);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 var ReactMarkupChecksum = __webpack_require__(219);
 var ReactReconciler = __webpack_require__(24);
 var ReactUpdateQueue = __webpack_require__(62);
@@ -12987,7 +12998,7 @@ module.exports = function bind(fn, thisArg) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 var settle = __webpack_require__(263);
 var buildURL = __webpack_require__(265);
 var parseHeaders = __webpack_require__(266);
@@ -13454,7 +13465,6 @@ var PickList = function (_React$Component) {
 		var added = [],
 		    not_added = _this.props.options;
 
-		console.log("opts", _this.props.options);
 		if (_this.props.value !== undefined) {
 			added = _this.props.options.filter(function (el) {
 				return this.props.value.indexOf(el.value) !== -1;
@@ -13486,8 +13496,6 @@ var PickList = function (_React$Component) {
 		value: function componentWillReceiveProps(nextProps) {
 			var added = [],
 			    not_added = nextProps.options;
-
-			console.log('nextProps', nextProps);
 
 			if (nextProps.value !== undefined) {
 				added = nextProps.options.filter(function (el) {
@@ -13624,7 +13632,6 @@ var PickList = function (_React$Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			console.log("added", this.state.added);
 			return _react2.default.createElement(
 				'div',
 				{ className: 'col-lg-12' },
@@ -14606,7 +14613,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactInstrumentation = __webpack_require__(13);
+  var ReactInstrumentation = __webpack_require__(14);
   var ReactDOMUnknownPropertyHook = __webpack_require__(224);
   var ReactDOMNullInputValuePropHook = __webpack_require__(225);
   var ReactDOMInvalidARIAHook = __webpack_require__(226);
@@ -17209,7 +17216,7 @@ var ReactDOMInput = __webpack_require__(164);
 var ReactDOMOption = __webpack_require__(179);
 var ReactDOMSelect = __webpack_require__(94);
 var ReactDOMTextarea = __webpack_require__(180);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 var ReactMultiChild = __webpack_require__(181);
 var ReactServerRenderingTransaction = __webpack_require__(190);
 
@@ -18236,7 +18243,7 @@ module.exports = AutoFocusUtils;
 
 var CSSProperty = __webpack_require__(84);
 var ExecutionEnvironment = __webpack_require__(7);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 
 var camelizeStyleName = __webpack_require__(155);
 var dangerousStyleValue = __webpack_require__(157);
@@ -21260,7 +21267,7 @@ var _prodInvariant = __webpack_require__(4);
 
 var ReactComponentEnvironment = __webpack_require__(58);
 var ReactInstanceMap = __webpack_require__(32);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 
 var ReactCurrentOwner = __webpack_require__(18);
 var ReactReconciler = __webpack_require__(24);
@@ -21873,7 +21880,7 @@ var ReactComponentEnvironment = __webpack_require__(58);
 var ReactCurrentOwner = __webpack_require__(18);
 var ReactErrorUtils = __webpack_require__(48);
 var ReactInstanceMap = __webpack_require__(32);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 var ReactNodeTypes = __webpack_require__(96);
 var ReactReconciler = __webpack_require__(24);
 
@@ -23068,7 +23075,7 @@ var _assign = __webpack_require__(5);
 
 var PooledClass = __webpack_require__(22);
 var Transaction = __webpack_require__(36);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 var ReactServerUpdateQueue = __webpack_require__(191);
 
 /**
@@ -23983,7 +23990,7 @@ var CallbackQueue = __webpack_require__(77);
 var PooledClass = __webpack_require__(22);
 var ReactBrowserEventEmitter = __webpack_require__(40);
 var ReactInputSelection = __webpack_require__(101);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(14);
 var Transaction = __webpack_require__(36);
 var ReactUpdateQueue = __webpack_require__(62);
 
@@ -26319,6 +26326,10 @@ var _ContentRouter = __webpack_require__(278);
 
 var _ContentRouter2 = _interopRequireDefault(_ContentRouter);
 
+var _BreadcumbRouter = __webpack_require__(333);
+
+var _BreadcumbRouter2 = _interopRequireDefault(_BreadcumbRouter);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26347,10 +26358,10 @@ var Admin = function (_React$Component) {
 				_react2.default.createElement(
 					'div',
 					{ className: 'col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main' },
-					_react2.default.createElement(_BreadCumb2.default, null),
+					_react2.default.createElement(_BreadcumbRouter2.default, null),
 					_react2.default.createElement(
 						'div',
-						{ className: 'container-fluid', style: { marginTop: "10px" } },
+						{ className: 'container-fluid' },
 						_react2.default.createElement(_ContentRouter2.default, null)
 					)
 				)
@@ -26430,120 +26441,6 @@ var TopNavBar = function (_React$Component) {
 						_react2.default.createElement(
 							"ul",
 							{ className: "nav navbar-top-links navbar-right" },
-							_react2.default.createElement(
-								"li",
-								{ className: "dropdown" },
-								_react2.default.createElement(
-									"a",
-									{ className: "dropdown-toggle count-info", "data-toggle": "dropdown", href: "#" },
-									_react2.default.createElement("em", { className: "fa fa-envelope" }),
-									_react2.default.createElement(
-										"span",
-										{ className: "label label-danger" },
-										"15"
-									)
-								),
-								_react2.default.createElement(
-									"ul",
-									{ className: "dropdown-menu dropdown-messages" },
-									_react2.default.createElement(
-										"li",
-										null,
-										_react2.default.createElement(
-											"div",
-											{ className: "dropdown-messages-box" },
-											_react2.default.createElement("a", { href: "profile.html", className: "pull-left" }),
-											_react2.default.createElement(
-												"div",
-												{ className: "message-body" },
-												_react2.default.createElement(
-													"small",
-													{ className: "pull-right" },
-													"3 mins ago"
-												),
-												_react2.default.createElement(
-													"a",
-													{ href: "#" },
-													_react2.default.createElement(
-														"strong",
-														null,
-														"John Doe"
-													),
-													" commented on ",
-													_react2.default.createElement(
-														"strong",
-														null,
-														"your photo"
-													),
-													"."
-												),
-												_react2.default.createElement("br", null),
-												_react2.default.createElement(
-													"small",
-													{ className: "text-muted" },
-													"1:24 pm - 25/03/2015"
-												)
-											)
-										)
-									),
-									_react2.default.createElement("li", { className: "divider" }),
-									_react2.default.createElement(
-										"li",
-										null,
-										_react2.default.createElement(
-											"div",
-											{ className: "dropdown-messages-box" },
-											_react2.default.createElement("a", { href: "profile.html", className: "pull-left" }),
-											_react2.default.createElement(
-												"div",
-												{ className: "message-body" },
-												_react2.default.createElement(
-													"small",
-													{ className: "pull-right" },
-													"1 hour ago"
-												),
-												_react2.default.createElement(
-													"a",
-													{ href: "#" },
-													"New message from ",
-													_react2.default.createElement(
-														"strong",
-														null,
-														"Jane Doe"
-													),
-													"."
-												),
-												_react2.default.createElement("br", null),
-												_react2.default.createElement(
-													"small",
-													{ className: "text-muted" },
-													"12:27 pm - 25/03/2015"
-												)
-											)
-										)
-									),
-									_react2.default.createElement("li", { className: "divider" }),
-									_react2.default.createElement(
-										"li",
-										null,
-										_react2.default.createElement(
-											"div",
-											{ className: "all-button" },
-											_react2.default.createElement(
-												"a",
-												{ href: "#" },
-												_react2.default.createElement("em", { className: "fa fa-inbox" }),
-												" ",
-												_react2.default.createElement(
-													"strong",
-													null,
-													"All Messages"
-												)
-											)
-										)
-									)
-								)
-							),
 							_react2.default.createElement(
 								"li",
 								{ className: "dropdown" },
@@ -26658,7 +26555,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30355,7 +30252,7 @@ module.exports = UserHeader;
 "use strict";
 
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 var bind = __webpack_require__(112);
 var Axios = __webpack_require__(261);
 var defaults = __webpack_require__(71);
@@ -30443,7 +30340,7 @@ function isSlowBuffer(obj) {
 
 
 var defaults = __webpack_require__(71);
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 var InterceptorManager = __webpack_require__(270);
 var dispatchRequest = __webpack_require__(271);
 var isAbsoluteURL = __webpack_require__(273);
@@ -30534,7 +30431,7 @@ module.exports = Axios;
 "use strict";
 
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -30606,7 +30503,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 "use strict";
 
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 
 function encode(val) {
   return encodeURIComponent(val).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+').replace(/%5B/gi, '[').replace(/%5D/gi, ']');
@@ -30673,7 +30570,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 "use strict";
 
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 
 /**
  * Parse headers into an object
@@ -30718,7 +30615,7 @@ module.exports = function parseHeaders(headers) {
 "use strict";
 
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 
 module.exports = utils.isStandardBrowserEnv() ?
 
@@ -30828,7 +30725,7 @@ module.exports = btoa;
 "use strict";
 
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 
 module.exports = utils.isStandardBrowserEnv() ?
 
@@ -30887,7 +30784,7 @@ function nonStandardBrowserEnv() {
 "use strict";
 
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -30945,7 +30842,7 @@ module.exports = InterceptorManager;
 "use strict";
 
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 var transformData = __webpack_require__(272);
 var isCancel = __webpack_require__(115);
 var defaults = __webpack_require__(71);
@@ -31011,7 +30908,7 @@ module.exports = function dispatchRequest(config) {
 "use strict";
 
 
-var utils = __webpack_require__(14);
+var utils = __webpack_require__(15);
 
 /**
  * Transform the data for a request or a response
@@ -31248,7 +31145,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 var _HomeIndex = __webpack_require__(279);
 
@@ -31598,7 +31495,7 @@ var _LinhasTable = __webpack_require__(281);
 
 var _LinhasTable2 = _interopRequireDefault(_LinhasTable);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31622,22 +31519,39 @@ var LinhasIndex = function (_React$Component) {
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Linhas',
+					{ className: 'row' },
 					_react2.default.createElement(
-						_reactRouterDom.Link,
-						{ to: '/linhas/criar', className: 'btn btn-success pull-right' },
-						_react2.default.createElement('em', { className: 'fa fa-plus' }),
-						' Criar linha'
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Linhas'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_LinhasTable2.default, null)
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						'Linhas',
+						_react2.default.createElement(
+							_reactRouterDom.Link,
+							{ to: '/linhas/criar', className: 'btn btn-success pull-right' },
+							_react2.default.createElement('em', { className: 'fa fa-plus' }),
+							' Criar linha'
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_LinhasTable2.default, null)
+					)
 				)
 			);
 		}
@@ -31673,7 +31587,7 @@ var _DestroyBtn = __webpack_require__(45);
 
 var _DestroyBtn2 = _interopRequireDefault(_DestroyBtn);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32519,16 +32433,14 @@ var LinhasCreate = function (_FormInterface) {
 			ring_falso: 0,
 			nat: 0,
 			/* Facilidades */
-			gravacao: 0,
-			cadeado_pessoal: 0,
-			siga_me: 0,
-			caixa_postal: 0,
-			cadeado_pin: "",
 			pode_monitorar: 0,
 			monitoravel: 0,
-			num_siga_me: "",
-			cx_postal_pw: "",
-			cx_postal_email: "",
+			//cadeado_pessoal : 0,
+			//cadeado_pin : "",
+			//num_siga_me : "",
+			//cx_postal_pw : "",
+			//cx_postal_email : "",
+
 			/* Permissões */
 			ligacao_fixo: 0,
 			ligacao_internacional: 0,
@@ -32560,32 +32472,48 @@ var LinhasCreate = function (_FormInterface) {
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Criar Linha',
+					{ className: 'row' },
 					_react2.default.createElement(
-						'a',
-						{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-check' }),
-						' Finalizar '
-					),
-					_react2.default.createElement(
-						'a',
-						{ href: '#/linhas', className: 'btn btn-warning pull-right mr-2' },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
-						' Voltar '
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Criar Linha'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_LinhasForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
-				),
-				modal
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-check' }),
+							' Finalizar '
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: '#/linhas', className: 'btn btn-warning pull-right mr-2' },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
+							' Voltar '
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_LinhasForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
+					),
+					this.getModalToShow()
+				)
 			);
 		}
 	}]);
@@ -33264,207 +33192,51 @@ var LinhasFacilidadesFormFields = function (_React$Component) {
 
 			return _react2.default.createElement(
 				"div",
-				{ className: "col-lg-12" },
+				{ className: "col-lg-3" },
 				_react2.default.createElement(
 					"div",
-					{ className: "row col-lg-12" },
+					{ className: "form-group" },
 					_react2.default.createElement(
-						"div",
-						{ className: "form-group col-lg-3" },
-						_react2.default.createElement(
-							"label",
-							null,
-							"Grava\xE7\xE3o"
-						),
-						_react2.default.createElement(
-							"select",
-							{ name: "gravacao", onChange: onInputChange, value: valuesGetter("gravacao"), className: "form-control", placeholder: "" },
-							_react2.default.createElement(
-								"option",
-								{ value: "1" },
-								" Ativado "
-							),
-							_react2.default.createElement(
-								"option",
-								{ value: "0" },
-								" Desativado"
-							)
-						)
-					)
-				),
-				_react2.default.createElement(
-					"div",
-					{ className: "row col-lg-12" },
-					_react2.default.createElement(
-						"div",
-						{ className: "form-group col-lg-3" },
-						_react2.default.createElement(
-							"label",
-							null,
-							"Pode ser monitorado"
-						),
-						_react2.default.createElement(
-							"select",
-							{ name: "monitoravel", onChange: onInputChange, value: valuesGetter("monitoravel"), className: "form-control", placeholder: "" },
-							_react2.default.createElement(
-								"option",
-								{ value: "1" },
-								" Ativado "
-							),
-							_react2.default.createElement(
-								"option",
-								{ value: "0" },
-								" Desativado"
-							)
-						)
-					)
-				),
-				_react2.default.createElement(
-					"div",
-					{ className: "row col-lg-12" },
-					_react2.default.createElement(
-						"div",
-						{ className: "form-group col-lg-3" },
-						_react2.default.createElement(
-							"label",
-							null,
-							"Pode monitorar"
-						),
-						_react2.default.createElement(
-							"select",
-							{ name: "pode_monitorar", onChange: onInputChange, value: valuesGetter("pode_monitorar"), className: "form-control", placeholder: "" },
-							_react2.default.createElement(
-								"option",
-								{ value: "1" },
-								" Ativado "
-							),
-							_react2.default.createElement(
-								"option",
-								{ value: "0" },
-								" Desativado"
-							)
-						)
-					)
-				),
-				_react2.default.createElement(
-					"div",
-					{ className: "row col-lg-12" },
-					_react2.default.createElement(
-						"div",
-						{ className: "form-group col-lg-3" },
-						_react2.default.createElement(
-							"label",
-							null,
-							"Cadeado pessoal"
-						),
-						_react2.default.createElement(
-							"select",
-							{ name: "cadeado_pessoal", onChange: onInputChange, value: valuesGetter("cadeado_pessoal"), className: "form-control", placeholder: "" },
-							_react2.default.createElement(
-								"option",
-								{ value: "1" },
-								" Ativado "
-							),
-							_react2.default.createElement(
-								"option",
-								{ value: "0" },
-								" Desativado"
-							)
-						)
+						"label",
+						null,
+						"Pode ser monitorado"
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "form-group col-lg-4" },
+						"select",
+						{ name: "monitoravel", onChange: onInputChange, value: valuesGetter("monitoravel"), className: "form-control", placeholder: "" },
 						_react2.default.createElement(
-							"label",
-							null,
-							"PIN"
+							"option",
+							{ value: "1" },
+							" Ativado "
 						),
-						_react2.default.createElement("input", { name: "cadeado_pin", onChange: onInputChange, value: valuesGetter("cadeado_pin"), className: "form-control input-sm", placeholder: "" })
+						_react2.default.createElement(
+							"option",
+							{ value: "0" },
+							" Desativado"
+						)
 					)
 				),
 				_react2.default.createElement(
 					"div",
-					{ className: "row col-lg-12" },
+					{ className: "form-group" },
 					_react2.default.createElement(
-						"div",
-						{ className: "form-group col-lg-3" },
+						"label",
+						null,
+						"Pode monitorar"
+					),
+					_react2.default.createElement(
+						"select",
+						{ name: "pode_monitorar", onChange: onInputChange, value: valuesGetter("pode_monitorar"), className: "form-control", placeholder: "" },
 						_react2.default.createElement(
-							"label",
-							null,
-							"Caixa postal"
+							"option",
+							{ value: "1" },
+							" Ativado "
 						),
 						_react2.default.createElement(
-							"select",
-							{ name: "caixa_postal", onChange: onInputChange, value: valuesGetter("caixa_postal"), className: "form-control", placeholder: "" },
-							_react2.default.createElement(
-								"option",
-								{ value: "1" },
-								" Ativado "
-							),
-							_react2.default.createElement(
-								"option",
-								{ value: "0" },
-								" Desativado"
-							)
+							"option",
+							{ value: "0" },
+							" Desativado"
 						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "form-group col-lg-4" },
-						_react2.default.createElement(
-							"label",
-							null,
-							"Senha de acesso"
-						),
-						_react2.default.createElement("input", { name: "cx_postal_pw", onChange: onInputChange, value: valuesGetter("cx_postal_pw"), className: "form-control input-sm", placeholder: "", type: "password" })
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "form-group col-lg-4" },
-						_react2.default.createElement(
-							"label",
-							null,
-							"Email"
-						),
-						_react2.default.createElement("input", { name: "cx_postal_email", onChange: onInputChange, value: valuesGetter("cx_postal_email"), className: "form-control input-sm", placeholder: "", type: "password" })
-					)
-				),
-				_react2.default.createElement(
-					"div",
-					{ className: "row col-lg-12" },
-					_react2.default.createElement(
-						"div",
-						{ className: "form-group col-lg-3" },
-						_react2.default.createElement(
-							"label",
-							null,
-							"Siga-me"
-						),
-						_react2.default.createElement(
-							"select",
-							{ name: "siga_me", onChange: onInputChange, value: valuesGetter("siga_me"), className: "form-control", placeholder: "" },
-							_react2.default.createElement(
-								"option",
-								{ value: "1" },
-								" Ativado "
-							),
-							_react2.default.createElement(
-								"option",
-								{ value: "0" },
-								" Desativado"
-							)
-						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "form-group col-lg-4" },
-						_react2.default.createElement(
-							"label",
-							null,
-							"N\xFAmero"
-						),
-						_react2.default.createElement("input", { name: "num_siga_me", onChange: onInputChange, value: valuesGetter("num_siga_me"), className: "form-control input-sm", placeholder: "" })
 					)
 				)
 			);
@@ -33668,8 +33440,6 @@ module.exports = LinhasPermissoesFormFields;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
@@ -33734,16 +33504,13 @@ var LinhasEdit = function (_FormInterface) {
 			ring_falso: 0,
 			nat: 0,
 			/* Facilidades */
-			gravacao: 0,
-			cadeado_pessoal: 0,
-			siga_me: 0,
-			caixa_postal: 0,
-			cadeado_pin: "",
 			pode_monitorar: 0,
 			monitoravel: 0,
-			num_siga_me: "",
-			cx_postal_pw: "",
-			cx_postal_email: "",
+			//cadeado_pessoal : 0,
+			//cadeado_pin : "",
+			//num_siga_me : "",
+			//cx_postal_pw : "",
+			//cx_postal_email : "",
 			/* Permissões */
 			ligacao_fixo: 0,
 			ligacao_internacional: 0,
@@ -33851,6 +33618,11 @@ var LinhasEdit = function (_FormInterface) {
 
 				if (facilidades !== null) {
 					new_state = Object.assign(new_state, {
+						perm_gravacao: facilidades.perm_gravacao,
+						perm_siga_me: facilidades.perm_siga_me,
+						perm_cx_postal: facilidades.perm_cx_postal,
+						perm_at_automatico: facilidades.perm_at_automatico,
+						perm_cadeado: facilidades.perm_cadeado,
 						gravacao: facilidades.gravacao,
 						cadeado_pessoal: facilidades.cadeado_pessoal,
 						siga_me: facilidades.siga_me,
@@ -33882,37 +33654,51 @@ var LinhasEdit = function (_FormInterface) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var modal = "";
-			if (this.hasErrors() && _get(LinhasEdit.prototype.__proto__ || Object.getPrototypeOf(LinhasEdit.prototype), 'shouldShowModal', this).call(this)) modal = this.getErrorsModal();else if (this.hasSucceeded() && _get(LinhasEdit.prototype.__proto__ || Object.getPrototypeOf(LinhasEdit.prototype), 'shouldShowModal', this).call(this)) modal = this.getSuccessModal();
-
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Editar Linha',
+					{ className: 'row' },
 					_react2.default.createElement(
-						'a',
-						{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-check' }),
-						' Finalizar '
-					),
-					_react2.default.createElement(
-						'a',
-						{ href: '#/linhas', className: 'btn btn-warning pull-right mr-2' },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
-						' Voltar '
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Editar Linha'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_LinhasForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
-				),
-				modal
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						'Editar Linha',
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-check' }),
+							' Finalizar '
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: '#/linhas', className: 'btn btn-warning pull-right mr-2' },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
+							' Voltar '
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_LinhasForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
+					),
+					this.getModalToShow()
+				)
 			);
 		}
 	}]);
@@ -33939,7 +33725,7 @@ var _AssinantesTable = __webpack_require__(299);
 
 var _AssinantesTable2 = _interopRequireDefault(_AssinantesTable);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33963,22 +33749,39 @@ var AssinantesIndex = function (_React$Component) {
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Assinantes',
+					{ className: 'row' },
 					_react2.default.createElement(
-						_reactRouterDom.Link,
-						{ to: '/assinantes/criar', className: 'btn btn-success pull-right' },
-						_react2.default.createElement('em', { className: 'fa fa-plus' }),
-						' Criar assinante '
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Assinantes'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_AssinantesTable2.default, null)
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						'Assinantes',
+						_react2.default.createElement(
+							_reactRouterDom.Link,
+							{ to: '/assinantes/criar', className: 'btn btn-success pull-right' },
+							_react2.default.createElement('em', { className: 'fa fa-plus' }),
+							' Criar assinante '
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_AssinantesTable2.default, null)
+					)
 				)
 			);
 		}
@@ -34014,7 +33817,7 @@ var _DestroyBtn = __webpack_require__(45);
 
 var _DestroyBtn2 = _interopRequireDefault(_DestroyBtn);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 var _LogarBtn = __webpack_require__(300);
 
@@ -34873,13 +34676,17 @@ var AssinantesCreate = function (_FormInterface) {
 			fax: "",
 			celular: "",
 			/*facilidades*/
-			gravacoes: "",
-			correio_voz: "",
-			grupos_atendimento: "",
-			fila: "",
-			saudacoes: "",
-			ura: "",
-			acesso_extrato: "",
+			gravacoes: 0,
+			correio_voz: 0,
+			grupos_atendimento: 0,
+			fila: 0,
+			saudacoes: 0,
+			ura: 0,
+			acesso_extrato: 1,
+			acesso_cx_postal: 1,
+			acesso_cadeado: 1,
+			acesso_siga_me: 1,
+			acesso_at_automatico: 1,
 			/*financeiro*/
 			dias_bloqueio: "",
 			dia_vencimento: "",
@@ -34918,32 +34725,48 @@ var AssinantesCreate = function (_FormInterface) {
 
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Criar Assinante',
+					{ className: 'row' },
 					_react2.default.createElement(
-						'a',
-						{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-check' }),
-						' Finalizar '
-					),
-					_react2.default.createElement(
-						'a',
-						{ href: '#/assinantes', className: 'btn btn-warning pull-right mr-2' },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
-						' Voltar '
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Criar Assinante'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_AssinantesForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
-				),
-				modal
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-check' }),
+							' Finalizar '
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: '#/assinantes', className: 'btn btn-warning pull-right mr-2' },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
+							' Voltar '
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_AssinantesForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
+					),
+					modal
+				)
 			);
 		}
 	}]);
@@ -35655,11 +35478,103 @@ var AssinantesFacilidadesFormFields = function (_React$Component) {
 					_react2.default.createElement(
 						"label",
 						null,
-						"Acesso ao extrato"
+						"Acesso ao Extrato"
 					),
 					_react2.default.createElement(
 						"select",
 						{ onChange: onchange, value: valuesGetter("acesso_extrato"), className: "form-control", name: "acesso_extrato" },
+						_react2.default.createElement(
+							"option",
+							{ value: "1" },
+							" Ativado "
+						),
+						_react2.default.createElement(
+							"option",
+							{ value: "0" },
+							" Desativado "
+						)
+					)
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "form-group" },
+					_react2.default.createElement(
+						"label",
+						null,
+						"Acesso ao Cadeado pessoal"
+					),
+					_react2.default.createElement(
+						"select",
+						{ onChange: onchange, value: valuesGetter("acesso_cadeado"), className: "form-control", name: "acesso_cadeado" },
+						_react2.default.createElement(
+							"option",
+							{ value: "1" },
+							" Ativado "
+						),
+						_react2.default.createElement(
+							"option",
+							{ value: "0" },
+							" Desativado "
+						)
+					)
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "form-group" },
+					_react2.default.createElement(
+						"label",
+						null,
+						"Acesso a Caixa Postal"
+					),
+					_react2.default.createElement(
+						"select",
+						{ onChange: onchange, value: valuesGetter("acesso_cx_postal"), className: "form-control", name: "acesso_cx_postal" },
+						_react2.default.createElement(
+							"option",
+							{ value: "1" },
+							" Ativado "
+						),
+						_react2.default.createElement(
+							"option",
+							{ value: "0" },
+							" Desativado "
+						)
+					)
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "form-group" },
+					_react2.default.createElement(
+						"label",
+						null,
+						"Acesso a Siga-me "
+					),
+					_react2.default.createElement(
+						"select",
+						{ onChange: onchange, value: valuesGetter("acesso_siga_me"), className: "form-control", name: "acesso_siga_me" },
+						_react2.default.createElement(
+							"option",
+							{ value: "1" },
+							" Ativado "
+						),
+						_react2.default.createElement(
+							"option",
+							{ value: "0" },
+							" Desativado "
+						)
+					)
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "form-group" },
+					_react2.default.createElement(
+						"label",
+						null,
+						"Acesso a Atendimento autom\xE1tico"
+					),
+					_react2.default.createElement(
+						"select",
+						{ onChange: onchange, value: valuesGetter("acesso_at_automatico"), className: "form-control", name: "acesso_at_automatico" },
 						_react2.default.createElement(
 							"option",
 							{ value: "1" },
@@ -35850,13 +35765,17 @@ var AssinantesEdit = function (_FormInterface) {
 			fax: "",
 			celular: "",
 			/*facilidades*/
-			gravacoes: "",
-			correio_voz: "",
-			grupos_atendimento: "",
-			fila: "",
-			saudacoes: "",
-			ura: "",
-			acesso_extrato: "",
+			gravacoes: 0,
+			correio_voz: 0,
+			grupos_atendimento: 0,
+			fila: 0,
+			saudacoes: 0,
+			ura: 0,
+			acesso_extrato: 1,
+			acesso_cx_postal: 1,
+			acesso_siga_me: 1,
+			acesso_at_automatico: 1,
+			acesso_cadeado: 1,
 			/*financeiro*/
 			dias_bloqueio: "",
 			dia_vencimento: "",
@@ -35962,7 +35881,11 @@ var AssinantesEdit = function (_FormInterface) {
 						fila: facilidades.fila,
 						saudacoes: facilidades.saudacoes,
 						ura: facilidades.ura,
-						acesso_extrato: facilidades.acesso_extrato
+						acesso_extrato: facilidades.acesso_extrato,
+						acesso_cx_postal: facilidades.acesso_cx_postal,
+						acesso_siga_me: facilidades.acesso_siga_me,
+						acesso_at_automatico: facilidades.acesso_at_automatico,
+						acesso_cadeado: facilidades.acesso_cadeado
 					});
 				}
 
@@ -36004,32 +35927,48 @@ var AssinantesEdit = function (_FormInterface) {
 
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Editar Assinante',
+					{ className: 'row' },
 					_react2.default.createElement(
-						'a',
-						{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-check' }),
-						' Finalizar '
-					),
-					_react2.default.createElement(
-						'a',
-						{ href: '#/assinantes', className: 'btn btn-warning pull-right mr-2' },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
-						' Voltar '
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Editar Assinante'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_AssinantesForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
-				),
-				modal
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-check' }),
+							' Finalizar '
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: '#/assinantes', className: 'btn btn-warning pull-right mr-2' },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
+							' Voltar '
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_AssinantesForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
+					),
+					modal
+				)
 			);
 		}
 	}]);
@@ -36047,8 +35986,6 @@ module.exports = AssinantesEdit;
 
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _react = __webpack_require__(1);
 
@@ -36115,37 +36052,50 @@ var PlanosCreate = function (_FormInterface) {
 	_createClass(PlanosCreate, [{
 		key: 'render',
 		value: function render() {
-			var modal = "";
-			if (this.hasErrors() && _get(PlanosCreate.prototype.__proto__ || Object.getPrototypeOf(PlanosCreate.prototype), 'shouldShowModal', this).call(this)) modal = this.getErrorsModal();else if (this.hasSucceeded() && _get(PlanosCreate.prototype.__proto__ || Object.getPrototypeOf(PlanosCreate.prototype), 'shouldShowModal', this).call(this)) modal = this.getSuccessModal();
-
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Criar Plano',
+					{ className: 'row' },
 					_react2.default.createElement(
-						'a',
-						{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-check' }),
-						' Finalizar '
-					),
-					_react2.default.createElement(
-						'a',
-						{ href: '#/linhas', className: 'btn btn-warning pull-right mr-2' },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
-						' Voltar '
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Criar Plano'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_PlanosForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
-				),
-				modal
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-check' }),
+							' Finalizar '
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: '#/planos', className: 'btn btn-warning pull-right mr-2' },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
+							' Voltar '
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_PlanosForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
+					),
+					this.getModalToShow()
+				)
 			);
 		}
 	}]);
@@ -36342,7 +36292,7 @@ var _PlanosTable = __webpack_require__(319);
 
 var _PlanosTable2 = _interopRequireDefault(_PlanosTable);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36366,22 +36316,39 @@ var PlanosIndex = function (_React$Component) {
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Planos',
+					{ className: 'row' },
 					_react2.default.createElement(
-						_reactRouterDom.Link,
-						{ to: '/planos/criar', className: 'btn btn-success pull-right' },
-						_react2.default.createElement('em', { className: 'fa fa-plus' }),
-						' Criar plano'
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Planos'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_PlanosTable2.default, null)
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						'Planos',
+						_react2.default.createElement(
+							_reactRouterDom.Link,
+							{ to: '/planos/criar', className: 'btn btn-success pull-right' },
+							_react2.default.createElement('em', { className: 'fa fa-plus' }),
+							' Criar plano'
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_PlanosTable2.default, null)
+					)
 				)
 			);
 		}
@@ -36413,7 +36380,7 @@ var _DestroyBtn = __webpack_require__(45);
 
 var _DestroyBtn2 = _interopRequireDefault(_DestroyBtn);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36488,8 +36455,6 @@ module.exports = PlanosTable;
 
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _react = __webpack_require__(1);
 
@@ -36652,37 +36617,50 @@ var PlanosEdit = function (_FormInterface) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var modal = "";
-			if (this.hasErrors() && _get(PlanosEdit.prototype.__proto__ || Object.getPrototypeOf(PlanosEdit.prototype), 'shouldShowModal', this).call(this)) modal = this.getErrorsModal();else if (this.hasSucceeded() && _get(PlanosEdit.prototype.__proto__ || Object.getPrototypeOf(PlanosEdit.prototype), 'shouldShowModal', this).call(this)) modal = this.getSuccessModal();
-
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Atualizar Plano',
+					{ className: 'row' },
 					_react2.default.createElement(
-						'a',
-						{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-check' }),
-						' Finalizar '
-					),
-					_react2.default.createElement(
-						'a',
-						{ href: '#/planos', className: 'btn btn-warning pull-right mr-2' },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
-						' Voltar '
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Editar Plano'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_PlanosForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
-				),
-				modal
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-check' }),
+							' Finalizar '
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: '#/planos', className: 'btn btn-warning pull-right mr-2' },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
+							' Voltar '
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_PlanosForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
+					),
+					this.getModalToShow()
+				)
 			);
 		}
 	}]);
@@ -37096,8 +37074,6 @@ module.exports = CreditosIndex;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
@@ -37110,7 +37086,7 @@ var _FormInterface2 = __webpack_require__(19);
 
 var _FormInterface3 = _interopRequireDefault(_FormInterface2);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 var _axios = __webpack_require__(8);
 
@@ -37138,7 +37114,8 @@ var ConfiguracoesIndex = function (_FormInterface) {
 			atalho_cadeado: "",
 			voice_mail_remetente_padrao: "",
 			voice_mail_assunto_padrao: "",
-			voice_mail_mensagem_padrao: ""
+			voice_mail_mensagem_padrao: "",
+			prefx_monitoramento: ""
 		};
 
 		_this.route = _ROUTES_.configuracoes.update;
@@ -37176,7 +37153,8 @@ var ConfiguracoesIndex = function (_FormInterface) {
 					atalho_cadeado: config.atalho_cadeado,
 					voice_mail_remetente_padrao: config.voice_mail_remetente_padrao,
 					voice_mail_assunto_padrao: config.voice_mail_assunto_padrao,
-					voice_mail_mensagem_padrao: config.voice_mail_mensagem_padrao
+					voice_mail_mensagem_padrao: config.voice_mail_mensagem_padrao,
+					prefx_monitoramento: config.prefx_monitoramento
 				});
 			}.bind(this)).catch(function (error) {
 
@@ -37186,29 +37164,44 @@ var ConfiguracoesIndex = function (_FormInterface) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var modal = "";
-			if (this.hasErrors() && _get(ConfiguracoesIndex.prototype.__proto__ || Object.getPrototypeOf(ConfiguracoesIndex.prototype), 'shouldShowModal', this).call(this)) modal = this.getErrorsModal();else if (this.hasSucceeded() && _get(ConfiguracoesIndex.prototype.__proto__ || Object.getPrototypeOf(ConfiguracoesIndex.prototype), 'shouldShowModal', this).call(this)) modal = this.getSuccessModal();
 
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Configura\xE7\xF5es',
+					{ className: 'row' },
 					_react2.default.createElement(
-						'a',
-						{ href: '#', onClick: this.handleFormSubmit, className: 'btn btn-success pull-right' },
-						_react2.default.createElement('em', { className: 'fa fa-check' }),
-						' Finalizar '
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Configura\xE7\xF5es'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_ConfiguracoesForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
-				),
-				modal
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						'Configura\xE7\xF5es',
+						_react2.default.createElement(
+							'a',
+							{ href: '#', onClick: this.handleFormSubmit, className: 'btn btn-success pull-right' },
+							_react2.default.createElement('em', { className: 'fa fa-check' }),
+							' Finalizar '
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_ConfiguracoesForm2.default, { onInputChange: this.handleInputChange, valuesGetter: this.getValueOf })
+					),
+					this.getModalToShow()
+				)
 			);
 		}
 	}]);
@@ -37344,6 +37337,16 @@ var ConfigGeralFormFields = function (_React$Component) {
 						"Atalho Para Cadeado"
 					),
 					_react2.default.createElement("input", { onChange: onChange, value: valuesGetter("atalho_cadeado"), type: "text", className: "form-control input-sm", name: "atalho_cadeado" })
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "form-group" },
+					_react2.default.createElement(
+						"label",
+						null,
+						"Prefixo para monitoramento"
+					),
+					_react2.default.createElement("input", { onChange: onChange, value: valuesGetter("prefx_monitoramento"), type: "text", className: "form-control input-sm", name: "prefx_monitoramento" })
 				)
 			);
 		}
@@ -37449,7 +37452,7 @@ var _NotificacoesTable = __webpack_require__(328);
 
 var _NotificacoesTable2 = _interopRequireDefault(_NotificacoesTable);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37473,22 +37476,39 @@ var NotificacoesIndex = function (_React$Component) {
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Notifica\xE7\xF5es',
+					{ className: 'row' },
 					_react2.default.createElement(
-						_reactRouterDom.Link,
-						{ to: '/notificacoes/criar', className: 'btn btn-success pull-right' },
-						_react2.default.createElement('em', { className: 'fa fa-plus' }),
-						' Criar notifica\xE7\xE3o'
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Notifica\xE7\xF5es'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_NotificacoesTable2.default, null)
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						'Notifica\xE7\xF5es',
+						_react2.default.createElement(
+							_reactRouterDom.Link,
+							{ to: '/notificacoes/criar', className: 'btn btn-success pull-right' },
+							_react2.default.createElement('em', { className: 'fa fa-plus' }),
+							' Criar notifica\xE7\xE3o'
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_NotificacoesTable2.default, null)
+					)
 				)
 			);
 		}
@@ -37524,7 +37544,7 @@ var _DestroyBtn = __webpack_require__(45);
 
 var _DestroyBtn2 = _interopRequireDefault(_DestroyBtn);
 
-var _reactRouterDom = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37605,8 +37625,6 @@ module.exports = NotificacoesTable;
 
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _react = __webpack_require__(1);
 
@@ -37709,37 +37727,51 @@ var NotificacoesEdit = function (_FormInterface) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var modal = "";
-			if (this.hasErrors() && _get(NotificacoesEdit.prototype.__proto__ || Object.getPrototypeOf(NotificacoesEdit.prototype), 'shouldShowModal', this).call(this)) modal = this.getErrorsModal();else if (this.hasSucceeded() && _get(NotificacoesEdit.prototype.__proto__ || Object.getPrototypeOf(NotificacoesEdit.prototype), 'shouldShowModal', this).call(this)) modal = this.getSuccessModal();
 
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Editar Notifica\xE7\xE3o',
+					{ className: 'row' },
 					_react2.default.createElement(
-						'a',
-						{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-check' }),
-						' Finalizar '
-					),
-					_react2.default.createElement(
-						'a',
-						{ href: '#/notificacoes', className: 'btn btn-warning pull-right mr-2' },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
-						' Voltar '
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Editar Notifica\xE7\xE3o'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_NotificacoesForm2.default, { valuesGetter: this.getValueOf, onInputChange: this.handleInputChange })
-				),
-				modal
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-check' }),
+							' Finalizar '
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: '#/notificacoes', className: 'btn btn-warning pull-right mr-2' },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
+							' Voltar '
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_NotificacoesForm2.default, { valuesGetter: this.getValueOf, onInputChange: this.handleInputChange })
+					),
+					this.getModalToShow()
+				)
 			);
 		}
 	}]);
@@ -38011,8 +38043,6 @@ module.exports = NotifEmailFormFields;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
@@ -38074,37 +38104,50 @@ var NotificacoesCreate = function (_FormInterface) {
 	_createClass(NotificacoesCreate, [{
 		key: 'render',
 		value: function render() {
-			var modal = "";
-			if (this.hasErrors() && _get(NotificacoesCreate.prototype.__proto__ || Object.getPrototypeOf(NotificacoesCreate.prototype), 'shouldShowModal', this).call(this)) modal = this.getErrorsModal();else if (this.hasSucceeded() && _get(NotificacoesCreate.prototype.__proto__ || Object.getPrototypeOf(NotificacoesCreate.prototype), 'shouldShowModal', this).call(this)) modal = this.getSuccessModal();
-
 			return _react2.default.createElement(
 				'div',
-				{ className: 'panel panel-default' },
+				null,
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-heading' },
-					'Criar Notifica\xE7\xE3o',
+					{ className: 'row' },
 					_react2.default.createElement(
-						'a',
-						{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-check' }),
-						' Finalizar '
-					),
-					_react2.default.createElement(
-						'a',
-						{ href: '#/notificacoes', className: 'btn btn-warning pull-right mr-2' },
-						' ',
-						_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
-						' Voltar '
+						'div',
+						{ className: 'col-lg-12' },
+						_react2.default.createElement(
+							'h2',
+							{ className: 'page-header' },
+							'Criar Notifica\xE7\xE3o'
+						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'panel-body' },
-					_react2.default.createElement(_NotificacoesForm2.default, { valuesGetter: this.getValueOf, onInputChange: this.handleInputChange })
-				),
-				modal
+					{ className: 'panel panel-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-heading' },
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'btn btn-success pull-right', onClick: this.handleFormSubmit },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-check' }),
+							' Finalizar '
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: '#/notificacoes', className: 'btn btn-warning pull-right mr-2' },
+							' ',
+							_react2.default.createElement('i', { className: 'fa fa-arrow-left' }),
+							' Voltar '
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'panel-body' },
+						_react2.default.createElement(_NotificacoesForm2.default, { valuesGetter: this.getValueOf, onInputChange: this.handleInputChange })
+					),
+					this.getModalToShow()
+				)
 			);
 		}
 	}]);
@@ -38113,6 +38156,210 @@ var NotificacoesCreate = function (_FormInterface) {
 }(_FormInterface3.default);
 
 module.exports = NotificacoesCreate;
+
+/***/ }),
+/* 333 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(13);
+
+var _Breadcumb = __webpack_require__(334);
+
+var _Breadcumb2 = _interopRequireDefault(_Breadcumb);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BreadcumbRouter = function (_React$Component) {
+	_inherits(BreadcumbRouter, _React$Component);
+
+	function BreadcumbRouter(props) {
+		_classCallCheck(this, BreadcumbRouter);
+
+		return _possibleConstructorReturn(this, (BreadcumbRouter.__proto__ || Object.getPrototypeOf(BreadcumbRouter)).call(this, props));
+	}
+
+	_createClass(BreadcumbRouter, [{
+		key: 'render',
+		value: function render() {
+			var paths = {
+				linhas: [],
+				linhas_criar: [{ name: "Linhas", route: "/linhas" }],
+				linhas_editar: [{ name: "Linhas", route: "/linhas" }],
+				assinantes: [],
+				assinantes_criar: [{ name: "Assinantes", route: "/assinantes" }],
+				assinantes_editar: [{ name: "Assinantes", route: "/assinantes" }],
+				assinantes_notificacoes_criar: [{ name: "Assinantes", route: "/assinantes" }],
+				assinantes_creditos: [{ name: "Assinantes", route: "/assinantes" }],
+				planos: [],
+				planos_criar: [{ name: "Planos", route: "/planos" }],
+				planos_editar: [{ name: "Planos", route: "/planos" }],
+				configuracoes: [],
+				notificacoes: [],
+				notificacoes_criar: [{ name: "Notificações", route: "/notificacoes" }],
+				notificacoes_editar: [{ name: "Notificações", route: "/notificacoes" }]
+
+			};
+
+			return _react2.default.createElement(
+				_reactRouterDom.HashRouter,
+				null,
+				_react2.default.createElement(
+					_reactRouterDom.Switch,
+					null,
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { active: 'In\xEDcio' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/linhas', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.linhas, active: 'Linhas' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/linhas/criar', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.linhas_criar, active: 'Criar Linha' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/linhas/editar', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.linhas_editar, active: 'Editar Linha' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/assinantes', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.assinantes, active: 'Assinantes' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/assinantes/criar', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.assinantes_criar, active: 'Criar Assinante' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/assinantes/editar', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.assinantes_editar, active: 'Editar Assinante' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/assinantes/notificacoes/criar', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.assinantes_notificacoes_criar, active: 'Criar notifica\xE7\xE3o' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/assinantes/creditos', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.assinantes_creditos, active: 'Atualizar Cr\xE9ditos do Assinante' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/planos', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.planos, active: 'Planos' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/planos/criar', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.planos_criar, active: 'Criar Planos' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/planos/editar', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.planos_editar, active: 'Editar Planos' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/configuracoes', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.configuracoes, active: 'Configura\xE7\xF5es' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/notificacoes', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.notificacoes, active: 'Notifica\xE7\xF5es' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/notificacoes/criar', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.notificacoes_criar, active: 'Criar Notifica\xE7\xE3o' });
+						} }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/notificacoes/editar', children: function children() {
+							return _react2.default.createElement(_Breadcumb2.default, { path: paths.notificacoes_editar, active: 'Editar Notifica\xE7\xE3o' });
+						} })
+				)
+			);
+		}
+	}]);
+
+	return BreadcumbRouter;
+}(_react2.default.Component);
+
+module.exports = BreadcumbRouter;
+
+/***/ }),
+/* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(13);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BreadCumb = function (_React$Component) {
+	_inherits(BreadCumb, _React$Component);
+
+	function BreadCumb(props) {
+		_classCallCheck(this, BreadCumb);
+
+		return _possibleConstructorReturn(this, (BreadCumb.__proto__ || Object.getPrototypeOf(BreadCumb)).call(this, props));
+	}
+
+	_createClass(BreadCumb, [{
+		key: 'render',
+		value: function render() {
+			var path = this.props.path === undefined ? [] : this.props.path;
+
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement(
+						'ol',
+						{ className: 'breadcrumb' },
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: '#' },
+								_react2.default.createElement('em', { className: 'fa fa-home' })
+							)
+						),
+						path.map(function (el) {
+							return _react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									_reactRouterDom.Link,
+									{ to: el.route },
+									el.name
+								)
+							);
+						}),
+						_react2.default.createElement(
+							'li',
+							{ className: 'active' },
+							this.props.active
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return BreadCumb;
+}(_react2.default.Component);
+
+module.exports = BreadCumb;
 
 /***/ })
 /******/ ]);

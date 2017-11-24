@@ -6,11 +6,22 @@ class AudioPlayer extends React.Component {
 	constructor(props){
 		super(props);
 
-		/*this.state = {
-			loading : true,
-			blob : ""
-		}*/
+		this.state = {
+			src : this.props.src
+		}
 	}
+
+	componentWillReceiveProps(nextProps){
+		this.setState({
+			src: nextProps.src
+		});
+	}
+
+	componentDidUpdate(){
+		console.log('update');
+		this.audio_ref.load();
+	}
+
 
 	/*getBlobURL(data){
 		let blob = new Blob([data], {type: "audio/x-wav"});
@@ -50,7 +61,8 @@ class AudioPlayer extends React.Component {
 	}*/
 
 	render(){
-		return (<audio controls type="audio/x-wav" src={this.props.src} className={this.props.className}>
+		console.log('render');
+		return (<audio ref={(el)=>{this.audio_ref = el}} controls type="audio/x-wav" src={this.state.src} className={this.props.className}>
 					Seu Navegador não suporta este tipo de reprodução de áudio
 				</audio>);
 	}

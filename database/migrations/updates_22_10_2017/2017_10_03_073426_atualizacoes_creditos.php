@@ -13,7 +13,10 @@ class AtualizacoesCreditos extends Migration
      */
     public function up()
     {
-        
+        Schema::table('atualizacoes_creditos', function($table)
+        {
+            $table->decimal('valor_anterior', 10, 2);
+        });
     }
 
     /**

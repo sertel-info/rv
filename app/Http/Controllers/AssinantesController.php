@@ -32,6 +32,7 @@ class AssinantesController extends Controller
         $contato = new \App\Models\Assinantes\DadosContatoAssinante($dados['contato']);
         $financeiro = new \App\Models\Assinantes\DadosFinanceiroAssinante($dados['financeiro']);
         $facilidades = new \App\Models\Assinantes\DadosFacilidadesAssinante($dados['facilidades']);
+        
 
         $acesso = new \App\User($dados['acesso']);
 
@@ -44,10 +45,12 @@ class AssinantesController extends Controller
             $assinante->facilidades()->save($facilidades);
             $assinante->acesso()->save($acesso);
             
+
             DB::commit();
             return response('', 200);
         } catch(\Exception $e){
             DB::rollback();
+            dd($e);
             return response('', 500);
         }
 
@@ -78,22 +81,19 @@ class AssinantesController extends Controller
 
             $assinante->update($dados['basicos']);
             
-            if($assinante->contato !== null)
-                $assinante->contato->update($dados['contato']);
+            $assinante->contato()->updateOrCreate(['assinante_id'=>$assinante->id],$dados['contato']);
             
-            if($assinante->financeiro !== null)
-                $assinante->financeiro->update($dados['financeiro']);
+            $assinante->financeiro()->updateOrCreate(['assinante_id'=>$assinante->id],$dados['financeiro']);
 
-            if($assinante->facilidades !== null)
-                $assinante->facilidades->update($dados['facilidades']);
+            $assinante->facilidades()->updateOrCreate(['assinante_id'=>$assinante->id],$dados['facilidades']);
 
-            if($assinante->acesso !== null)
-                $assinante->acesso->update($dados['acesso']);
+            $assinante->acesso()->updateOrCreate(['assinante_id'=>$assinante->id],$dados['acesso']);
 
             DB::commit();
             return response('', 200);
         } catch(\Exception $e){
             DB::rollback();
+            dd($e);
             return response('', 400);
         }
       
@@ -179,12 +179,16 @@ class AssinantesController extends Controller
                                             "dia_vencimento");
 
         $facilidades = $request->only("correio_voz",
-                                        "grupos_atendimento",
-                                        "fila",
-                                        "ura",
-                                        "gravacoes",
-                                        "saudacoes",
-                                        "acesso_extrato");
+                                      "grupos_atendimento",
+                                      "fila",
+                                      "ura",
+                                      "gravacoes",
+                                      "saudacoes",
+                                      "acesso_extrato",
+                                      "acesso_cx_postal",
+                                      "acesso_siga_me",
+                                      "acesso_cadeado",
+                                      "acesso_at_automatico");
 
         $dados_acesso = array("name"=>$request->nome_acesso,
                               "email"=>$request->email_acesso,

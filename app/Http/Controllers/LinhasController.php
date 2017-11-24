@@ -88,32 +88,35 @@ class LinhasController extends Controller
                                           ->with("facilidades")
                                           ->with("permissoes")
                                           ->first();
-
-        //$assinante = $linha->assinante;
-       /*if($dados['facilidades']['atend_automatico_tipo'] == 'ura'){
-            if(isset($assinante->ura->id))
-                $dados['facilidades']['atend_automatico_destino'] = md5($assinante->ura->id);
-            else
-                $dados['facilidades']['atend_automatico_destino'] = null;
-        }*/
-
         try{
             DB::beginTransaction();
       
             $linha->update($dados['basicos']);
-            $linha->autenticacao->update($dados['autenticacao']);
-            $linha->configuracoes->update($dados['configuracoes']);
-            $linha->facilidades->update($dados['facilidades']);
-            $linha->permissoes->update($dados['permissoes']);
-            $linha->did->update($dados['did']);
+            
+            $linha->autenticacao()->updateOrCreate(['linha_id'=>$linha->id], 
+                                                    $dados['autenticacao']);
+           
+            $linha->configuracoes()->updateOrCreate(['linha_id'=>$linha->id],
+                                                    $dados['configuracoes']);
+           
+            $linha->facilidades()->updateOrCreate(['linha_id'=>$linha->id], 
+                                                  $dados['facilidades']);
 
-            event(new ItensModificados());
+            $linha->permissoes()->updateOrCreate(['linha_id'=>$linha->id],
+                                                  $dados['permissoes']);
+          
+            $linha->did()->updateOrCreate(['linha_id'=>$linha->id],
+                                           $dados['did']);
+
+
+            //event(new ItensModificados());
             DB::commit();
             
             return response('', 200);
 
         }  catch(\Exception $e){
             DB::rollback();
+            dd($e);
             return response('', 500);
         }  
 
@@ -183,24 +186,6 @@ class LinhasController extends Controller
                 ];
     }
 
-    /*public function getTroncosList(){
-        $arquivo = "/var/lib/asterisk/agi-bin/ramal_virtual/rv_troncos.ini";
-        
-        if(!file_exists($arquivo)){
-            return [];
-        }
-
-        $troncos = parse_ini_file($arquivo, true);
-
-        if(!$troncos){
-            return [];
-        }
-        
-        $troncos_linha = $this->entity->find(19)->configuracoes->rotas_saida;
-
-        return array_keys($troncos);
-    }*/
-
 
     public function getDataObject($request){
         $autenticacao = $request->only("login_ata",
@@ -218,28 +203,12 @@ class LinhasController extends Controller
                                         "nat",
                                         "rotas_saida");
 
-        $facilidades = $request->only("gravacao",
-                                      "cadeado_pessoal",
-                                      "siga_me",
-                                      "caixa_postal",
-                                      "cadeado_pin",
+        $facilidades = $request->only(
                                       "monitoravel",
-                                      "pode_monitorar",
-                                      "cx_postal_email",
-                                      "cx_postal_pw",
-                                      "num_siga_me",
-                                      "atend_automatico",
-                                      "atend_automatico_tipo",
-                                      "atend_automatico_destino");
-
-        if($facilidades['caixa_postal'] === null){
-            $facilidades['cx_postal_email'] = null;
-            $facilidades['cx_postal_pw'] = null;
-        }
-
-        if($facilidades['siga_me']  === null){
-            $facilidades['num_siga_me'] = null;
-        }
+                                      "pode_monitorar"
+                                      /*"atend_automatico",
+                                      /"atend_automatico_tipo",
+                                      /"atend_automatico_destino"*/);
 
         $permissoes = $request->only("ligacao_fixo",
                                     "ligacao_internacional",

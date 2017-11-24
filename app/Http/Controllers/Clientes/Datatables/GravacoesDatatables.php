@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Clientes\Datatables;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Datatables;
 use App\Models\Gravacoes;
 use JWTAuth;
 use DB;

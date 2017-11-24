@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Clientes\Datatables;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Datatables;
 use DB;
 use JWTAuth;
 use App\Helpers\AGIClasses\Numero;

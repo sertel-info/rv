@@ -39,16 +39,13 @@ class LinhasEdit extends FormInterface {
 			ring_falso : 0,
 			nat : 0,
 			/* Facilidades */
-			gravacao : 0,
-			cadeado_pessoal : 0,
-			siga_me : 0,
-			caixa_postal : 0,
-			cadeado_pin : "",
 			pode_monitorar : 0,
 			monitoravel : 0,
-			num_siga_me : "",
-			cx_postal_pw : "",
-			cx_postal_email : "",
+			//cadeado_pessoal : 0,
+			//cadeado_pin : "",
+			//num_siga_me : "",
+			//cx_postal_pw : "",
+			//cx_postal_email : "",
 			/* Permissões */
 			ligacao_fixo : 0,
 			ligacao_internacional : 0,
@@ -145,6 +142,11 @@ class LinhasEdit extends FormInterface {
 				
 				if(facilidades !== null){
 					new_state = Object.assign(new_state, {
+						perm_gravacao  : facilidades.perm_gravacao,
+						perm_siga_me : facilidades.perm_siga_me,
+						perm_cx_postal : facilidades.perm_cx_postal,
+						perm_at_automatico : facilidades.perm_at_automatico,
+						perm_cadeado : facilidades.perm_cadeado,
 						gravacao : facilidades.gravacao,
 						cadeado_pessoal : facilidades.cadeado_pessoal,
 						siga_me : facilidades.siga_me,
@@ -178,22 +180,23 @@ class LinhasEdit extends FormInterface {
 	}
 
 	render(){
-		let modal = "";
-		if(this.hasErrors() && super.shouldShowModal())
-			modal = this.getErrorsModal();
-		else if(this.hasSucceeded() && super.shouldShowModal())
-			modal = this.getSuccessModal();
-
-		return (<div className="panel panel-default">
-			    <div className="panel-heading">
-			    	Editar Linha
-			    	<a href="#" className="btn btn-success pull-right" onClick={this.handleFormSubmit}> <i className="fa fa-check"></i> Finalizar </a>
-			    	<a href="#/linhas" className="btn btn-warning pull-right mr-2"> <i className="fa fa-arrow-left"></i> Voltar </a>
-				</div>
-				<div className="panel-body">
-					<LinhasForm onInputChange={this.handleInputChange} valuesGetter={this.getValueOf}/>
-				</div>
-				 {modal}
+		return (<div>
+					<div className="row">
+						<div className="col-lg-12">
+							<h2 className="page-header">Editar Linha</h2>
+						</div>
+					</div>
+					<div className="panel panel-default">
+					    <div className="panel-heading">
+					    	Editar Linha
+					    	<a href="#" className="btn btn-success pull-right" onClick={this.handleFormSubmit}> <i className="fa fa-check"></i> Finalizar </a>
+					    	<a href="#/linhas" className="btn btn-warning pull-right mr-2"> <i className="fa fa-arrow-left"></i> Voltar </a>
+						</div>
+						<div className="panel-body">
+							<LinhasForm onInputChange={this.handleInputChange} valuesGetter={this.getValueOf}/>
+						</div>
+						 {this.getModalToShow()}
+				   </div>
 			   </div>
 				);
 	}

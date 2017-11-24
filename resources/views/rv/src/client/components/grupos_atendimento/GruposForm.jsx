@@ -17,7 +17,7 @@ class GruposForm extends React.Component {
 						<div className="col-lg-6">
 							<div className="form-group">
 								<label> Nome </label>
-								<input onChange={onChange} value={valuesGetter("nome")}  className="form-control" type="text" name="nome"/> 
+								<input onChange={onChange} value={valuesGetter("nome")}  className="form-control input-sm" type="text" name="nome"/> 
 							</div>
 							<div className="form-group">
 								<label>Tipo</label>

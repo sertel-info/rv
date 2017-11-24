@@ -72,7 +72,6 @@ class GravacoesIndex extends React.Component {
 						<div className="col-lg-12">
 							<h2 className="page-header">Gravações</h2>
 						</div>
-					
 					</div>
 					<div className="panel panel-default">
 							<div className="panel-heading">

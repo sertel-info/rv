@@ -35,7 +35,6 @@ class QueuesStatusList extends React.Component {
 								send_remote_data={this.props.send_remote_data}
 								td_class="text-center"
 								th_class="text-center"
-								refresh_time={2000}
 							/>
 					</div>
 				</div>);

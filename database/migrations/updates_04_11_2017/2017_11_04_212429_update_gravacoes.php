@@ -28,11 +28,11 @@ class UpdateGravacoes extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql-asterisk-logs')->table('gravacoes', function($table)
-        {
-            if(!Schema::connection('mysql-asterisk-logs')->hasColumn('gravacoes', 'duracao'))
-                $table->string('duracao');
-            
-        });
+        if(Schema::hasColumn('atualizacoes_creditos', 'valor_anterior')){
+             Schema::table('atualizacoes_creditos', function($table)
+            {
+               $table->dropColumn('valor_anterior');
+            });
+        }
     }
 }

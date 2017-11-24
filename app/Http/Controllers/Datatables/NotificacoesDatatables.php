@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Datatables;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Notificacoes\Notificacoes;
-use Datatables;
 use DB;
 use Auth;
 use ReactTable;

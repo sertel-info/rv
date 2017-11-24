@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Datatables;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Assinantes\Assinantes;
-use Datatables;
 use DB;
 use ReactTable;
 

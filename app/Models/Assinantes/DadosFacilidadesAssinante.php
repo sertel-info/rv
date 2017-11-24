@@ -14,8 +14,12 @@ class DadosFacilidadesAssinante extends Model
 						"fila",
 						"ura",
 						"gravacoes",
+						"saudacoes",
 						"acesso_extrato",
-						"saudacoes"
+						"acesso_cx_postal",
+						"acesso_siga_me",
+						"acesso_at_automatico",
+						"acesso_cadeado"
     					];
 
 

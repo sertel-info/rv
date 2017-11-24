@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests\Validators;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Filas;
+use App\Http\Requests\ValidatedRequest;
 
-class FilasValidator extends FormRequest
-{
+class FilasValidator extends ValidatedRequest
+{   
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -16,7 +16,6 @@ class FilasValidator extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,14 +23,10 @@ class FilasValidator extends FormRequest
      */
     public function rules()
     {
-        $isEditing = $this->isMethod("put");
-        
-        if($isEditing){
-            $fila = Filas::select('id')->whereRaw("MD5(id) = '".$this->f."'")->first();
-        }
+        $is_editing = $this->get("f") !== null;
         
         return [
-            'nome'=>'required|string|min:3|max:15|unique:filas,nome'.($isEditing ? ",".$fila->id : "" ),
+            'nome'=>'required|string|min:3|max:15|unique:filas,nome'.($is_editing ? ",".$this->get("f") : "" ),
             'tipo'=>'required',
             'tempo_chamada'=>'required',
             'regra_transbordo'=>'required'

@@ -26,4 +26,5 @@ class LinhasController extends Controller
 			return response('', 500);
 		}
 	}
+
 }

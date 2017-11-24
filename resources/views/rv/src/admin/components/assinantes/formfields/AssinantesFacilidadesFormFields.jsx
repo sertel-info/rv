@@ -55,11 +55,39 @@ class AssinantesFacilidadesFormFields extends React.Component {
 					</select>
 					</div>
 					<div className="form-group">
-					<label>Acesso ao extrato</label>
-					<select onChange={onchange} value={valuesGetter("acesso_extrato")} className="form-control" name="acesso_extrato">
-						<option value="1"> Ativado </option>
-						<option value="0"> Desativado </option>
-					</select>
+						<label>Acesso ao Extrato</label>
+						<select onChange={onchange} value={valuesGetter("acesso_extrato")} className="form-control" name="acesso_extrato">
+							<option value="1"> Ativado </option>
+							<option value="0"> Desativado </option>
+						</select>
+					</div>
+					<div className="form-group">
+						<label>Acesso ao Cadeado pessoal</label>
+						<select onChange={onchange} value={valuesGetter("acesso_cadeado")} className="form-control" name="acesso_cadeado">
+							<option value="1"> Ativado </option>
+							<option value="0"> Desativado </option>
+						</select>
+					</div>
+					<div className="form-group">
+						<label>Acesso a Caixa Postal</label>
+						<select onChange={onchange} value={valuesGetter("acesso_cx_postal")} className="form-control" name="acesso_cx_postal">
+							<option value="1"> Ativado </option>
+							<option value="0"> Desativado </option>
+						</select>
+					</div>
+					<div className="form-group">
+						<label>Acesso a Siga-me </label>
+						<select onChange={onchange} value={valuesGetter("acesso_siga_me")} className="form-control" name="acesso_siga_me">
+							<option value="1"> Ativado </option>
+							<option value="0"> Desativado </option>
+						</select>
+					</div>
+					<div className="form-group">
+						<label>Acesso a Atendimento automático</label>
+						<select onChange={onchange} value={valuesGetter("acesso_at_automatico")} className="form-control" name="acesso_at_automatico">
+							<option value="1"> Ativado </option>
+							<option value="0"> Desativado </option>
+						</select>
 					</div>
 				</div>);
 	}

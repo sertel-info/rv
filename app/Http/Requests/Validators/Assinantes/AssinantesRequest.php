@@ -4,8 +4,9 @@ namespace App\Http\Requests\Validators\Assinantes;
 
 use Illuminate\Validation\Rule;
 use DB;
+use App\Http\Requests\ValidatedRequest;
 
-class AssinantesRequest extends FormRequest
+class AssinantesRequest extends ValidatedRequest
 {
     /**
      * Determine if the user is authorized to make this request.

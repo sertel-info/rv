@@ -9,7 +9,12 @@ class DadosFacilidadesLinhas extends Model
     protected $table = 'dados_facilidades_linhas';
 
     protected $fillable = [
-							"gravacao",
+							"perm_gravacao",
+                            "perm_cadeado",
+                            "perm_siga_me",
+                            "perm_cx_postal",
+                            "perm_at_automatico",
+                            "gravacao",
 							"cadeado_pessoal",
 							"siga_me",
 							"caixa_postal",
@@ -55,6 +60,29 @@ class DadosFacilidadesLinhas extends Model
 
     public function setPodeMonitorarAttribute($value){
         return $this->attributes['pode_monitorar'] = (Boolean)$value;
+    }
+
+    public function setAtendAutomaticoDestinoAttribute($value){
+        if($value === "0" || !is_string($value) || strpos($value, "_") === FALSE)
+            return $this->attributes = null;
+
+        list($raw_tipo, $at_dest) = explode("_", $value);
+        $at_tipo = null;
+
+        switch($raw_tipo){
+            case 'g':
+                $at_tipo = 'grupo';
+            break;
+            case 'u':
+                $at_tipo = 'ura';
+            break; 
+            case 'f':
+                $at_tipo = 'fila';
+            break;
+        }
+
+        $this->attributes['atend_automatico_destino'] = $at_dest;
+        $this->attributes['atend_automatico_tipo'] = $at_tipo;
     }
 
     public function setAtendAutomaticoAttribute($value){

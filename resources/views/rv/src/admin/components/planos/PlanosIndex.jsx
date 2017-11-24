@@ -10,13 +10,20 @@ class PlanosIndex extends React.Component {
 	}
 
 	render(){
-		return (<div className="panel panel-default">
-					<div className="panel-heading">
-						Planos
-						<Link to="/planos/criar" className="btn btn-success pull-right"><em className="fa fa-plus"></em> Criar plano</Link>
+		return (<div>
+					<div className="row">
+						<div className="col-lg-12">
+							<h2 className="page-header">Planos</h2>
+						</div>
 					</div>
-					<div className="panel-body">
-						<PlanosTable/>
+					<div className="panel panel-default">
+						<div className="panel-heading">
+							Planos
+							<Link to="/planos/criar" className="btn btn-success pull-right"><em className="fa fa-plus"></em> Criar plano</Link>
+						</div>
+						<div className="panel-body">
+							<PlanosTable/>
+						</div>
 					</div>
 				</div>);
 	}

@@ -42,6 +42,33 @@ class ClientesController extends Controller
     }
 
     /*
+    * Retorna as permissẽoes do usuário para que seja
+    * montada a left navbar de acordo.
+    */
+    public function getUserPerms(Request $request){
+        try{
+        
+            $assinante = JWTAuth::toUser($request->cookie("token"))->assinante;
+            $facilidades = $assinante->facilidades;
+
+            $perms = [
+                "gravacoes"=>$facilidades->gravacoes,
+                "extrato"=>$facilidades->acesso_extrato,
+                "g_aten"=>$facilidades->grupos_atendimento,
+                "uras"=>$facilidades->ura,
+                "filas"=>$facilidades->fila,
+                "saudacoes"=>$facilidades->saudacoes,
+                "correio_voz"=>$facilidades->correio_voz
+            ];
+            
+            return response()->json(["perms"=>$perms], 200);
+
+        } catch(\Exception $e){
+            return response('', 500);
+        }
+    }
+
+    /*
     public function getUsuario(){
        return User::where('id', Auth::id())->with('assinante.linhas.facilidades',
        											  'assinante.linhas.configuracoes')

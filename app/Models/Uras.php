@@ -6,17 +6,35 @@ use Illuminate\Database\Eloquent\Model;
 
 class Uras extends Model
 {	
-	protected $fillable = ['dig_tralha_tipo',
-    					   'dig_asteristico_destino',
-    					   'tipo_audio'];
+	protected $fillable = ['nome',
+    					   'tipo_audio',
+                           'dig_0_tipo',
+                           'dig_0_destino',
+                           'dig_1_tipo',
+                           'dig_1_destino',
+                           'dig_2_tipo',
+                           'dig_2_destino',
+                           'dig_3_tipo',
+                           'dig_3_destino',
+                           'dig_4_tipo',
+                           'dig_4_destino',
+                           'dig_5_tipo',
+                           'dig_5_destino',
+                           'dig_6_tipo',
+                           'dig_6_destino',
+                           'dig_7_tipo',
+                           'dig_7_destino',
+                           'dig_8_tipo',
+                           'dig_8_destino',
+                           'dig_9_tipo',
+                           'dig_9_destino',
+                           'dig_asteristico_tipo',
+                           'dig_asteristico_destino',
+                           'dig_tralha_tipo',
+                           'dig_tralha_destino',
+                           'assinante_id'];
 
     protected $table = 'uras';
-
-    function __construct(){
-        for($i = 1; $i < 10; $i++){
-            array_push($this->fillable, "dig_".$i."_tipo", "dig_".$i."_destino");
-        }
-    }
 
     public function audio(){
     	return $this->belongsTo("App\Models\Audios", "audio_id", "id");
@@ -38,181 +56,107 @@ class Uras extends Model
         $query->addSelect(\DB::Raw('MD5(uras.id) as id_md5'));
     }
 
-    public function setDig1DestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
+    /*
+    *  Recebe um parametro do tipo "r_12"
+    *  e retorna um array associativo com 
+    *  os atributos 'destino' e 'tipo';
+    */
+    public function getTipoAndDestino($destino){
+        if($destino === "0")
+            return ["destino"=>null,
+                    "tipo"=>null];
+
+                    
+        $dest_arr = explode("_", $destino);
+        $tipo = null;
+        $destino = $dest_arr[1];
+
+        switch($dest_arr[0]){
+            case 'r' :
+                $tipo = "ramal";
+            break;
+            case 'g' : 
+                $tipo ="grupo";
+            break;
+            case 'f' :
+                $tipo = "fila";
+            break;
         }
 
-        $this->attributes['dig_1_destino'] = $value;
+        return ["destino"=>$destino,
+                "tipo"=>$tipo];
     }
 
-    public function setDig1TipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
 
-        $this->attributes['dig_1_tipo'] = $value;
+    public function setDig0DestinoAttribute($value){
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_0_tipo'] = $params["tipo"];
+        $this->attributes['dig_0_destino'] = $params["destino"];
+    }
+
+    public function setDig1DestinoAttribute($value){
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_1_tipo'] = $params["tipo"];
+        $this->attributes['dig_1_destino'] = $params["destino"];
     }
 
     public function setDig2DestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_2_destino'] = $value;
-    }
-
-    public function setDig2TipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_2_tipo'] = $value;
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_2_tipo'] = $params["tipo"];
+        $this->attributes['dig_2_destino'] = $params["destino"];
     }
 
     public function setDig3DestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_3_destino'] = $value;
-    }
-
-    public function setDig3TipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_3_tipo'] = $value;
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_3_tipo'] = $params["tipo"];
+        $this->attributes['dig_3_destino'] = $params["destino"];
     }
 
     public function setDig4DestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_4_destino'] = $value;
-    }
-
-    public function setDig4TipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_4_tipo'] = $value;
+       $params = $this->getTipoAndDestino($value);
+       $this->attributes['dig_4_tipo'] = $params["tipo"];
+       $this->attributes['dig_4_destino'] = $params["destino"];
     }
 
     public function setDig5DestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_5_destino'] = $value;
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_5_tipo'] = $params["tipo"];
+        $this->attributes['dig_5_destino'] = $params["destino"];
     }
-
-    public function setDig5TipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_5_tipo'] = $value;
-    }
-
 
     public function setDig6DestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_6_destino'] = $value;
-    }
-
-    public function setDig6TipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_6_tipo'] = $value;
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_6_tipo'] = $params["tipo"];
+        $this->attributes['dig_6_destino'] = $params["destino"];
     }
 
     public function setDig7DestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_7_destino'] = $value;
-    }
-
-    public function setDig7TipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_7_tipo'] = $value;
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_7_tipo'] = $params["tipo"];
+        $this->attributes['dig_7_destino'] = $params["destino"];
     }
 
     public function setDig8DestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_8_destino'] = $value;
-    }
-
-    public function setDig8TipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_8_tipo'] = $value;
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_8_tipo'] = $params["tipo"];
+        $this->attributes['dig_8_destino'] = $params["destino"];
     }
 
     public function setDig9DestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_9_destino'] = $value;
-    }
-
-    public function setDig9TipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_9_tipo'] = $value;
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_9_tipo'] = $params["tipo"];
+        $this->attributes['dig_9_destino'] = $params["destino"];
     }
 
     public function setDigTralhaDestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_tralha_destino'] = $value;
-    }
-
-    public function setDigTralhaTipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_tralha_tipo'] = $value;
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_tralha_tipo'] = $params["tipo"];
+        $this->attributes['dig_tralha_destino'] = $params["destino"];
     }
 
     public function setDigAsteristicoDestinoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_asteristico_destino'] = $value;
+        $params = $this->getTipoAndDestino($value);
+        $this->attributes['dig_asteristico_tipo'] = $params["tipo"];
+        $this->attributes['dig_asteristico_destino'] = $params["destino"];
     }
-
-    public function setDigAsteristicoTipoAttribute($value){
-        if($value === "0"){
-            $value = null;
-        }
-
-        $this->attributes['dig_asteristico_tipo'] = $value;
-    }
-
 }

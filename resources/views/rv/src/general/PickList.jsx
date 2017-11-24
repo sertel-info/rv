@@ -8,7 +8,6 @@ class PickList extends React.Component {
 		let added = [],
 			not_added = this.props.options;
 		
-		console.log("opts", this.props.options);
 		if(this.props.value !== undefined){
 			    added = this.props.options.filter(function(el){ return this.props.value.indexOf(el.value) !== -1 }.bind(this));
 				not_added = this.props.options.filter(function(el){ return this.props.value.indexOf(el.value) == -1 }.bind(this));
@@ -34,8 +33,6 @@ class PickList extends React.Component {
 		let added = [],
 			not_added = nextProps.options;
 		
-		console.log('nextProps', nextProps);
-
 		if(nextProps.value !== undefined){
 			    added = nextProps.options.filter(function(el){ return nextProps.value.indexOf(el.value) !== -1 }.bind(this));
 				not_added = nextProps.options.filter(function(el){ return nextProps.value.indexOf(el.value) == -1 }.bind(this));
@@ -152,7 +149,6 @@ class PickList extends React.Component {
 	}
 
 	render(){
-		console.log("added", this.state.added)
 		return (<div className="col-lg-12">
 					<select value={[this.state.markedToAdd.value]} multiple onChange={this.handleToAddChange} className="col-lg-5" style={{minHeight:'200px'}}>
 						{this.state.not_added.map(function(codec,i){ return <option key={i} value={codec.value}> {codec.title} </option> })}

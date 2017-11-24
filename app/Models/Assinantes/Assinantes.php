@@ -78,8 +78,8 @@ class Assinantes extends Model
     }
 
 
-    public function ura(){
-        return $this->hasOne("App\Models\Uras", "assinante_id", "id");
+    public function uras(){
+        return $this->hasMany("App\Models\Uras", "assinante_id", "id");
     }
 
     public function filas(){

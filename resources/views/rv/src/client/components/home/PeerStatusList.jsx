@@ -54,6 +54,7 @@ class PeerStatusList extends React.Component {
 										td_class="text-center"
 										th_class="text-center"
 										refresh_time={2000}
+										req_timeout={1500}
 									/>
 							</div>
 					</div>);

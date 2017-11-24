@@ -76,12 +76,18 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     protected function mapClientesRoutes(){
-        Route::group(['namespace'=>$this->namespace."\Clientes"], function(){
+        Route::group(['namespace'=>$this->namespace."\Clientes", 'prefix'=>'cli'], function(){
             include (base_path("routes/rv/clientes/clientes.php"));
             include (base_path("routes/rv/clientes/extrato.php"));
             include (base_path("routes/rv/clientes/grupos.php"));
             include (base_path("routes/rv/clientes/linhas.php"));
             include (base_path("routes/rv/clientes/gravacoes.php"));
+            include (base_path("routes/rv/clientes/filas.php"));
+            include (base_path("routes/rv/clientes/saudacoes.php"));
+            include (base_path("routes/rv/clientes/uras.php"));
+            include (base_path("routes/rv/clientes/configuracoes.php"));
+            include (base_path("routes/rv/clientes/correio_voz.php"));
+            include (base_path("routes/rv/clientes/notificacoes.php"));
         });
     }
 

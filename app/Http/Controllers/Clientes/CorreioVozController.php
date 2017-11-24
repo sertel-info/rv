@@ -1,30 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Clientes;
 
 use Illuminate\Http\Request;
 use App\User;
-use Auth;
+use App\Http\Controllers\Controller;
+use JWTAuth;
 
 class CorreioVozController extends Controller
 {
     
-    function __construct(){
-    	
-    }
+    public function getGravacoesList(Request $request){
+	    try{
+	    	$assinante = JWTAuth::toUser($request->cookie('token'))->assinante;
+	    	
+	    	$voice_mail_path = config('asterisk.voice_mail_records');
+			$files = array();
 
-    public function index(){
-    	return view('rvc.correio_voz.index', ['active'=>'correio_voz',
-    										'panel_title'=>'Caixa de Entrada']);
-    }
-
-    public function getGravacoesList(){
-    	$user = $this->getUsuario();
-    	//$lines = array();
-    	$voice_mail_path = config('asterisk.voice_mail_records');
-		$files = array();
-
-    	if(file_exists($voice_mail_path)){
+	    	if(!file_exists($voice_mail_path)){
+	    		return response()->json(['data'=>[]], 200);
+	    	}
 
 	    	foreach($user->assinante->linhas as $line){
 	    		$ramal = $line->autenticacao->login_ata;
@@ -32,8 +27,6 @@ class CorreioVozController extends Controller
 	    		$inbox_path = $voice_mail_path . '/' . $user->assinante->id . '/' . $ramal;
 
 	    		if(file_exists($inbox_path)){
-	    			/*$arquivos = glob('/var/spool/asterisk/voicemail/correio_de_voz/'.
-	    							$ramal.'/INBOX/*.txt');*/
 
 	    			$directory = new \RecursiveDirectoryIterator($inbox_path);
 					$iterator = new \RecursiveIteratorIterator($directory);
@@ -59,45 +52,37 @@ class CorreioVozController extends Controller
 	    		}	    		
 	    	}
 
-	    	return json_encode(['data'=>$files]);
-    	} else {
-    		return json_encode(['data'=>[]]);
-    	}
-    }
-
-    public function getUsuario(){
-    	 return User::where('id', Auth::id())->with('assinante.linhas.facilidades',
-    	 											'assinante.linhas.configuracoes',
-    	 											'assinante.linhas.autenticacao')
-                                             ->first();
+	    	return response()->json(['data'=>$files], 200);
+	    	
+	    } catch (\Exception $e){
+	    	return response('', 500);
+	    }
     }
 
     public function downloadGravacao(Request $request){
-    	$user = $this->getUsuario(); 
+    	$assinante = JWTAuth::toUser($request->cookie('token'))->assinante;
     	$file_name = 'msg' . $request->f . '.wav';
     	$ramal = $request->r;
     
     	/** Verifica se a linha pertence ao usuário**/
     	try{
-	    	$line = $user->assinante->linhas->where("autenticacao.login_ata", $ramal)->first();
+	    	$line = $assinante->linhas->where("autenticacao.login_ata", $ramal)->first();
 	    	if($line == null){
 	    		return 0;
 	    	} 
 
 	    	$headers = array('Content-Type'=>'audio/mpeg');
 
-	    	$full_file_path = config('asterisk.voice_mail_records'). '/' . $user->assinante->id . '/' . $ramal. '/' . $file_name;
+	    	$full_file_path = config('asterisk.voice_mail_records'). '/' . $assinante->id . '/' . $ramal. '/' . $file_name;
 	    	return response()->download($full_file_path, $file_name, $headers);
 	    
 	    } catch (\Exception $e){
-	    	dd($e);
-	    	abort(403, 'Ação não autorizada');
+	    	return response("", 500);
 	    }
     }
 
-
     public function getBlob($ramal, $id){
- 		$user = $this->getUsuario();
+    	$assinante = JWTAuth::toUser($request->cookie('token'))->assinante;
  		$gravacao = 'msg' . $id . '.wav';
 
     	if(!($user->assinante->linhas->where("autenticacao.login_ata", $ramal)->count())){
@@ -106,7 +91,7 @@ class CorreioVozController extends Controller
 
     	$headers = array('Content-Type'=>'audio/x-wav');
     	
-    	$file = config('asterisk.voice_mail_records') . '/' . $user->assinante->id . '/' . $ramal . '/'. $gravacao;
+    	$file = config('asterisk.voice_mail_records') . '/' . $assinante->id . '/' . $ramal . '/'. $gravacao;
     	return response()->file($file, $headers);
     }
 }

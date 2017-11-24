@@ -27,17 +27,22 @@ class GruposCreate extends FormInterface {
 	}
 
 	render(){
-		return (
-				<div className="panel panel-default">
-					<div className="panel-heading">
-						Criar Grupo
-						<a href="#" className="btn btn-success pull-right" onClick={this.handleFormSubmit}> <i className="fa fa-check"></i> Finalizar </a>
-				    	<a href="#/grupos" className="btn btn-warning pull-right mr-2"> <i className="fa fa-arrow-left"></i> Voltar </a>
+		return (<div>
+					<div className="row">
+						<div className="col-lg-12">
+							<h2 className="page-header">Criar Grupo de Atendimento</h2>
+						</div>
 					</div>
-					<div className="panel-body">
-						<GruposForm valuesGetter={this.getValueOf} onInputChange={this.handleInputChange}/>
-					</div>
-					{this.getModalToShow()}
+					<div className="panel panel-default">
+						<div className="panel-heading">
+							<a href="#" className="btn btn-success pull-right" onClick={this.handleFormSubmit}> <i className="fa fa-check"></i> Finalizar </a>
+					    	<a href="#/grupos" className="btn btn-warning pull-right mr-2"> <i className="fa fa-arrow-left"></i> Voltar </a>
+						</div>
+						<div className="panel-body">
+							<GruposForm valuesGetter={this.getValueOf} onInputChange={this.handleInputChange}/>
+						</div>
+						{this.getModalToShow()}
+					</div>]
 				</div>
 				);
 	}

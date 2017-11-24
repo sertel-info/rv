@@ -16,6 +16,7 @@ class ConfiguracoesIndex extends FormInterface {
 			voice_mail_remetente_padrao : "",
 			voice_mail_assunto_padrao : "",
 			voice_mail_mensagem_padrao : "",
+			prefx_monitoramento : ""
 		}
 
 		this.route = _ROUTES_.configuracoes.update;	
@@ -44,7 +45,8 @@ class ConfiguracoesIndex extends FormInterface {
 				atalho_cadeado : config.atalho_cadeado,
 				voice_mail_remetente_padrao : config.voice_mail_remetente_padrao,
 				voice_mail_assunto_padrao : config.voice_mail_assunto_padrao,
-				voice_mail_mensagem_padrao : config.voice_mail_mensagem_padrao
+				voice_mail_mensagem_padrao : config.voice_mail_mensagem_padrao,
+				prefx_monitoramento : config.prefx_monitoramento
 			});
 
 		}.bind(this)).catch(function(error){
@@ -55,21 +57,23 @@ class ConfiguracoesIndex extends FormInterface {
 	}
 
 	render(){
-		let modal = "";
-		if(this.hasErrors() && super.shouldShowModal())
-			modal = this.getErrorsModal();
-		else if(this.hasSucceeded() && super.shouldShowModal())
-			modal = this.getSuccessModal();
 
-		return (<div className="panel panel-default">
-					<div className="panel-heading">
-						Configurações
-						<a href="#" onClick={this.handleFormSubmit} className="btn btn-success pull-right"><em className="fa fa-check"></em> Finalizar </a>
+		return (<div>
+					<div className="row">
+						<div className="col-lg-12">
+							<h2 className="page-header">Configurações</h2>
+						</div>
 					</div>
-					<div className="panel-body">
-						<ConfiguracoesForm onInputChange={this.handleInputChange} valuesGetter={this.getValueOf}/>
+					<div className="panel panel-default">
+						<div className="panel-heading">
+							Configurações
+							<a href="#" onClick={this.handleFormSubmit} className="btn btn-success pull-right"><em className="fa fa-check"></em> Finalizar </a>
+						</div>
+						<div className="panel-body">
+							<ConfiguracoesForm onInputChange={this.handleInputChange} valuesGetter={this.getValueOf}/>
+						</div>
+						{this.getModalToShow()}
 					</div>
-					{modal}
 				</div>);
 	}
 }

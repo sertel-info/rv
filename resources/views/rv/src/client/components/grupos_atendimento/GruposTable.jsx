@@ -18,7 +18,20 @@ class GruposTable extends React.Component {
 							},
 							{
 							 title : "Tipo",
-							 acessor: "tipo"
+							 acessor: "tipo",
+							 render : (data) => {
+							 	console.log(data);
+							 	switch(data){
+							 		case "multiplo" :
+							 			return "Múltiplo";
+							 		case "hierarquico" : 
+							 			return "Hierárquico";
+							 		default :
+							 			return data.charAt(0).toUpperCase() + data.slice(1);
+							 	}
+
+							 	return '';
+							 }
 							},
 							{
 							 title : "Linhas",

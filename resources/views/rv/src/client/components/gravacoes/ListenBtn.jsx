@@ -1,5 +1,5 @@
 import React from 'react';
-import AudioPlayer from './AudioPlayer.jsx';
+import AudioPlayer from '../../../general/AudioPlayer.jsx';
 import Modal from '../../../general/Modal.jsx';
 
 class ListenBtn extends React.Component {

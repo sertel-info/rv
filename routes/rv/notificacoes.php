@@ -16,5 +16,6 @@ Route::group(['middleware' => 'auth', 'prefix'=>'notificacoes/volateis', 'namesp
     Route::get('/create/{a?}', 'NotificacoesFlashController@create')->name("rv.notifications.flash.create");
     Route::post('/store/{a?}', 'NotificacoesFlashController@store')->name("rv.notifications.flash.store");
     Route::post('/mark/seen', 'NotificacoesFlashController@markSeen')->name("rv.notifications.flash.mark.seen");
+    Route::post('/get/list', 'NotificacoesFlashController@markSeen')->name("rv.notifications.flash.mark.seen");
    // Route::get('/get/olg', 'NotificacoesFlashController@markSeen')->name("rv.notifications.flash.mark.seen");
 });

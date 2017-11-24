@@ -24,6 +24,10 @@ class ConfigGeralFormFields extends React.Component {
 						<label>Atalho Para Cadeado</label>
 						<input onChange={onChange} value={valuesGetter("atalho_cadeado")} type="text" className="form-control input-sm" name="atalho_cadeado"/>
 					</div>
+					<div className="form-group">
+						<label>Prefixo para monitoramento</label>
+						<input onChange={onChange} value={valuesGetter("prefx_monitoramento")} type="text" className="form-control input-sm" name="prefx_monitoramento"/>
+					</div>
 				</div>);
 	}
 }

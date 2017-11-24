@@ -68,7 +68,7 @@ class FormInterface extends React.Component {
 		}.bind(this)).catch(function(error){
 			
 			let response = error.response;
-
+			console.log(error);
 			if(response.status == 401)
 				window.location = "/login";
 

@@ -42,7 +42,10 @@ class Table extends React.Component {
 		if(this.props.refresh_time !== undefined){
 			this.should_show_loading = false;
 			this.interval = window.setInterval(this.getRemoteData, 2000);
+			return;
 		}
+
+		this.getRemoteData();
 	}
 
 	componentWillUnmount(){
@@ -76,18 +79,20 @@ class Table extends React.Component {
 
 		params = Object.assign(params, this.remote_data);
 
+		let callback = !this.should_show_loading ?  ()=>{} : () => {		
+																	$tbody.find(".loading-row").remove();
+																	$tbody.find("tr").show();
+																	};		
 		Axios({
 			
 			method: "GET",
 			url: this.state.remote,
-			params: params
+			params: params,
+			timeout: this.props.req_timeout !== undefined ? this.props.req_timeout : 5000
 
 		}).then(function(response){
 			let data = response.data;
-			let callback = !this.should_show_loading ?  ()=>{} : () => {		
-																		$tbody.find(".loading-row").remove();
-																		$tbody.find("tr").show();
-																	   };
+
 			this.setState({
 				total_records : data.total_records,
 				data : data.data,
@@ -96,6 +101,12 @@ class Table extends React.Component {
 
 		}.bind(this)).catch(function(error){
 			
+			this.setState({
+				data : [],
+				total_records : 0,
+				page_count : 0
+			}, callback);
+
 			console.log(error);
 
 		}.bind(this));
@@ -137,7 +148,23 @@ class Table extends React.Component {
 											</tr>
 				}.bind(this));
 
-		let th_class = this.props.th_class;
+		let th_class = this.props.th_class,
+			paginate = this.page_count > 1 ? <div className=''>
+											  		<ReactPaginate pageCount={this.state.page_count}
+											  					   pageRangeDisplayed={3}
+											  					   marginPagesDisplayed={1}
+											  					   previousLabel="<"
+											  					   nextLabel=">"
+											  					   breakLabel={<a href="" onClick={(event)=> event.preventDefault()}>...</a>}
+											  					   initialPage={0}
+											  					   containerClassName="pagination pull-right"
+																   pageClassName=""
+																   activeClassName="active"
+																   breakClassName=""
+																   onPageChange={this.handlePageChange}
+											  					   />
+											  </div> 
+											  : "";
 		return (
 				<div>
 					<table id={this.props.id} className={state.style} style={{"marginBottom":0}}>
@@ -158,21 +185,7 @@ class Table extends React.Component {
 								}
 						</tbody>
 					</table>
-				  <div className=''>
-				  		<ReactPaginate pageCount={this.state.page_count}
-				  					   pageRangeDisplayed={3}
-				  					   marginPagesDisplayed={1}
-				  					   previousLabel="<"
-				  					   nextLabel=">"
-				  					   breakLabel={<a href="" onClick={(event)=> event.preventDefault()}>...</a>}
-				  					   initialPage={0}
-				  					   containerClassName="pagination pull-right"
-									   pageClassName=""
-									   activeClassName="active"
-									   breakClassName=""
-									   onPageChange={this.handlePageChange}
-				  					   />
-				  </div>
+				  
 				</div>
 			   );
 	}
