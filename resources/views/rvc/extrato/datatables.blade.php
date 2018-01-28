@@ -70,7 +70,7 @@
 		          		if(data.match(/^0[0-9]00/) !== null)
 		          			return data;
 
-		          		if(data.length >= 10 && data.length <= 14){
+		          		if(data.length >= 9 && data.length <= 14){
 		          			//return data;
 		          			
 		          			var num_arr = data.match(/^(00|0|9090|90|55)?(([0-9]{2})?([0-9]{2}))?(([0-9])[0-9]{7,})(\s.*)?/);
